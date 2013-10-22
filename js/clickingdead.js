@@ -4,23 +4,23 @@
 var ClickingDead = {};
 ClickingDead.functionName = function () {};
 
-
 /*
  * Window Load and initialization steps.
  */
 $(window).load(function() {
-	alert("hello world");
+	
+	var worker = new Worker("/js/zombiescalc.js");
+
+	worker.onmessage = function (event) {
+		var message = event.data;
+		var worker = event.target;
+		alert("event returned");
+	};
 
 	$("body").on("click", "#testButton", function() {
-		alert("I got clicked bro");
+		worker.postMessage("ping");
 	});
 });
-
-
-
-/*
- * Window Load Variables
- */
 
 
 
