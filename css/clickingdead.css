@@ -156,25 +156,50 @@ div.contentWrapper.menuItems
     position: relative;
 }
 
+table.main3Wrapper
+{
+    margin: 0px;
+    padding: 0px;
+    
+    width: 100%;
+    height: 100%;
+}
+
+tr
+{
+    margin: 0px;
+    padding: 0px;
+    
+    width: 100%;
+}
+
+td.scavengeBox
+{
+    width: 290px;
+}
+
+td.zombiesBox
+{
+    width: 290px;
+}
+
+
 .blackbox.main3#scavenge
 {
     float: left;
-    margin-right: 20px;
 }
 
 
 .blackbox.main3#news
 {
-    width: 400px;
-    position: absolute;
-    left: 50%;
-    margin-left: -210px;
+    width: 100%;
+    padding: 10px 0px;
 }
 
 
 .blackbox.main3#zombies
 {
-    margin-left: 20px;
+
     float:right;
 }
 
