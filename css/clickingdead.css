@@ -252,6 +252,53 @@ div.contentWrapper.main3
 }
 
 
+/*Progress Bars*/
+div.progressWrapper
+{
+    background-color: rgba(51, 51, 51, .8);
+    height: 14.5px;
+    width: 500px;
+    
+    padding: 5px 5px;
+    border-radius: 10px;
+}
+
+progress.zombieMeter::-webkit-progress-value 
+{
+    background-color: red;
+}
+
+progress.suppliesMeter::-webkit-progress-value
+{
+    background-color: green;
+}
+
+progress {  
+    border: 0;  
+    height: 14.5px;  
+    width: 100%;
+    border-radius: 10px;
+}  
+progress::-webkit-progress-bar {  
+    border: 0;  
+    height: 14.5px;  
+    width: 100%;
+    border-radius: 10px;
+}  
+progress::-webkit-progress-value {  
+    border: 0;  
+    height: 14.5px;  
+    width: 100%;
+    border-radius: 10px;
+}
+progress::-moz-progress-bar {  
+    border: 0;  
+    height: 14.5px;  
+    width: 100%;
+    border-radius: 10px;  
+}  
+
+
 /* Animations */
 .moveToLocation
 {
