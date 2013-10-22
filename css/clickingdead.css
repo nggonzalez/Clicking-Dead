@@ -82,7 +82,7 @@ body
 h1.name
 {
     width: 40%;
-    margin: 0px 0px 20px 20px;
+    margin: 0px 0px 20px 0px;
     padding: 0px;
     font-size: 4em;
     height: 52px;
@@ -106,14 +106,16 @@ div.pageWrapper
     width: 90%;
     margin: 0px auto;
     margin-top: 120px;
+    min-width: 1004px;
 }
 
 div.main3wrapper
 {
-    width: 100%;
-    margin: 0px;
+    min-width: 1004px;
+    margin: 0px auto;
     padding: 0px;
     clear: both;
+    position: relative;
 }
 
 .blackbox
@@ -130,9 +132,28 @@ div.main3wrapper
     width: 300px;
     
     margin: 0px;
-    margin-right: 10px;
     padding: 10px;
-    display: inline-block;
+}
+
+.blackbox.main3#scavenge
+{
+    float: left;
+    margin-right: 20px;
+}
+
+
+.blackbox.main3#news
+{
+    position: absolute;
+    left: 50%;
+    margin-left: -160px;
+}
+
+
+.blackbox.main3#zombies
+{
+    margin-left: 20px;
+    float:right;
 }
 
 
