@@ -1,15 +1,30 @@
 /**
  * test of zombiescalc.js
  */
-var zombieVal = 0;			// this is the global prob of there
-					// being a zombie
 
+var playerData = {};			// object to keep player data in.
+
+var zombies = 1;			// current number of zombies
+var critZombies = 1000;			// critical number of zombies for loss
+
+var zombieMultProb = .4;
 
 setInterval(function() {
-	zombieVal =  (zombieVal + 0.01) % 1;
+	Math.random() > zombieMultProb ? zombies += 2 : zombies++;
+	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage(zombieVal);
 }, 10);
 
-onmessage = function (event) { 
-	setTimeout(function(){postMessage(1);}, 1000);
+
+/*
+ * we will send the message here.  zombiescalc must support a variety of message protocols
+ */
+onmessage = function (event) {
+	if(event.data.type == "update") {
+		playerData = event.data.data;
+	} else if (event.data.type == 'kill') {
+		zombies = (zombies - playerData.personalDamage > 0) ? 
+				zombies - playerData.personalDamage : 0;
+	}
+	postMessage(event.data.type == 'kill');
 };
