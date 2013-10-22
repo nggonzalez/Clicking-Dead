@@ -6,3 +6,11 @@ ClickingDead.functionName = function () {};
 
 
 
+
+/*
+ * Window Load Variables
+ */
+
+
+
+
