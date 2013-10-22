@@ -266,15 +266,17 @@ nav.menu
 .clickButton
 {
     border-radius: 6px;
-    width: 85%;
+    width: 234px;
     line-height: 1.4em;
     font-size: 1.4em;
     letter-spacing: 0.06em;
     color: #fff;
-    margin: 0px; auto;
     padding: 8px 4px;
+    margin: 0px;
     position: absolute;
     bottom: 10%;
+    left: 50%;
+    margin-left: -121px;
     
     cursor: default;   
 }
