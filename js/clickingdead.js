@@ -1,3 +1,8 @@
-var clickingDead = {};
+/*
+ * Global Clicking Dead Javascript Object
+ */
+var ClickingDead = {};
 
-clickingDead.functionName = function () {};
+ClickingDead.functionName = function () {};
+
+

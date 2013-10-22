@@ -1,2 +1,8 @@
 # compiled python files
 *.pyc
+
+# text editor backup files
+*.swp
+
+# specific files to ignore
+.DS_Store
