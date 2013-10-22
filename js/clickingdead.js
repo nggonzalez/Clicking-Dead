@@ -17,3 +17,11 @@ $(window).load(function() {
 });
 
 
+
+/*
+ * Window Load Variables
+ */
+
+
+
+
