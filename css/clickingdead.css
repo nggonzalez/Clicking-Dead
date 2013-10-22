@@ -128,7 +128,13 @@ div.contentWrapper
 div.contentWrapper.main3
 {
     height: 220px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+div.contentWrapper.menuItems
+{
+    height: 304px;
+    
 }
 
 .blackbox
@@ -197,10 +203,17 @@ div.contentWrapper.main3
     left: 0px;
 }
 
+nav.menu
+{
+    width: 270px;
+    margin: 0px;
+    margin-right: 20px;
+    padding: 0px;
+    float: left;
+}
 
 .blackbox.menu
 {
-    color: #fff;
     line-height: 50px;
     font-size: 1.5em;
     padding: 8px 10px;
@@ -213,6 +226,17 @@ div.contentWrapper.main3
     text-align: center;   
 }
 
+.blackbox.menu:first-of-type
+{
+    margin-top: 0px;
+}
+
+.blackbox.itemsList
+{
+    height: 288px;
+    margin: 0px;
+    margin-left: 290px;
+}
 
 .clickButton
 {
