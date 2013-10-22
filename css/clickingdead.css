@@ -1,9 +1,33 @@
-# Clicking Dead Front End
+/* Clicking Dead Front End */
+
+body
+{
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 13px;
+}
 
 
-# Daniel
+/* Daniel */
+
+.blackbox
+{ 
+    background-color: #EE2200
+} 
 
 
 
-
-# Nick
+/* Nick */
+.backgroundImage
+{
+    width: 100%;
+    height: 100%;
+    
+    margin: 0px;
+    padding: 0px;
+    
+    position: relative;
+    top: 0px;
+    left:  150%;
+    
+    opacity: 0;
+}
