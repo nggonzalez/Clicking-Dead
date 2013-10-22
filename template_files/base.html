@@ -22,19 +22,29 @@
             <div class="progressBars">
                 <progress class="zombieMeter" value=0 max=1></progress>
                 <progress class="suppliesMeter" value=0 max=1></progress>
-                <button type="button" id="testButton">Test Button</button>
             </div>
             
-            <div class="main3wrapper">
-                <div class="blackbox main3" id="scavenge"></div>
+            <div class="contentWrapper main3">
+                <div class="blackbox main3" id="scavenge">
+                    <p class="action">Scavenge for Supplies</p>
+                    <p class="count">1000000</p>
+                    <div class="clickButton noSelect scavengeButton" id="scavengeButton">Scavenge</div>
+                </div>
                 <div class="blackbox main3" id="news"></div>
-                <div class="blackbox main3" id="zombies"></div>
+                <div class="blackbox main3" id="zombies">
+                    <p class="action">Drop 'Em<br>Dead</p>
+                    <p class="count">1000000</p>
+                    <div class="clickButton noSelect killZombieButton" id="killZombieButton">Kill Zombies</div>
+                </div>
             </div>
-            
-            <div class="blackbox menu" id="companions"></div>
-            <div class="blackbox menu" id="weapons"></div>
-            <div class="blackbox menu" id="upgrades"></div>
-            <div class="blackbox menu" id="achievements"></div>
+            <div class="contentWrapper">
+                <nav class="menu">
+                    <div class="blackbox menu noSelect" id="companions">Companions</div>
+                    <div class="blackbox menu noSelect" id="weapons">Weapons</div>
+                    <div class="blackbox menu noSelect" id="upgrades">Upgrades</div>
+                    <div class="blackbox menu noSelect" id="achievements">Achievements</div>
+               </nav>
+           </div>
         </div>
     </body>
 </html>

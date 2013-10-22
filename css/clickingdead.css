@@ -10,13 +10,16 @@ html
 
 body
 {
-    font-family: Impact, Charcoal, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
-    margin: 0px;
+    margin: 0px auto;
     padding: 0px;
     
     width: 100%;
     height: 100%;
+    
+    max-width: 1324px;
+    overflow: scroll;
 }
 
 
@@ -65,7 +68,7 @@ body
 .advertisement
 {
     top: 0px;
-    position: absolute;
+    position: relative;
     
     height: 90px;
     left: 50%;
@@ -81,6 +84,7 @@ body
 
 h1.name
 {
+    font-family: Impact, Charcoal, sans-serif;
     width: 40%;
     margin: 0px 0px 20px 0px;
     padding: 0px;
@@ -103,19 +107,28 @@ span.the
 
 div.pageWrapper
 {
-    width: 90%;
     margin: 0px auto;
-    margin-top: 120px;
+    margin-top: 30px;
     min-width: 1004px;
+    max-width: 1304px;
+    padding: 0px 10px;
 }
 
-div.main3wrapper
+div.contentWrapper
 {
     min-width: 1004px;
+    max-width: 1304px;
     margin: 0px auto;
     padding: 0px;
     clear: both;
     position: relative;
+    padding: 0px 10px;
+}
+
+div.contentWrapper.main3
+{
+    height: 220px;
+    margin-bottom: 20px;
 }
 
 .blackbox
@@ -128,11 +141,13 @@ div.main3wrapper
 
 .blackbox.main3
 {
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 250px;
     
     margin: 0px;
     padding: 10px;
+    overflow: hidden;
+    position: relative;
 }
 
 .blackbox.main3#scavenge
@@ -144,9 +159,10 @@ div.main3wrapper
 
 .blackbox.main3#news
 {
+    width: 400px;
     position: absolute;
     left: 50%;
-    margin-left: -160px;
+    margin-left: -210px;
 }
 
 
@@ -154,6 +170,85 @@ div.main3wrapper
 {
     margin-left: 20px;
     float:right;
+}
+
+.blackbox.main3 p.action
+{
+    font-size: 2.25em;
+    color: #fff;
+    margin: 0px; auto;
+    padding: 0px;
+    width: 100%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.blackbox.main3 p.count
+{
+    font-size: 1.50em;
+    color: #fff;
+    margin: 0px; auto;
+    padding: 0px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.75em;
+    left: 0px;
+}
+
+
+.blackbox.menu
+{
+    color: #fff;
+    line-height: 50px;
+    font-size: 1.5em;
+    padding: 8px 10px;
+    margin: 8px 0px;
+    display: block;
+    
+    height: 50px;
+    width: 250px;
+    cursor: default; 
+    text-align: center;   
+}
+
+
+.clickButton
+{
+    border-radius: 6px;
+    width: 85%;
+    line-height: 1.4em;
+    font-size: 1.4em;
+    letter-spacing: 0.06em;
+    color: #fff;
+    margin: 0px; auto;
+    padding: 8px 4px;
+    position: absolute;
+    bottom: 10%;
+    
+    cursor: default;   
+}
+
+.clickButton.scavengeButton
+{
+    background-color: green;
+}
+
+
+.clickButton.killZombieButton
+{
+    background-color: red;
+}
+
+.noSelect
+{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
