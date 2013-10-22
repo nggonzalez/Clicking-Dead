@@ -14,13 +14,13 @@ handlers:
   upload: favicon\.ico
 
 - url: /js
-  static_dir: static
+  static_dir: js
 
 - url: /css
-  static_dir: static
+  static_dir: css
   
 - url: /images
-  static_dir: static
+  static_dir: images
 
 - url: .*
   script: main.application
