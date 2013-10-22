@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/css/clickingdead.css">
     </head>
     <body>
-        <div class="backgroundImage atlanta"></div>
+        <div class="backgroundImage atlanta currentLocation"></div>
         <div class="backgroundImage highway hidden"></div>
         <div class="backgroundImage woods hidden"></div>
         <div class="backgroundImage farm hidden"></div>
@@ -18,15 +18,18 @@
         
         <div class="advertisement"></div>
         <div class="pageWrapper"> 
-            <h1 class="name"></h1>
-            <progress class="zombieMeter"></progress>
-            <progress class="suppliesMeter"></progress>
+            <h1 class="name"><span class="the">The</span> Clicking Dead</h1>
+            <div class="progressBars">
+                <progress class="zombieMeter"></progress>
+                <progress class="suppliesMeter"></progress>
+                <button type="button" id="testButton">Test Button</button>
+            </div>
             
-            <button type="button" id="testButton">Test Button</button>
-            
-            <div class="blackbox main3" id="scavenge"></div>
-            <div class="blackbox main3" id="news"></div>
-            <div class="blackbox main3" id="zombies"></div>
+            <div class="main3wrapper">
+                <div class="blackbox main3" id="scavenge"></div>
+                <div class="blackbox main3" id="news"></div>
+                <div class="blackbox main3" id="zombies"></div>
+            </div>
             
             <div class="blackbox menu" id="companions"></div>
             <div class="blackbox menu" id="weapons"></div>
