@@ -4,16 +4,25 @@
 
 var playerData = {};			// object to keep player data in.
 
+
+var iterSpeed = 10;			// iteration interval speed.
+
 var zombies = 1;			// current number of zombies
 var critZombies = 1000;			// critical number of zombies for loss
 
-var zombieMultProb = .4;
+var zombieMultProb = .4;		// probability of zombies multiplying.
 
+
+
+/*
+ * main execution loop of the zombie generation, will be made more complex
+ * as development on the game continues
+ */
 setInterval(function() {
-	Math.random() > zombieMultProb ? zombies += 2 : zombies++;
+	Math.random() < zombieMultProb ? zombies += 2 : zombies++;
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage(zombieVal);
-}, 10);
+}, iterSpeed);
 
 
 /*
@@ -26,5 +35,4 @@ onmessage = function (event) {
 		zombies = (zombies - playerData.personalDamage > 0) ? 
 				zombies - playerData.personalDamage : 0;
 	}
-	postMessage(event.data.type == 'kill');
 };

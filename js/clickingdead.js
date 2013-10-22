@@ -43,20 +43,27 @@ ClickingDead.updateWorkers = function () {
  */
 $(window).load(function() {
 	
-	var zombieWorker= new Worker("/js/zombiescalc.js");
-
+	var zombieWorker = new Worker("/js/zombiescalc.js");
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
 		// update the progress bar.
 		$(".zombieMeter").attr('value', message);
 	};
-
 	$("body").on("click", "#killZombieButton", function() {
 		zombieWorker.postMessage({
 			type: "kill"
 		});
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
+
+	var randomEventWorker = new Worker("/js/randomevent.js");
+	randomEventWorker.onmessage = function (event) {
+		var message = event.data;
+		// handle the message here and post to the newsfeed.
+	};
+
+
+
 
 	ClickingDead.data.fortification = 100;			// change some data.
 	ClickingDead.updateWorkers();					// propogate changes.
