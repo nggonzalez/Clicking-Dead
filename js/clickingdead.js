@@ -56,6 +56,22 @@ $(window).load(function() {
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
+
+
+	var scavengeWorker = new Worker("/js/scavengecalc.js");
+	scavengeWorker.onmessage = function (event) {
+		var message = event.data;
+		$(".suppliesMeter").attr('value', message);
+	};
+	$("body").on("click", "#scavengeButton", function() {
+		scavengeWorker.postMessage({
+			type: "scavenge"
+		});
+	});	
+	ClickingDead.registerWorker(scavengeWorker);	// register the scavenge worker
+
+
+
 	var randomEventWorker = new Worker("/js/randomevent.js");
 	randomEventWorker.onmessage = function (event) {
 		var message = event.data;

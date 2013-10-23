@@ -4,7 +4,6 @@
 
 var playerData = {};			// object to keep player data in.
 
-
 var iterSpeed = 10;			// iteration interval speed.
 
 var zombies = 1;			// current number of zombies
