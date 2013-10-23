@@ -11,8 +11,6 @@ var critZombies = 1000;			// critical number of zombies for loss
 
 var zombieMultProb = .4;		// probability of zombies multiplying.
 
-
-
 /*
  * main execution loop of the zombie generation, will be made more complex
  * as development on the game continues
