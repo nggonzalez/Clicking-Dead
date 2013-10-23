@@ -21,11 +21,18 @@ var eventProb = 0.1;			// event occurence probability
 //////////////// END RANDEVENT DEFINITIONS//////////////////////
 
 setInterval(function() { 
-	if(Math.random() < eventProb) { 
-		postMessage({			// placeholder message
-			type : "flavor",
-			message : "Zombies are taking over Atlanta.  Hide yo' wife, hide yo' kids"
-		});
+	if(Math.random() < eventProb) {
+		if(Math.random() < 0.5) {
+			postMessage({			// placeholder message
+				type : "flavor",
+				message : "Zombies are taking over Atlanta.  Hide yo' wife, hide yo' kids"
+			});
+		} else {
+			postMessage({			// placeholder message
+				type : "flavor",
+				message : "Welcome to the Clicking Dead"
+			});
+		}
 	}
 }, iterSpeed);
 
