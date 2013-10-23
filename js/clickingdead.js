@@ -56,8 +56,6 @@ $(window).load(function() {
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
-
-
 	var scavengeWorker = new Worker("/js/scavengecalc.js");
 	scavengeWorker.onmessage = function (event) {
 		var message = event.data;
