@@ -346,6 +346,8 @@ div.progressBars
 {
     float: right;
     width: 92%;
+    color: #fff;
+    font-size: 1em;
 }
 
 
@@ -359,10 +361,18 @@ div.progressWrapper
     border-radius: 10px;
 }
 
+
+div.progressWrapper:first-of-type
+{
+    margin-bottom: 10px;
+}
+
+
 progress.zombieMeter::-webkit-progress-value 
 {
     background-color: red;
 }
+
 
 progress.suppliesMeter::-webkit-progress-value
 {
