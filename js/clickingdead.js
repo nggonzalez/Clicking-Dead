@@ -63,6 +63,7 @@ $(window).load(function() {
 		$(".suppliesMeter").attr('value', message);
 	};
 	$("body").on("click", "#scavengeButton", function() {
+		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+1</span>');
 		scavengeWorker.postMessage({
 			type: "scavenge"
 		});
