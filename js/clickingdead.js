@@ -74,7 +74,8 @@ $(window).load(function() {
 	randomEventWorker.onmessage = function (event) {
 		var message = event.data;
 		// handle the message here and post to the newsfeed.
-		$("#news").prepend('<li class="newsItem"><span class="newsContent">' + message.message + '</span></li>');
+		$("#news").prepend('<li class="newsItem breakTheStory"><span class="newsContent">' + message.message + '</span></li>');
+		$("#news li:last").remove();
 	};
 	ClickingDead.registerWorker(randomEventWorker);	// register the random worker
 
