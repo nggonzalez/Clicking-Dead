@@ -460,7 +460,7 @@ progress::-moz-progress-bar {
 .breakTheStory
 {
     animation: addStoryToNewsFeed 1s ease-in-out forwards;
-    //-webkit-animation: addStoryToNewsFeed 1s ease-in-out forwards; /* Safari and Chrome: */
+    -webkit-animation: addStoryToNewsFeed 1s ease-in-out forwards; /* Safari and Chrome: */
 }
 
 .oldStory
