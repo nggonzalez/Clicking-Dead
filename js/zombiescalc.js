@@ -4,15 +4,12 @@
 
 var playerData = {};			// object to keep player data in.
 
-
 var iterSpeed = 10;			// iteration interval speed.
 
 var zombies = 1;			// current number of zombies
 var critZombies = 1000;			// critical number of zombies for loss
 
 var zombieMultProb = .4;		// probability of zombies multiplying.
-
-
 
 /*
  * main execution loop of the zombie generation, will be made more complex
