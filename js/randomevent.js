@@ -9,7 +9,7 @@ var playerData = {};			// object to keep player data in.
 var allPossibleEvents = []; 		// all possible events that could happen.
 
 var iterSpeed = 1000;			// iteration interval speed.
-var eventProb = 0.1;			// event occurence probability
+var eventProb = 0.5;			// event occurence probability
 
 ///////// GAME CORE ////////////////////////////////////////////
 // define all random events that can happen in this code block

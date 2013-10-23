@@ -50,6 +50,7 @@ $(window).load(function() {
 		$(".zombieMeter").attr('value', message);
 	};
 	$("body").on("click", "#killZombieButton", function() {
+		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+1</span>');
 		zombieWorker.postMessage({
 			type: "kill"
 		});
@@ -68,8 +69,6 @@ $(window).load(function() {
 	});	
 	ClickingDead.registerWorker(scavengeWorker);	// register the scavenge worker
 
-
-
 	var randomEventWorker = new Worker("/js/randomevent.js");
 	randomEventWorker.onmessage = function (event) {
 		var message = event.data;
@@ -86,6 +85,16 @@ $(window).load(function() {
 
 	ClickingDead.data.personalDamage = 100;
 	ClickingDead.updateWorkers();
+
+
+
+
+	///////// SETTING UP THE ZOMBIE +1 buttons. ////////
+
+
+
+
+	///////// SETTING UP THE SCAVENGE +1 button. ///////
 
 });
 
