@@ -130,7 +130,7 @@ companions.push({
 companions.push({
 	type : "companion",			// the type of item for disambiguation
 	name : "Carol",				// name of the companion
-	desc : "A tough woman capable of defending herself and others. She is a good teacher.",
+	desc : "A tough woman capable of defending herself. She is a good teacher.",
 	id : "C8",
 	scavenge : 10,				// scavenge rate of the companion
 	damage : 500,					// damage rate of the companion
@@ -190,7 +190,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Sniper Rifle",
-	desc : "Keep zombies at a distance with this super powerful, long range rifle.",
+	desc : "Kill zombies at a distance with this high-powered rifle.",
 	id : "W1",
 	noise : 20,					// as a percent
 	damage : 25,					// increases a single companion's stats.
@@ -256,26 +256,12 @@ weapons.push({
 	numOwned : 0
 });
 
-// Ak47
-weapons.push({
-	type : "weapons",
-	name : "AK47",
-	desc : "A durable, reliable automatic, assualt rifle.",
-	id : "W6",
-	noise : 8,					// as a percent
-	damage : 15,					// increases a single companion's stats.
-	supply : -5,
-	price : 2500340,
-	prereqs : [-1, -1],
-	numOwned : 0
-});
-
 // M4
 weapons.push({
 	type : "weapons",
 	name : "M4 Assualt Rifle",
 	desc : "An accurate, automatic, assualt rifle. Light and quick.",
-	id : "W7",
+	id : "W6",
 	noise : 6,					// as a percent
 	damage : 15,					// increases a single companion's stats.
 	supply : -4,
@@ -284,11 +270,26 @@ weapons.push({
 	numOwned : 0
 });
 
+// Ak47
+weapons.push({
+	type : "weapons",
+	name : "AK47",
+	desc : "A durable, reliable automatic, assualt rifle.",
+	id : "W7",
+	noise : 8,					// as a percent
+	damage : 15,					// increases a single companion's stats.
+	supply : -5,
+	price : 2500340,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
 // Bow and arrow
 weapons.push({
 	type : "weapons",
 	name : "Classic Bow and Arrow",
-	desc : "Go back into prehistoric times and hunt zombies with classic bows and arrows.",
+	desc : "Hunt zombies with a wooden bow and arrows.",
 	id : "W8",
 	noise : 0,					// as a percent
 	damage : 2,					// increases a single companion's stats.
@@ -298,30 +299,31 @@ weapons.push({
 	numOwned : 0
 });
 
-// Wrench
-weapons.push({
-	type : "weapons",
-	name : "Wrench",
-	desc : "Bash zombies with a red wrench.",
-	id : "W9",
-	noise : 2,					// as a percent
-	damage : 5,					// increases a single companion's stats.
-	supply : -2,
-	price : 7851000,
-	prereqs : [-1, -1],
-	numOwned : 0
-});
 
 // Glock
 weapons.push({
 	type : "weapons",
 	name : "Glock",
 	desc : "Automatic pistol.",
-	id : "W10",
+	id : "W9",
 	noise : 4,					// as a percent
 	damage : 20,					// increases a single companion's stats.
 	supply : -4,
 	price : 895000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Wrench
+weapons.push({
+	type : "weapons",
+	name : "Wrench",
+	desc : "Bash zombies with a red wrench.",
+	id : "W10",
+	noise : 2,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : -2,
+	price : 785000,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -363,7 +365,7 @@ weapons.push({
 	noise : 5,					// as a percent
 	damage : 10,					// increases a single companion's stats.
 	supply : -5,
-	price : 46000,
+	price : 75000,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -430,7 +432,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Basic Kitchen Knife",
-	desc : "What it sounds like, a steak knife. Get up close and personal",
+	desc : "What it sounds like, a steak knife.",
 	id : "W18",
 	noise : 0,					// as a percent
 	damage : 1,					// increases a single companion's stats.
@@ -445,7 +447,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Pocket Knife",
-	desc : "Sharp, small knife to kill zombies with in an up close and personal way.",
+	desc : "Get up close and personal.",
 	id : "W19",
 	noise : 0,					// as a percent
 	damage : 1,					// increases a single companion's stats.
@@ -478,7 +480,7 @@ upgrades.push({
 	id : "U1",
 	name : "Daryl's Motorcyle",
 	desc : "Scavenge more effectively as you can move around more quickly",
-	price : 36900000,
+	price : 369500000,
 	upgrade : "basicScavengerUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
@@ -489,7 +491,7 @@ upgrades.push({
 	id : "U2",
 	name : "Rick's Sheriff Badge",
 	desc : "Bring the law to the zombies - increase your damage by 10%. Also makes your companions slightly more effective.",
-	price : 8900000,
+	price : 89500000,
 	upgrade : "sheriffBadgeUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
@@ -501,7 +503,7 @@ upgrades.push({
 	id : "U3",
 	name : "Nerves of Steel",
 	desc : "You have nerves of steel and are less likely to be overrun by the zombies",
-	price : 25000000,
+	price : 68000000,
 	upgrade : "nervesOfSteelUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
@@ -513,7 +515,7 @@ upgrades.push({
 	id : "U4",
 	name : "Foraging Book",
 	desc : "A book that teaches you how to forage more effectively",
-	price : 340000,
+	price : 3400000,
 	upgrade : "basicScavengerUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
