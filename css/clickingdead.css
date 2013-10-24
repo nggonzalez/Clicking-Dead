@@ -22,6 +22,10 @@ body
     overflow: scroll;
 }
 
+button:focus
+{
+  outline: 0;
+}
 
 .blackout
 {
@@ -80,6 +84,8 @@ div.instructions .letsGo
     margin-left: -158px;
 
     background-color: green;
+
+    border: none;
     
     cursor: default;
     font-weight: 300;   
@@ -454,7 +460,7 @@ nav.menu
   height: 1.75em;
 }
 
-div.purchaseButton
+.purchaseButton
 {
     border: 1px solid #fff;
     border-radius: 6px;
@@ -511,6 +517,8 @@ div.purchaseButton
     bottom: 10%;
     left: 50%;
     margin-left: -121px;
+
+    border: none;
     
     cursor: default;   
 }
