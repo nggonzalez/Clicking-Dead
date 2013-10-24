@@ -160,11 +160,39 @@ companions.push({
 	name : "Andrew",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
 	id : "C10",
-	scavenge : 10,				// scavenge rate of the companion
-	damage : 20,					// damage rate of the companion
+	scavenge : 25,				// scavenge rate of the companion
+	damage : 100,					// damage rate of the companion
 	supply : -10,				// amount he "eats"
 	prereqs : [-1, -1],
 	price : 10000,					// supply cost of the companion.
+	numOwned : 0
+});
+
+// Anonymous Military
+companions.push({
+	type : "companion",			// the type of item for disambiguation
+	name : "Soldier",				// name of the companion
+	desc : "Always acting out. She thinks she is better than she is.",
+	id : "C11",
+	scavenge : 10,				// scavenge rate of the companion
+	damage : 20,					// damage rate of the companion
+	supply : -2,				// amount he "eats"
+	prereqs : [-1, -1],
+	price : 500,					// supply cost of the companion.
+	numOwned : 0
+});
+
+// Anonymous Civilian
+companions.push({
+	type : "companion",			// the type of item for disambiguation
+	name : "Civilian",				// name of the companion
+	desc : "Always acting out. She thinks she is better than she is.",
+	id : "C12",
+	scavenge : 5,				// scavenge rate of the companion
+	damage : 10,					// damage rate of the companion
+	supply : -2,				// amount he "eats"
+	prereqs : [-1, -1],
+	price : 150,					// supply cost of the companion.
 	numOwned : 0
 });
 
