@@ -390,7 +390,6 @@ nav.menu
 
   position: relative;
 
-  color: #999;
   border-bottom: 1px solid #efefef;
 }
 
@@ -492,6 +491,10 @@ div.purchaseButton
   display: inline-block;
 }
 
+.upgradeItem div.generalInfoWrapper p span.description
+{
+  color: #999;
+}
 
 
 .clickButton
