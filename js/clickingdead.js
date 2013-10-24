@@ -9,11 +9,12 @@ ClickingDead.data = {};			// define the core data object for your
 								// current game save.
 
 ClickingDead.data = {			// define initial conditions for game state.
-	personalDamage : 1,
+	personalDamage : 16,
 	personalScavenge : 1,
-	groupDamage : 1,
-	groupScavenge : 1,
-	fortification : 1
+	zombiesKilled : 0,
+	supplies : 0,
+	companions : [],
+	fortification : 1000
 };
 // maintaining the core data in a central location will allow for simpler save
 // functions later, as well as simple synchronization across multiple web workers.
@@ -50,10 +51,13 @@ $(window).load(function() {
 		$(".zombieMeter").attr('value', message);
 	};
 	$("body").on("click", "#killZombieButton", function() {
-		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+1</span>');
+		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
 		zombieWorker.postMessage({
 			type: "kill"
 		});
+		ClickingDead.data.zombiesKilled += ClickingDead.data.personalDamage;
+
+		$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
@@ -63,10 +67,13 @@ $(window).load(function() {
 		$(".suppliesMeter").attr('value', message);
 	};
 	$("body").on("click", "#scavengeButton", function() {
-		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+1</span>');
+		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+'+ClickingDead.data.personalScavenge+'</span>');
 		scavengeWorker.postMessage({
 			type: "scavenge"
 		});
+	
+		ClickingDead.data.supplies += ClickingDead.data.personalScavenge;
+		$(".scavengeBox p.count").html(ClickingDead.data.supplies);
 	});	
 	ClickingDead.registerWorker(scavengeWorker);	// register the scavenge worker
 
@@ -80,22 +87,16 @@ $(window).load(function() {
 	ClickingDead.registerWorker(randomEventWorker);	// register the random worker
 
 
-
-	ClickingDead.data.fortification = 100;			// change some data.
 	ClickingDead.updateWorkers();					// propogate changes.
 
-	ClickingDead.data.personalDamage = 100;
-	ClickingDead.updateWorkers();
-
-
-
-
 	///////// SETTING UP THE ZOMBIE +1 buttons. ////////
-
+	$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
 
 
 
 	///////// SETTING UP THE SCAVENGE +1 button. ///////
+	$(".scavengeBox p.count").html(ClickingDead.data.supplies);
+
 
 });
 
