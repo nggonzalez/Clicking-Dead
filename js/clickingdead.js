@@ -166,6 +166,16 @@ var initialize = function () {
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 			ClickingDead.updateWorkers();
 		}
+
+		$("body").on("click", "#moveOn", function() {
+			var currentLocation = $(".backgroundImage.currentLocation");
+			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
+
+			var nextLocation = $(".backgroundImage.highway");
+			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
+
+			$(this).addClass("hidden");
+		});
 	}
 
 	ClickingDead.updateWorkers();					// propogate changes.
