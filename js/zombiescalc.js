@@ -31,11 +31,12 @@ setInterval(function() {
 	for (var i = 0; i < playerData.companions.length; i++) {
 		companionKills += playerData.companions[i].damage/(1000/iterSpeed);
 	}
-	zombies -= companionKills
+	zombies -= companionKills;
 
 	// pass UI update message
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage({
+		type : "report",
 		zombiesKilled : companionKills,
 		remainingZombiesPercent : zombieVal	
 	});
@@ -55,6 +56,7 @@ onmessage = function (event) {
 		var tmpZombies = (zombies - playerData.personalDamage);
 		zombies = Math.max(tmpZombies, 0);
 		postMessage({
+			type : "report",
 			zombiesKilled : playerData.personalDamage,
 			remainingZombiesPercent : zombies / (critZombies * Math.log(playerData.fortification))
 		});

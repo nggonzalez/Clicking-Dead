@@ -47,13 +47,26 @@ ClickingDead.updateWorkers = function () {
  */
 var initialize = function () {
 	var zombieWorker = new Worker("/js/zombiescalc.js");
+
+
+
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
 		// update the progress bar.
-		$(".zombieMeter").attr('value', message.remainingZombiesPercent);
-		ClickingDead.data.zombiesKilled += message.zombiesKilled;
-		$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
+		if (message.type == "report") {
+			$(".zombieMeter").attr('value', message.remainingZombiesPercent);
+			ClickingDead.data.zombiesKilled += message.zombiesKilled;
+			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
+		} else if (message.type == "notification") {
+			
+
+
+		}
 	};
+
+
+
+
 	$("body").on("click", "#killZombieButton", function() {
 		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
 		zombieWorker.postMessage({
@@ -68,6 +81,7 @@ var initialize = function () {
 		var message = event.data;
 		$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 		ClickingDead.data.supplies += message.amountScavenged;
+		ClickingDead.data.supplies = Math.max(0, ClickingDead.data.supplies);
 		$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 	};
 
@@ -79,8 +93,6 @@ var initialize = function () {
 		});
 	});	
 	ClickingDead.registerWorker(scavengeWorker);	// register the scavenge worker
-
-
 
 	var randomEventWorker = new Worker("/js/randomevent.js");
 	randomEventWorker.onmessage = function (event) {
@@ -131,7 +143,8 @@ var initialize = function () {
 
 		} else if (event.data.type == "purchase") {
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
-
+			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
+			
 			if (event.data.domain == "weapons") {				// add value.
 				ClickingDead.data.weapons.push(event.data.value);
 			} else if (event.data.domain == "companions") {
