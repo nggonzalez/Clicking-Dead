@@ -356,13 +356,20 @@ span.newsContent
 {
     font-size: 1.50em;
     color: #fff;
-    margin: 0px; auto;
+    margin: 10px 0px 6px 0px;
     padding: 0px;
     width: 100%;
-    position: absolute;
-    top: 50%;
-    margin-top: -0.75em;
-    left: 0px;
+    position: relative;
+}
+
+.blackbox.main3 p.perSecond
+{
+    font-size: 1.0em;
+    color: #fff;
+    margin: 6px 0px 10px 0px;
+    padding: 0px;
+    width: 100%;
+    position: relative;
 }
 
 nav.menu
