@@ -72,8 +72,6 @@ ClickingDead.updateWorkers = function () {
 
  (function($) {
 $.fn.nodoubletapzoom = function() {
-    if($("html.touch").length == 0) return;
-
     $(this).bind('touchstart', function preventZoom(e){
         var t2 = e.timeStamp;
         var t1 = $(this).data('lastTouch') || t2;
@@ -85,7 +83,7 @@ $.fn.nodoubletapzoom = function() {
         }
         e.preventDefault(); // double tap - prevent the zoom
         // also synthesize click events we just swallowed up
-        $(this).trigger('click');
+        $(e.target).trigger('click');
     });
 };
 })(jQuery);
