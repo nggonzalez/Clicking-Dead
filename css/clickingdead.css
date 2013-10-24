@@ -314,6 +314,7 @@ nav.menu
   position: relative;
 
   color: #e5e5e5;
+  border-bottom: 1px solid #efefef;
 }
 
 .upgradeItem h2
