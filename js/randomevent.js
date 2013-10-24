@@ -25,7 +25,7 @@ setInterval(function() {
 		if(Math.random() < 0.5) {
 			postMessage({			// placeholder message
 				type : "flavor",
-				message : "Zombies are taking over Atlanta.  Hide yo' wife, hide yo' kids"
+				message : "Zombies are taking over Atlanta!"
 			});
 		} else {
 			postMessage({			// placeholder message
