@@ -7,22 +7,30 @@ var playerData = {};			// object to keep player data in.
 var iterSpeed = 10;			// iteration interval speed.
 
 var zombies = 1;			// current number of zombies
-var critZombies = 10000;			// critical number of zombies for loss
+var critZombies = 25;			// critical number of zombies for loss
 
-var zombieMultProb = .4;		// probability of zombies multiplying.
+var zombieMultProb = .1;		// probability of zombies multiplying.
 
-var zombieGenerationRate = 5;	// this will increase over time
+var zombieGenerationRate = 1;	// this will increase over time
+
+var zombieCheckpoints = [10, 20, 40, 60, 1000, 4000, 10000];
+
+var currCheckpoint = 0;
+
+var cyclesElapsed = 0;
 
 /*
  * main execution loop of the zombie generation, will be made more complex
  * as development on the game continues
  */
 setInterval(function() {
-
-
+	cyclesElapsed++;
+	
 	// increase zombie spawn rate
-	if (Math.random() < 0.01) {
-		zombieGenerationRate++;
+	if (currCheckpoint < zombieCheckpoints.length &&
+		cyclesElapsed * (iterSpeed/1000) > zombieCheckpoints[currCheckpoint]) {
+		currCheckpoint++;
+		zombieGenerationRate *= 2;			// proceed to the next checkpoint
 		postMessage({
 			type : "notification",
 			message : "MOAR zombeez are coming"
