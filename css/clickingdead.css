@@ -102,7 +102,7 @@ span.the
 div.pageWrapper
 {
     margin: 0px auto;
-    margin-top: 30px;
+    margin-top: 20px;
     min-width: 1004px;
     max-width: 1304px;
     padding: 0px 10px;
@@ -122,7 +122,7 @@ div.contentWrapper
 div.contentWrapper.main3
 {
     height: 220px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 div.contentWrapper.menuItems
@@ -141,7 +141,7 @@ div.contentWrapper.menuItems
 
 .blackbox.main3
 {
-    height: 200px;
+    height: 180px;
     width: 250px;
     
     margin: 0px;
@@ -169,7 +169,7 @@ tr
 
 td.name
 {
-    width: 480px;
+    width: 455px;
 }
 
 td.moveLocationArrow
@@ -207,7 +207,7 @@ td.zombiesBox
 {
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 45px;
     
     border-bottom: 1px solid #efefef;
     display: table;
@@ -243,7 +243,7 @@ span.newsContent
 
 .blackbox.main3 p.action
 {
-    font-size: 2.25em;
+    font-size: 2em;
     color: #fff;
     margin: 0px; auto;
     padding: 0px;
@@ -268,7 +268,7 @@ span.newsContent
 
 nav.menu
 {
-    width: 270px;
+    width: 266px;
     margin: 0px;
     margin-right: 20px;
     padding: 0px;
@@ -279,7 +279,7 @@ nav.menu
 {
     line-height: 50px;
     font-size: 1.5em;
-    padding: 8px 10px;
+    padding: 6px 8px;
     margin: 8px 0px;
     display: block;
     
@@ -296,9 +296,9 @@ nav.menu
 
 .blackbox.itemsList
 {
-    height: 288px;
+    height: 272px;
     margin: 0px;
-    margin-left: 290px;
+    margin-left: 286px;
     padding: 0px;
     list-style: none;
     overflow: scroll;
@@ -512,7 +512,7 @@ span.positiveReinforcement.scavenge
 div.progressBars
 {
     float: right;
-    width: 92%;
+    width: 100%;
     color: #fff;
     font-size: 1em;
 }
