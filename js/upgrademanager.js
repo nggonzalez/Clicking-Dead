@@ -23,7 +23,7 @@ companions.push({
 	scavenge : 4,				// scavenge rate of the companion
 	damage : 4,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereq : -1,
+	prereqs : [-1, -1],
 	price : 45,					// supply cost of the companion.
 	numOwned : 0
 });
@@ -37,7 +37,7 @@ companions.push({
 	scavenge : 4,				// scavenge rate of the companion
 	damage : 4,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereq : -1,
+	prereqs : [-1, -1],
 	price : 1,					// supply cost of the companion.
 	numOwned : 0
 });
@@ -56,7 +56,7 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
 	price : 150,
-	prereq : -1,
+	prereqs : [-1, -1],
 	numOwned : 0
 });
 
@@ -70,7 +70,7 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
 	price : 250,
-	prereq : -1,
+	prereqs : [-1, -1],
 	numOwned : 0
 });
 
@@ -84,7 +84,7 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
 	price : 5,
-	prereq : -1,
+	prereqs : [-1, -1],
 	numOwned : 0
 });
 
@@ -95,6 +95,14 @@ var upgrades = [];
 upgrades.push({
 	type : "upgrades",
 	name : "Nerves of Steel",
+	desc : "you have nerves of steel and are less likely to be overrun by the zombies",
+	price : 15,
+	upgrade : [function(data) {
+		data.fortification += 10;
+		return data;
+	}],
+	prereqs : [-1, -1],
+	numOwned : 0
 });
 
 
@@ -169,9 +177,10 @@ onmessage = function (event) {
 
 	} else if (event.data.type == "upgrades") {
 		// open the upgrades tab
-
-
-
+		postMessage({
+			type : "upgrades",
+			data : upgrades
+		});
 	} else if (event.data.type == "achievements") { 
 		// open the achievements tab.
 

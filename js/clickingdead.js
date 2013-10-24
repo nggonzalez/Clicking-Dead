@@ -11,9 +11,12 @@ ClickingDead.data = {};			// define the core data object for your
 ClickingDead.data = {			// define initial conditions for game state.
 	personalDamage : 1,
 	personalScavenge : 1,
+	companionDamage : 1,
+	companionScavenge : 1,
+	companionConsumption : 1,
 	zombiesKilled : 0,
 	supplies : 100,
-	fortification : 1000,
+	fortification : 1,
 	companions : [],
 	weapons : [], 
 	upgrades : [],
@@ -48,8 +51,6 @@ ClickingDead.updateWorkers = function () {
 var initialize = function () {
 	var zombieWorker = new Worker("/js/zombiescalc.js");
 
-
-
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
 		// update the progress bar.
@@ -62,9 +63,6 @@ var initialize = function () {
 			$("#news li:last").remove();
 		}
 	};
-
-
-
 
 	$("body").on("click", "#killZombieButton", function() {
 		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
@@ -138,8 +136,19 @@ var initialize = function () {
 				$("#itemsList").append(htmlBuild);
 			}
 		} else if (event.data.type == "upgrades") {
-			// holder for upgrades text.
-
+			$("#itemsList").empty();				// clear itemsList
+			for (var i = 0; i < elems.length; i++) {
+				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
+				htmlBuild += '<h2>'+elems[i].name+'</h2>';
+				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
+				htmlBuild += '</div>';
+				htmlBuild += '<div class="purchaseInfoWrapper">';
+				if (elems[i].numOwned <= 0) {
+					htmlBuild += '<button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
+					htmlBuild += elems[i].price + '</p></span>';
+				}
+				$("#itemsList").append(htmlBuild);
+			}
 		} else if (event.data.type == "purchase") {
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
 			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
@@ -183,6 +192,15 @@ var initialize = function () {
 		});
 	});
 
+	$("body").on("click", "#upgrades", function() {
+		upgradeManagerWorker.postMessage({
+			type : "upgrades"
+		});
+	});
+
+
+
+
 	$("body").on("click", "#itemsList .buy", function(event) {
 		var boughtId = $(event.target).closest(".upgradeItem").data("id");
 		// from here we will send a buy request to the upgrade manager
@@ -192,6 +210,20 @@ var initialize = function () {
 			currSupplies : ClickingDead.data.supplies
 		});
 	});
+
+
+	$("body").on("click", "#moveOn", function() {
+		var nextLocation = $(".backgroundImage.highway");
+		$(nextLocation).addClass("moveToLocation");
+		$(nextLocation).removeClass("hidden");
+	
+		var currentLocation = $(".backgroundImage.currentLocation");
+		$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
+
+		$(this).addClass("hidden");
+	});
+
+
 }
 
 /*

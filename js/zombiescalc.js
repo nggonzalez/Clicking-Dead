@@ -9,7 +9,7 @@ var iterSpeed = 10;			// iteration interval speed.
 var zombies = 1;			// current number of zombies
 var critZombies = 25;			// critical number of zombies for loss
 
-var zombieMultProb = .1;		// probability of zombies multiplying.
+var zombieMultProb = .02;		// probability of zombies multiplying.
 
 var zombieGenerationRate = 1;	// this will increase over time
 
@@ -30,7 +30,7 @@ setInterval(function() {
 	if (currCheckpoint < zombieCheckpoints.length &&
 		cyclesElapsed * (iterSpeed/1000) > zombieCheckpoints[currCheckpoint]) {
 		currCheckpoint++;
-		zombieGenerationRate *= 2;			// proceed to the next checkpoint
+		zombieGenerationRate *= 1.25;			// proceed to the next checkpoint
 		postMessage({
 			type : "notification",
 			message : "MOAR zombeez are coming"
