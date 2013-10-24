@@ -675,6 +675,50 @@ progress::-moz-progress-bar {
     border-radius: 10px;  
 }  
 
+/*Arrow Box*/
+.arrowBox {
+  position: relative;
+  background: rgba(51, 51, 51, .8);
+  border: none;
+
+  padding: 0px 10px;
+
+  height: 40px;
+  margin-right: 30px;
+  float: right;
+
+  text-align: center;
+  font-size: 1.25em;
+  line-height: 40px;
+  color: #fff;
+
+  -webkit-animation: pulsate 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.arrowBox:after, .arrowBox:before {
+  left: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrowBox:after {
+  border-color: rgba(51, 51, 51, 0);
+  border-width: 30px;
+  top: 50%;
+  margin-top: -30px;
+}
+.arrowBox:before {
+  border-color: rgba(51, 51, 51, 0);
+  border-left-color: rgba(51, 51, 51, .8);
+  border-width: 36px;
+  top: 50%;
+  margin-top: -36px;
+}
 
 /* Animations */
 .breakTheStory
@@ -881,4 +925,10 @@ progress::-moz-progress-bar {
 @keyframes deleteStoryFromNewsFeed {
   0%   { left: 0; top: -100px; opacity: 0;}
   100% { opacity: 1; top: 0px; left:0px;}
+}
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.8, 0.8); opacity: 1.0;}
+    50% {-webkit-transform: scale(1, 1); opacity: 1.0;}
+    100% {-webkit-transform: scale(.8, .8); opacity: 1.0;}
 }
