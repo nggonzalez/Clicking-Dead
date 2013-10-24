@@ -312,6 +312,8 @@ nav.menu
   text-align: left;
 
   position: relative;
+
+  color: #e5e5e5;
 }
 
 .upgradeItem h2
@@ -321,30 +323,80 @@ nav.menu
 
   font-size: 1.75em;
   font-weight: normal;
+
+  color: #fff;
 }
 
-.upgradeItem p.info
+.upgradeItem div.generalInfoWrapper
+{
+  width: 70%;
+  float: left;
+}
+
+.upgradeItem div.purchaseInfoWrapper
+{
+  width: 30%;
+  float: left;
+  display: table;
+
+  vertical-align: middle;
+}
+
+.upgradeItem div.purchaseInfoWrapper span
+{
+  text-align: right;
+  display: table-row;
+}
+
+.upgradeItem div.purchaseInfoWrapper span.count
+{
+  font-size: 1.75em;
+}
+
+.upgradeItem div.purchaseInfoWrapper span.price
+{
+  margin-top: 10px;
+  font-size: 1.25em;
+}
+
+.upgradeItem div.purchaseInfoWrapper span.buttons
+{
+  margin-top: 10px;
+}
+
+div.purchaseButton
+{
+    border-radius: 6px;
+    width: 45%;
+    line-height: 1.4em;
+    font-size: 1.4em;
+    letter-spacing: 0.06em;
+    color: #fff;
+    padding: 8px 4px;
+    margin: 0px;
+    float: left;
+    cursor: default;
+
+    background-color: #999;  
+    font-size: 1em;
+}
+
+
+.upgradeItem div.generalInfoWrapper p
 {
   margin: 0px;
-  margin-top: 10px;
+  margin-top: 6px;
   padding: 0px;
 
   font-size: 1.25em;
 }
 
-.upgradeItem p.info span.cost
+.upgradeItem div.generalInfoWrapper p span
 {
+  padding: 0px 15px 0px 0px;  
   display: inline-block;
-}
-.upgradeItem p.info span.infoSeparator
-{
-  display: inline-block;  width: 20px;
 }
 
-.upgradeItem p.info span.description
-{
-  display: inline-block;
-}
 
 
 .clickButton
