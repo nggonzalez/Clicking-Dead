@@ -461,21 +461,10 @@ var upgrades = [];
 
 var nervesOfSteelUpgrade = 1;
 
-// Nerves of Steel
-upgrades.push({
-	type : "upgrades",
-	id : "U0",
-	name : "Nerves of Steel",
-	desc : "You have nerves of steel and are less likely to be overrun by the zombies",
-	price : 25000000,
-	upgrade : "nervesOfSteelUpgrade",
-	prereqs : [-1, -1],
-	numOwned : 0
-});
 // Sheriff Hat
 upgrades.push({
 	type : "upgrades",
-	id : "U1",
+	id : "U0",
 	name : "Rick's Sheriff Hat",
 	desc : "You know who's the boss.  Kill zombies in style.",
 	price : 10000000000,
@@ -483,10 +472,45 @@ upgrades.push({
 	prereqs : [-1, -1],
 	numOwned : 0
 });
-// Foragin Book
+
+upgrades.push({
+	type : "upgrades",
+	id : "U1",
+	name : "Daryl's Motorcyle",
+	desc : "Scavenge more effectively as you can move around more quickly",
+	price : 36900000,
+	upgrade : "basicScavengerUpgrade",
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
 upgrades.push({
 	type : "upgrades",
 	id : "U2",
+	name : "Rick's Sheriff Badge",
+	desc : "Bring the law to the zombies - increase your damage by 10%. Also makes your companions slightly more effective.",
+	price : 8900000,
+	upgrade : "sheriffBadgeUpgrade",
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Nerves of Steel
+upgrades.push({
+	type : "upgrades",
+	id : "U3",
+	name : "Nerves of Steel",
+	desc : "You have nerves of steel and are less likely to be overrun by the zombies",
+	price : 25000000,
+	upgrade : "nervesOfSteelUpgrade",
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Foraging Book
+upgrades.push({
+	type : "upgrades",
+	id : "U4",
 	name : "Foraging Book",
 	desc : "A book that teaches you how to forage more effectively",
 	price : 340000,
@@ -495,34 +519,13 @@ upgrades.push({
 	numOwned : 0
 });
 
-upgrades.push({
-	type : "upgrades",
-	id : "U3",
-	name : "Motorcyle",
-	desc : "Scavenge more effectively as you can move around more quickly",
-	price : 34500000,
-	upgrade : "basicScavengerUpgrade",
-	prereqs : [-1, -1],
-	numOwned : 0
-});
-
-upgrades.push({
-	type : "upgrades",
-	id : "U4",
-	name : "Rick's Sheriff Badge",
-	desc : "Bring the law to the zombies - increase your damage by 10%. Also makes your companions slightly more effective.",
-	price : 35500000,
-	upgrade : "sheriffBadgeUpgrade",
-	prereqs : [-1, -1],
-	numOwned : 0
-});
 
 upgrades.push({
 	type : "upgrades",
 	id : "U5",
 	name : "Water Bottles",
 	desc : "Stay hydrated while scavenging. Increase scavenging by 2%.",
-	price : 500000,
+	price : 530000,
 	upgrade : "basicScavengerUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
@@ -533,7 +536,7 @@ upgrades.push({
 	id : "U6",
 	name : "Radios",
 	desc : "Increase communication between companions. Reduces chance of death by a small percentage.",
-	price : 30000,
+	price : 475000,
 	upgrade : "companionDeathRiskUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
