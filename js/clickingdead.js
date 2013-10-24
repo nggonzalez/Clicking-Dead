@@ -50,16 +50,15 @@ var initialize = function () {
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
 		// update the progress bar.
-		$(".zombieMeter").attr('value', message);
+		$(".zombieMeter").attr('value', message.remainingZombiesPercent);
+		ClickingDead.data.zombiesKilled += message.zombiesKilled;
+		$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
 	};
 	$("body").on("click", "#killZombieButton", function() {
 		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
 		zombieWorker.postMessage({
 			type: "kill"
 		});
-		ClickingDead.data.zombiesKilled += ClickingDead.data.personalDamage;
-
-		$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
@@ -67,13 +66,10 @@ var initialize = function () {
 	var scavengeWorker = new Worker("/js/scavengecalc.js");
 	scavengeWorker.onmessage = function (event) {
 		var message = event.data;
-		alert(message.remainingSuppliesPercent);
 		$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 		ClickingDead.data.supplies += message.amountScavenged;
 		$(".scavengeBox p.count").html(ClickingDead.data.supplies);
 	};
-	
-
 
 
 	$("body").on("click", "#scavengeButton", function() {

@@ -7,20 +7,34 @@ var playerData = {};			// object to keep player data in.
 var iterSpeed = 10;			// iteration interval speed.
 
 var zombies = 1;			// current number of zombies
-var critZombies = 1000;			// critical number of zombies for loss
+var critZombies = 10000;			// critical number of zombies for loss
 
-var zombieMultProb = .1;		// probability of zombies multiplying.
+var zombieMultProb = .4;		// probability of zombies multiplying.
+
+var zombieGenerationRate = 5;	// this will increase over time
 
 /*
  * main execution loop of the zombie generation, will be made more complex
  * as development on the game continues
  */
 setInterval(function() {
+
 	if (Math.random() < zombieMultProb) { 
-		zombies++;
+		zombies += zombieGenerationRate;
 	}
+
+	var companionKills = 0;
+
+	for (var i = 0; i < playerData.companions.length; i++) {
+		companionKills += playerData.companions[i].damage;
+	}
+	zombies -= companionKills
+
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
-	postMessage(zombieVal);
+	postMessage({
+		zombiesKilled : companionKills,
+		remainingZombiesPercent : zombieVal	
+	});
 }, iterSpeed);
 
 
@@ -31,7 +45,14 @@ onmessage = function (event) {
 	if(event.data.type == "update") {
 		playerData = event.data.data;
 	} else if (event.data.type == 'kill') {
-		zombies = (zombies - playerData.personalDamage > 0) ? 
-				zombies - playerData.personalDamage : 0;
+		if (zombies <= 0) {
+			return;
+		}
+		var tmpZombies = (zombies - playerData.personalDamage);
+		zombies = Math.max(tmpZombies, 0);
+		postMessage({
+			zombiesKilled : playerData.personalDamage,
+			remainingZombiesPercent : zombies / (critZombies * Math.log(playerData.fortification))
+		});
 	}
 };

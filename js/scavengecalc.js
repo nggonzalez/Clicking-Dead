@@ -18,12 +18,16 @@ var currSupplies = 100000;		// the amount of supplies remaining
 setInterval(function() {
 	// we will allow for the eventual decay of supplies in the region,
 	// reducing the amount of supplies gained by a scavenge call.
+	
+	if (currSupplies <= 0) {
+		return;					// exit out if you run out of resources.
+	}
+
 	var companionScavenge = 0;
 
 	for (var i = 0; i < playerData.companions.length; i++) {
 		companionScavenge += playerData.companions[i].scavenge;	
 	}
-
 	currSupplies -= companionScavenge;
 
 	var supplyVal = currSupplies / currMaxSupplies;
@@ -41,6 +45,10 @@ onmessage = function (event) {
 	if(event.data.type == "update") {
 		playerData = event.data.data;
 	} else if (event.data.type == 'scavenge') {
+		if (currSupplies <= 0) {		// cannot gather resources if they are not there.
+			return;
+		}
+
 		var tmpSupplies = (currSupplies - playerData.personalScavenge);
 		currSupplies = Math.max(tmpSupplies, 0);
 		postMessage({
