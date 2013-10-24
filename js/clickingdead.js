@@ -29,19 +29,11 @@ ClickingDead.data = {			// define initial conditions for game state.
 //// SHIM for function handles /////////
 
 var nervesOfSteelUpgrade = function(data) {
-	data.personalDamage += 10;
+	data.fortification += 10;
 	return data;
 };
 
-
-
-
-
-
-
-
-
-
+//////// end shim for function handles//
 
 
 /**
@@ -165,7 +157,10 @@ var initialize = function () {
 				if (elems[i].numOwned <= 0) {
 					htmlBuild += '<button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
 					htmlBuild += elems[i].price + '</p></span>';
+				} else {
+					htmlBuild += '<p>Purchased</p>';
 				}
+				htmlBuild += '</div></li>';
 				$("#itemsList").append(htmlBuild);
 			}
 		} else if (event.data.type == "purchase") {
