@@ -22,6 +22,10 @@ body
     overflow: scroll;
 }
 
+button:focus
+{
+  outline: 0;
+}
 
 .blackout
 {
