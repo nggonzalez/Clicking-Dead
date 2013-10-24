@@ -104,6 +104,31 @@ upgrades.push({
 	prereqs : [-1, -1],
 	numOwned : 0
 });
+// Nerves of Steel
+upgrades.push({
+	type : "upgrades",
+	id : "U1",
+	name : "Sheriff's Hat",
+	desc : "You know who's the boss.  Kill zombies in style",
+	price : 15,
+	upgrade : "hatUpgrade",
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+// Nerves of Steel
+upgrades.push({
+	type : "upgrades",
+	id : "U2",
+	name : "Foraging Book",
+	desc : "A book that teaches you how to forage more effectively",
+	price : 15,
+	upgrade : "basicScavengerUpgrade",
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
+
 
 
 /**

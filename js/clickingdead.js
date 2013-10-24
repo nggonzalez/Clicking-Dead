@@ -33,6 +33,16 @@ var nervesOfSteelUpgrade = function(data) {
 	return data;
 };
 
+var hatUpgrade = function(data) {
+	data.personalDamage += 10;
+	return data;
+};
+
+var basicScavengerUpgrade = function(data) {
+	data.personalScavenge += 10;
+	return data;
+};
+
 //////// end shim for function handles//
 
 
@@ -71,7 +81,9 @@ var initialize = function () {
 			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
 		} else if (message.type == "notification") {
 			$("#news").prepend('<li class="newsItem breakTheStory dangerPost"><span class="newsContent">' + message.message + '</span></li>');
-			$("#news li:last").remove();
+			if($("#news li").length > 4) {
+				$("#news li:last").remove();
+			}
 		}
 	};
 
@@ -107,7 +119,9 @@ var initialize = function () {
 		var message = event.data;
 		// handle the message here and post to the newsfeed.
 		$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + message.message + '</span></li>');
-		$("#news li:last").remove();
+			if($("#news li").length > 4) {
+				$("#news li:last").remove();
+			}
 	};
 	ClickingDead.registerWorker(randomEventWorker);	// register the random worker
 
@@ -158,7 +172,7 @@ var initialize = function () {
 					htmlBuild += '<button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
 					htmlBuild += elems[i].price + '</p></span>';
 				} else {
-					htmlBuild += '<p>Purchased</p>';
+					htmlBuild += '<p class="purchased">Purchased</p>';
 				}
 				htmlBuild += '</div></li>';
 				$("#itemsList").append(htmlBuild);
@@ -167,6 +181,11 @@ var initialize = function () {
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
 			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
 			
+			$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + "you just purchased " + event.data.value.name + '</span></li>');
+			if($("#news li").length > 4) {
+				$("#news li:last").remove();
+			}
+
 			if (event.data.domain == "weapons") {				// add value.
 				ClickingDead.data.weapons.push(event.data.value);
 			} else if (event.data.domain == "companions") {
