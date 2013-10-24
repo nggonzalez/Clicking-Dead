@@ -299,7 +299,53 @@ nav.menu
     height: 288px;
     margin: 0px;
     margin-left: 290px;
+    padding: 0px;
+    list-style: none;
+    overflow: scroll;
 }
+
+.upgradeItem
+{
+  height: 50px;
+  margin: 0px;
+  padding: 8px 10px;
+  text-align: left;
+
+  position: relative;
+}
+
+.upgradeItem h2
+{
+  margin: 0px;
+  padding: 0px;
+
+  font-size: 1.75em;
+  font-weight: normal;
+}
+
+.upgradeItem p.info
+{
+  margin: 0px;
+  margin-top: 10px;
+  padding: 0px;
+
+  font-size: 1.25em;
+}
+
+.upgradeItem p.info span.cost
+{
+  display: inline-block;
+}
+.upgradeItem p.info span.infoSeparator
+{
+  display: inline-block;  width: 20px;
+}
+
+.upgradeItem p.info span.description
+{
+  display: inline-block;
+}
+
 
 .clickButton
 {
