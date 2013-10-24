@@ -142,6 +142,7 @@ div.instructions h2
 
 .hidden
 {
+    display: none;
     opacity: 0;
     top: 0px;
     left:  150%;
@@ -298,6 +299,21 @@ td.zombiesBox
     -webkit-transition-property: all;
     -webkit-transition-duration: 2s; 
     -webkit-transition-timing-function: ease-in-out;
+}
+
+.newsItem.flavorPost
+{
+  color: #0077cc;
+}
+
+.newsItem.dangerPost
+{
+  color: red;
+}
+
+.newsItem.bonusPost
+{
+  color: green;
 }
 
 .newsItem:last-of-type
