@@ -120,7 +120,7 @@ var initialize = function () {
 				htmlBuild += '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
 				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
 				htmlBuild += '</p></div>';
-				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><div class="purchaseButton sell">Sell</div><div class="purchaseButton buy">Buy</div></span><span class="priceWrapper"><p class="price">';
+				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
 				htmlBuild += elems[i].price + '</p></span>';
 				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
