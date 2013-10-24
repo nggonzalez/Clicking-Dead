@@ -20,6 +20,15 @@ var zombieGenerationRate = 5;	// this will increase over time
 setInterval(function() {
 
 
+	// increase zombie spawn rate
+	if (Math.random() < 0.01) {
+		zombieGenerationRate++;
+		postMessage({
+			type : "notification",
+			message : "MOAR zombeez are coming"
+		});
+	}
+
 	// spawn zombies
 	if (Math.random() < zombieMultProb) { 
 		zombies += zombieGenerationRate;

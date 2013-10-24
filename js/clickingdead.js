@@ -58,9 +58,8 @@ var initialize = function () {
 			ClickingDead.data.zombiesKilled += message.zombiesKilled;
 			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
 		} else if (message.type == "notification") {
-			
-
-
+			$("#news").prepend('<li class="newsItem breakTheStory dangerPost"><span class="newsContent">' + message.message + '</span></li>');
+			$("#news li:last").remove();
 		}
 	};
 
@@ -98,7 +97,7 @@ var initialize = function () {
 	randomEventWorker.onmessage = function (event) {
 		var message = event.data;
 		// handle the message here and post to the newsfeed.
-		$("#news").prepend('<li class="newsItem breakTheStory"><span class="newsContent">' + message.message + '</span></li>');
+		$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + message.message + '</span></li>');
 		$("#news li:last").remove();
 	};
 	ClickingDead.registerWorker(randomEventWorker);	// register the random worker
