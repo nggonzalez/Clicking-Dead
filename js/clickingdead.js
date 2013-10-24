@@ -13,8 +13,11 @@ ClickingDead.data = {			// define initial conditions for game state.
 	personalScavenge : 1,
 	zombiesKilled : 0,
 	supplies : 0,
+	fortification : 1000,
 	companions : [],
-	fortification : 1000
+	weapons : [], 
+	upgrades : [], 
+	acheivements : []
 };
 // maintaining the core data in a central location will allow for simpler save
 // functions later, as well as simple synchronization across multiple web workers.
@@ -71,7 +74,7 @@ $(window).load(function() {
 		scavengeWorker.postMessage({
 			type: "scavenge"
 		});
-	
+
 		ClickingDead.data.supplies += ClickingDead.data.personalScavenge;
 		$(".scavengeBox p.count").html(ClickingDead.data.supplies);
 	});	
