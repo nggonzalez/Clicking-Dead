@@ -741,8 +741,8 @@ progress::-moz-progress-bar {
 
 .leaveLocation
 {
-    animation: moveOut 10s ease-in-out forwards;
-    -webkit-animation: moveOut 10s ease-in-out forwards; /* Safari and Chrome: */
+    animation: moveOut 6s ease-in-out forwards;
+    -webkit-animation: moveOut 6s ease-in-out forwards; /* Safari and Chrome: */
 }
 
 
