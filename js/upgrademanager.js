@@ -50,40 +50,283 @@ var weapons = [];
 weapons.push({
 	type : "weapons",
 	name : "Rick's Magnum",
-	desc : "Rick's crazy-looking magnum.  Go pop some zombies.",
+	desc : "Rick's six shot .44 magnum. Very powerful, but slow to reload.",
 	id : "W0",
-	noise : 5,					// as a percent
-	damage : 5,					// increases a single companion's stats.
-	supply : -1,
-	price : 150,
+	noise : 10,					// as a percent
+	damage : 6,					// increases a single companion's stats.
+	supply : -6,
+	price : 1000000,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
 
-// Joey's Magnum
+// Ak47
 weapons.push({
 	type : "weapons",
-	name : "Joey's Magnum",
-	desc : "just a little bit more flavor text to write",
+	name : "AK47",
+	desc : "A durable, reliable automatic, assualt rifle.",
 	id : "W1",
-	noise : 5,					// as a percent
-	damage : 5,					// increases a single companion's stats.
-	supply : -1,
-	price : 250,
+	noise : 8,					// as a percent
+	damage : 15,					// increases a single companion's stats.
+	supply : -5,
+	price : 2500340,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
 
-// Paul's Magnum
+// M4
 weapons.push({
 	type : "weapons",
-	name : "Paul's Magnum",
-	desc : "just a little bit more flavor text to write",
+	name : "M4 Assualt Rifle",
+	desc : "An accurate, automatic, assualt rifle. Light and quick.",
 	id : "W2",
-	noise : 5,					// as a percent
+	noise : 6,					// as a percent
+	damage : 15,					// increases a single companion's stats.
+	supply : -4,
+	price : 5600000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// 9mm pistol
+weapons.push({
+	type : "weapons",
+	name : "9mm Pistol",
+	desc : "9mm pistol that is light and easy to use.",
+	id : "W3",
+	noise : 4,					// as a percent
 	damage : 5,					// increases a single companion's stats.
-	supply : -1,
-	price : 5,
+	supply : -2,
+	price : 10000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Glock
+weapons.push({
+	type : "weapons",
+	name : "Glock",
+	desc : "Automatic pistol.",
+	id : "W4",
+	noise : 4,					// as a percent
+	damage : 20,					// increases a single companion's stats.
+	supply : -4,
+	price : 100000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Bow and arrow
+weapons.push({
+	type : "weapons",
+	name : "Classic Bow and Arrow",
+	desc : "Go back into prehistoric times and hunt zombies with classic bows and arrows.",
+	id : "W5",
+	noise : 0,					// as a percent
+	damage : 2,					// increases a single companion's stats.
+	supply : 1,
+	price : 1000000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Compound Bow and arrow
+weapons.push({
+	type : "weapons",
+	name : "Compound Bow and Arrow",
+	desc : "Carbon fiber bow and arrow. More accurate and easier to use.",
+	id : "W6",
+	noise : 0,					// as a percent
+	damage : 8,					// increases a single companion's stats.
+	supply : -2,
+	price : 250000000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Cross Bow
+weapons.push({
+	type : "weapons",
+	name : "Daryl's Crossbow",
+	desc : "The ultimate crossbow. Accurate and deadly.",
+	id : "W7",
+	noise : 0,					// as a percent
+	damage : 20,					// increases a single companion's stats.
+	supply : -4,
+	price : 50000000000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Basic Kitchen Knife
+weapons.push({
+	type : "weapons",
+	name : "Basic Kitchen Knife",
+	desc : "What it sounds like, a steak knife. Get up close and personal",
+	id : "W8",
+	noise : 0,					// as a percent
+	damage : 1,					// increases a single companion's stats.
+	supply : 0,
+	price : 100,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Katana
+weapons.push({
+	type : "weapons",
+	name : "Michonne's Katana",
+	desc : "Slice through zombies like nothing.",
+	id : "W9",
+	noise : 0,					// as a percent
+	damage : 30,					// increases a single companion's stats.
+	supply : 1,
+	price : 320000000000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
+// Machete
+weapons.push({
+	type : "weapons",
+	name : "Bloody, Rusty Machete",
+	desc : "Cut your way through a mob of zombies.",
+	id : "W10",
+	noise : 0,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : 1,
+	price : 320000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Spear
+weapons.push({
+	type : "weapons",
+	name : "Wooden, Homemade Spear",
+	desc : "Keep zombies at a distance with this sharp, wooden stick.",
+	id : "W11",
+	noise : 0,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : 2,
+	price : 20000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
+// Grenade Launcher
+weapons.push({
+	type : "weapons",
+	name : "Grenade Launcher",
+	desc : "Create a shower of zombie limbs from a distance.",
+	id : "W12",
+	noise : 30,					// as a percent
+	damage : 1000,					// increases a single companion's stats.
+	supply : 10,
+	price : 2345000020000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
+// Grenades
+weapons.push({
+	type : "weapons",
+	name : "Grenades",
+	desc : "Blow up a zombie with these basic grenades.",
+	id : "W13",
+	noise : 30,					// as a percent
+	damage : 100,					// increases a single companion's stats.
+	supply : 10,
+	price : 220050,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
+// Molotov Cocktails
+weapons.push({
+	type : "weapons",
+	name : "Molotov Cocktails",
+	desc : "Set zombies ablaze with these fiery concotions.",
+	id : "W14",
+	noise : 5,					// as a percent
+	damage : 10,					// increases a single companion's stats.
+	supply : 5,
+	price : 2200,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+
+// Wrench
+weapons.push({
+	type : "weapons",
+	name : "Wrench",
+	desc : "Bash zombies with a red wrench.",
+	id : "W15",
+	noise : 2,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : 2,
+	price : 265000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Police Baton
+weapons.push({
+	type : "weapons",
+	name : "Police Baton",
+	desc : "Metal police baton, perfect for bludgeoning zombies",
+	id : "W16",
+	noise : 1,					// as a percent
+	damage : 6,					// increases a single companion's stats.
+	supply : 1,
+	price : 26000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Sniper Rifle
+weapons.push({
+	type : "weapons",
+	name : "Sniper Rifle",
+	desc : "Keep zombies at a distance with this super powerful, long range rifle.",
+	id : "W17",
+	noise : 20,					// as a percent
+	damage : 25,					// increases a single companion's stats.
+	supply : 5,
+	price : 780456000,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Pocket Knife
+weapons.push({
+	type : "weapons",
+	name : "Pocket Knife",
+	desc : "Sharp, small knife to kill zombies with in an up close and personal way.",
+	id : "W18",
+	noise : 0,					// as a percent
+	damage : 1,					// increases a single companion's stats.
+	supply : 1,
+	price : 300,
+	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+// Crowbar
+weapons.push({
+	type : "weapons",
+	name : "Crowbar",
+	desc : "Metal crowbar.",
+	id : "W19",
+	noise : 20,					// as a percent
+	damage : 25,					// increases a single companion's stats.
+	supply : 5,
+	price : 7000,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -98,7 +341,7 @@ upgrades.push({
 	type : "upgrades",
 	id : "U0",
 	name : "Nerves of Steel",
-	desc : "you have nerves of steel and are less likely to be overrun by the zombies",
+	desc : "You have nerves of steel and are less likely to be overrun by the zombies",
 	price : 15,
 	upgrade : "nervesOfSteelUpgrade",
 	prereqs : [-1, -1],

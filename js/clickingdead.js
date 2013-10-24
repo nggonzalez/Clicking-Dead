@@ -278,6 +278,7 @@ $(window).load(function() {
 	$('body').on('click', ".blackout", function() { 
 		$('.blackout').remove();
 		initialize();
+		$("#companions").click();
 	});
 });
 
