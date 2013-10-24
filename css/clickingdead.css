@@ -118,7 +118,7 @@ div.instructions h2
     
     opacity: 0;
     
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
 }
