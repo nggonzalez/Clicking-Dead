@@ -172,7 +172,7 @@ var initialize = function () {
 					htmlBuild += '<button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
 					htmlBuild += elems[i].price + '</p></span>';
 				} else {
-					htmlBuild += '<p class="purchased">Purchased</p>';
+					htmlBuild += '<p class="purchased">&#x2714;</p>';
 				}
 				htmlBuild += '</div></li>';
 				$("#itemsList").append(htmlBuild);

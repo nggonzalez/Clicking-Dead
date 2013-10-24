@@ -303,7 +303,7 @@ td.zombiesBox
 
 .newsItem.flavorPost
 {
-  color: #0077cc;
+  color: #39f;
 }
 
 .newsItem.dangerPost
@@ -481,6 +481,12 @@ nav.menu
 .upgradeItem div.purchaseInfoWrapper span.buttons
 {
   height: 1.75em;
+}
+
+.upgradeItem div.purchaseInfoWrapper p.purchased
+{
+  font-size: 1.75em;
+  float: right;
 }
 
 .purchaseButton
