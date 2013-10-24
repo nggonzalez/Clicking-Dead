@@ -91,21 +91,19 @@ weapons.push({
 //////// DEFINE ALL UPGRADES ///////////////////////////////////
 var upgrades = [];
 
+var nervesOfSteelUpgrade = 1;
+
 // Nerves of Steel
 upgrades.push({
 	type : "upgrades",
+	id : "U0",
 	name : "Nerves of Steel",
 	desc : "you have nerves of steel and are less likely to be overrun by the zombies",
 	price : 15,
-	upgrade : [function(data) {
-		data.fortification += 10;
-		return data;
-	}],
+	upgrade : "nervesOfSteelUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
-
-
 
 
 /**
@@ -143,7 +141,7 @@ onmessage = function (event) {
 		for(var i = 0; i < upgrades.length && type == ""; i++) {	// linear search
 			if(upgrades[i].id == event.data.id) { 
 				if (event.data.currSupplies >= upgrades[i].price) {
-					upgrades[i].owned = true;
+					upgrades[i].numOwned++;
 					type = "upgrades";
 					targetEntry = upgrades[i];
 					break;
@@ -183,8 +181,6 @@ onmessage = function (event) {
 		});
 	} else if (event.data.type == "achievements") { 
 		// open the achievements tab.
-
-
 
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;

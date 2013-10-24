@@ -25,6 +25,25 @@ ClickingDead.data = {			// define initial conditions for game state.
 // maintaining the core data in a central location will allow for simpler save
 // functions later, as well as simple synchronization across multiple web workers.
 
+
+//// SHIM for function handles /////////
+
+var nervesOfSteelUpgrade = function(data) {
+	data.personalDamage += 10;
+	return data;
+};
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * adds a worker to the internal ClickingDead web worker array.
  */
@@ -157,8 +176,12 @@ var initialize = function () {
 				ClickingDead.data.weapons.push(event.data.value);
 			} else if (event.data.domain == "companions") {
 				ClickingDead.data.companions.push(event.data.value);
-			} else if (event.data.domain == "upgrades") { 
+			} else if (event.data.domain == "upgrades") {
+
+
 				ClickingDead.data.upgrades.push(event.data.value);
+				ClickingDead.data = eval(event.data.value.upgrade + '(ClickingDead.data);');
+				ClickingDead.updateWorkers();
 			}
 			upgradeManagerWorker.postMessage({			// ask for reload.
 				type : event.data.domain
