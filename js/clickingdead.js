@@ -99,15 +99,15 @@ var initialize = function () {
 			$("#itemsList").empty();				// clear itemslist.
 			for (var i = 0; i < elems.length; i++) {
 				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
-				htmlBuild = htmlBuild + '<h2>'+elems[i].name+'</h2>';
-				htmlBuild = htmlBuild + '<p><span class="description">'+elems[i].desc+'</span></p>';
-				htmlBuild = htmlBuild + '<p><span class="attribute">Noise: '+elems[i].noise+'%</span>';
-				htmlBuild = htmlBuild + '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
-				htmlBuild = htmlBuild + '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
-				htmlBuild = htmlBuild + '</p></div>';
-				htmlBuild = htmlBuild + '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button" class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-				htmlBuild = htmlBuild +	elems[i].price + '</p></span>';
-				htmlBuild = htmlBuild + '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
+				htmlBuild += '<h2>'+elems[i].name+'</h2>';
+				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
+				htmlBuild += '<p><span class="attribute">Noise: '+elems[i].noise+'%</span>';
+				htmlBuild += '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
+				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
+				htmlBuild += '</p></div>';
+				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button" class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
+				htmlBuild += elems[i].price + '</p></span>';
+				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
 			}
@@ -115,15 +115,15 @@ var initialize = function () {
 			$("#itemsList").empty();				// clear itemslist.
 			for (var i = 0; i < elems.length; i++) {
 				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
-				htmlBuild = htmlBuild + '<h2>'+elems[i].name+'</h2>';
-				htmlBuild = htmlBuild + '<p><span class="description">'+elems[i].desc+'</span></p>';
-				htmlBuild = htmlBuild + '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
-				htmlBuild = htmlBuild + '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
-				htmlBuild = htmlBuild + '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
-				htmlBuild = htmlBuild + '</p></div>';
-				htmlBuild = htmlBuild + '<div class="purchaseInfoWrapper"><span class="buttons"><div class="purchaseButton sell">Sell</div><div class="purchaseButton buy">Buy</div></span><span class="priceWrapper"><p class="price">';
-				htmlBuild = htmlBuild +	elems[i].price + '</p></span>';
-				htmlBuild = htmlBuild + '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
+				htmlBuild += '<h2>'+elems[i].name+'</h2>';
+				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
+				htmlBuild += '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
+				htmlBuild += '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
+				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
+				htmlBuild += '</p></div>';
+				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
+				htmlBuild += elems[i].price + '</p></span>';
+				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
 			}
