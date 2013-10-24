@@ -432,7 +432,7 @@ nav.menu
   margin: 0px;
   padding: 0px;
 
-  font-size: 1.75em;
+  font-size: 1.65em;
   font-weight: normal;
 
   color: #fff;
@@ -440,13 +440,13 @@ nav.menu
 
 .upgradeItem div.generalInfoWrapper
 {
-  width: 70%;
+  width: 75%;
   float: left;
 }
 
 .upgradeItem div.purchaseInfoWrapper
 {
-  width: 30%;
+  width: 25%;
   float: left;
   display: table;
 
@@ -461,12 +461,12 @@ nav.menu
 
 .upgradeItem div.purchaseInfoWrapper span.countWrapper
 {
-  font-size: 1.25em;
+  font-size: 1.2em;
 }
 
 .upgradeItem div.purchaseInfoWrapper span.priceWrapper
 {
-  font-size: 1.25em;
+  font-size: 1.2em;
 }
 
 .upgradeItem div.purchaseInfoWrapper span.priceWrapper p, 
@@ -480,7 +480,7 @@ nav.menu
 
 .upgradeItem div.purchaseInfoWrapper span.buttons
 {
-  height: 1.75em;
+  height: 1.65em;
 }
 
 .upgradeItem div.purchaseInfoWrapper p.purchased
@@ -517,7 +517,7 @@ nav.menu
   margin-top: 6px;
   padding: 0px;
 
-  font-size: 1.25em;
+  font-size: 1.2em;
 }
 
 .upgradeItem div.generalInfoWrapper p span
