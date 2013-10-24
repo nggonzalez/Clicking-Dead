@@ -68,6 +68,7 @@ var initialize = function () {
 		var message = event.data;
 		$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 		ClickingDead.data.supplies += message.amountScavenged;
+		ClickingDead.data.supplies = Math.max(0, ClickingDead.data.supplies);
 		$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 	};
 
@@ -131,7 +132,8 @@ var initialize = function () {
 
 		} else if (event.data.type == "purchase") {
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
-
+			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
+			
 			if (event.data.domain == "weapons") {				// add value.
 				ClickingDead.data.weapons.push(event.data.value);
 			} else if (event.data.domain == "companions") {

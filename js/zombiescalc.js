@@ -31,7 +31,7 @@ setInterval(function() {
 	for (var i = 0; i < playerData.companions.length; i++) {
 		companionKills += playerData.companions[i].damage/(1000/iterSpeed);
 	}
-	zombies -= companionKills
+	zombies -= companionKills;
 
 	// pass UI update message
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
