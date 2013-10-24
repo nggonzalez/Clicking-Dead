@@ -10,6 +10,75 @@ var playerData = {};			// store the player data here.
 // there are fewer things to store here as compared to the other
 // webworkers, simply due to the nature of this particular webworker.
 
+
+//////// DEFINE ALL COMPANIONS //////////////////////////////////
+var companions = [];
+
+// RICK. our first generation prototype.
+companions.push({
+	type : "companion",			// the type of item for disambiguation
+	name : "Rick",				// name of the companion
+	scavenge : 4,				// scavenge rate of the companion
+	damage : 4,					// damage rate of the companion
+	price : 45					// supply cost of the companion.
+});
+
+//////// DEFINE ALL WEAPONS ////////////////////////////////////
+var weapons = [];
+
+// Rick's Magnum
+weapons.push({
+	type : "weapons",
+	name : "Rick's Magnum",
+	noise : 5,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : -1
+});
+
+
+//////// DEFINE ALL UPGRADES ///////////////////////////////////
+var upgrades = [];
+
+// Nerves of Steel
+upgrades.push({
+	type : "upgrades",
+	name : "Nerves of Steel",
+	
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * respond to message requests from the main controller here.
  * this is the main message sequence of the webworker

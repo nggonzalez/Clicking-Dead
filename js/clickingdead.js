@@ -9,7 +9,7 @@ ClickingDead.data = {};			// define the core data object for your
 								// current game save.
 
 ClickingDead.data = {			// define initial conditions for game state.
-	personalDamage : 16,
+	personalDamage : 1,
 	personalScavenge : 1,
 	zombiesKilled : 0,
 	supplies : 0,
