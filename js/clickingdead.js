@@ -16,7 +16,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companionConsumption : 1,
 	zombiesKilled : 0,
 	supplies : 100,
-	fortification : 1,
+	fortification : 10,
 	companions : [],
 	weapons : [], 
 	upgrades : [],
@@ -207,8 +207,6 @@ var initialize = function () {
 			type : "upgrades"
 		});
 	});
-
-
 
 
 	$("body").on("click", "#itemsList .buy", function(event) {
