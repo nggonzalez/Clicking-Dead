@@ -16,7 +16,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	fortification : 1000,
 	companions : [],
 	weapons : [], 
-	upgrades : [], 
+	upgrades : [],
 	acheivements : []
 };
 // maintaining the core data in a central location will allow for simpler save
@@ -42,7 +42,6 @@ ClickingDead.updateWorkers = function () {
 	}
 };
 
-
 /**
  * function to initialize all of our variables and stuff.
  */
@@ -64,21 +63,28 @@ var initialize = function () {
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
+
 	var scavengeWorker = new Worker("/js/scavengecalc.js");
 	scavengeWorker.onmessage = function (event) {
 		var message = event.data;
-		$(".suppliesMeter").attr('value', message);
+		alert(message.remainingSuppliesPercent);
+		$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
+		ClickingDead.data.supplies += message.amountScavenged;
+		$(".scavengeBox p.count").html(ClickingDead.data.supplies);
 	};
+	
+
+
+
 	$("body").on("click", "#scavengeButton", function() {
 		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+'+ClickingDead.data.personalScavenge+'</span>');
 		scavengeWorker.postMessage({
 			type: "scavenge"
 		});
-
-		ClickingDead.data.supplies += ClickingDead.data.personalScavenge;
-		$(".scavengeBox p.count").html(ClickingDead.data.supplies);
 	});	
 	ClickingDead.registerWorker(scavengeWorker);	// register the scavenge worker
+
+
 
 	var randomEventWorker = new Worker("/js/randomevent.js");
 	randomEventWorker.onmessage = function (event) {
@@ -124,6 +130,24 @@ var initialize = function () {
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
 			}
+		} else if (event.data.type == "upgrades") {
+			// holder for upgrades text.
+
+		} else if (event.data.type == "purchase") {
+			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
+
+			if (event.data.domain == "weapons") {				// add value.
+				ClickingDead.data.weapons.push(event.data.value);
+			} else if (event.data.domain == "companions") {
+				ClickingDead.data.companions.push(event.data.value);
+			} else if (event.data.domain == "upgrades") { 
+				ClickingDead.data.upgrades.push(event.data.value);
+			}
+			upgradeManagerWorker.postMessage({			// ask for reload.
+				type : event.data.domain
+			});
+			$(".scavengeBox p.count").html(ClickingDead.data.supplies);
+			ClickingDead.updateWorkers();
 		}
 	}
 
@@ -134,7 +158,6 @@ var initialize = function () {
 
 	///////// SETTING UP THE SCAVENGE +1 button. ///////
 	$(".scavengeBox p.count").html(ClickingDead.data.supplies);
-
 	
 	///////// SET UP SIDE BUTTONS //////////////////////
 	
@@ -153,13 +176,15 @@ var initialize = function () {
 	});
 
 	$("body").on("click", "#itemsList .buy", function(event) {
-		alert("buying!");
 		var boughtId = $(event.target).closest(".upgradeItem").data("id");
-		alert(boughtId);
+		// from here we will send a buy request to the upgrade manager
+		upgradeManagerWorker.postMessage({
+			type : "purchase",
+			id : boughtId,
+			currSupplies : ClickingDead.data.supplies
+		});
 	});
 }
-
-
 
 /*
  * Window Load and initialization steps.

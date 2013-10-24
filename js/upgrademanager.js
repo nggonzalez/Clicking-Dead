@@ -23,11 +23,25 @@ companions.push({
 	scavenge : 4,				// scavenge rate of the companion
 	damage : 4,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	price : 100,
 	prereq : -1,
 	price : 45,					// supply cost of the companion.
 	numOwned : 0
 });
+
+// PAUL. our test person
+companions.push({
+	type : "companion",			// the type of item for disambiguation
+	name : "Paul",				// name of the companion
+	desc : "trying out a new guy",
+	id : "C1",
+	scavenge : 4,				// scavenge rate of the companion
+	damage : 4,					// damage rate of the companion
+	supply : -2,				// amount he "eats"
+	prereq : -1,
+	price : 1,					// supply cost of the companion.
+	numOwned : 0
+});
+
 
 //////// DEFINE ALL WEAPONS ////////////////////////////////////
 var weapons = [];
@@ -60,6 +74,19 @@ weapons.push({
 	numOwned : 0
 });
 
+// Paul's Magnum
+weapons.push({
+	type : "weapons",
+	name : "Paul's Magnum",
+	desc : "just a little bit more flavor text to write",
+	id : "W2",
+	noise : 5,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : -1,
+	price : 5,
+	prereq : -1,
+	numOwned : 0
+});
 
 //////// DEFINE ALL UPGRADES ///////////////////////////////////
 var upgrades = [];
@@ -80,9 +107,53 @@ upgrades.push({
 onmessage = function (event) {
 	if (event.data.type == "purchase") {
 		// handle all purchase requests and logic here
+		var type = "";
+		var targetEntry;
 
+		for(var i = 0; i < weapons.length && type == ""; i++) {	// linear search
+			if(weapons[i].id == event.data.id) { 
+				if (event.data.currSupplies >= weapons[i].price) {
+					weapons[i].numOwned++;
+					type = "weapons";
+					targetEntry = weapons[i];
+					break;
+				}
+			}
+		}
 
+		for(var i = 0; i < companions.length && type == ""; i++) {	// linear search
+			if(companions[i].id == event.data.id) { 
+				if (event.data.currSupplies >= companions[i].price) {
+					companions[i].numOwned++;
+					type = "companions";
+					targetEntry = companions[i];
+					break;
+				}
+			}
+		}
 
+		for(var i = 0; i < upgrades.length && type == ""; i++) {	// linear search
+			if(upgrades[i].id == event.data.id) { 
+				if (event.data.currSupplies >= upgrades[i].price) {
+					upgrades[i].owned = true;
+					type = "upgrades";
+					targetEntry = upgrades[i];
+					break;
+				}
+			}
+		}
+		
+		// we now have the entry and the type of the searched code.
+		if (type == "") {
+			return;				// no such entry was found
+		} else {
+			postMessage({
+				type : "purchase",
+				domain : type,
+				cost : targetEntry.price,
+				value : targetEntry
+			});
+		}
 	} else if (event.data.type == "companions") {
 		// open the companions tab.
 		postMessage({
@@ -106,7 +177,8 @@ onmessage = function (event) {
 
 
 
-	} else {
+	} else if (event.data.type == "update") {
+		playerData = event.data.data;
 		// there should be no logic caught here.
 	}
 };
