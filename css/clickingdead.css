@@ -317,6 +317,11 @@ nav.menu
   border-bottom: 1px solid #efefef;
 }
 
+.upgradeItem:last-of-type
+{
+  border-bottom: none; 
+}
+
 .upgradeItem h2
 {
   margin: 0px;
