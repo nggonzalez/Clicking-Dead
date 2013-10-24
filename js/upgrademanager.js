@@ -18,9 +18,15 @@ var companions = [];
 companions.push({
 	type : "companion",			// the type of item for disambiguation
 	name : "Rick",				// name of the companion
+	desc : "Wild-eyed mountain man Rick.",
+	id : 0,
 	scavenge : 4,				// scavenge rate of the companion
 	damage : 4,					// damage rate of the companion
-	price : 45					// supply cost of the companion.
+	supply : -2,				// amount he "eats"
+	price : 100,
+	prereq : -1,
+	price : 45,					// supply cost of the companion.
+	numOwned : 0
 });
 
 //////// DEFINE ALL WEAPONS ////////////////////////////////////
@@ -30,9 +36,28 @@ var weapons = [];
 weapons.push({
 	type : "weapons",
 	name : "Rick's Magnum",
+	desc : "Rick's crazy-looking magnum.  Go pop some zombies.",
+	id : 0,
 	noise : 5,					// as a percent
 	damage : 5,					// increases a single companion's stats.
-	supply : -1
+	supply : -1,
+	price : 150,
+	prereq : -1,
+	numOwned : 0
+});
+
+// Joey's Magnum
+weapons.push({
+	type : "weapons",
+	name : "Joey's Magnum",
+	desc : "just a little bit more flavor text to write",
+	id : 1,
+	noise : 5,					// as a percent
+	damage : 5,					// increases a single companion's stats.
+	supply : -1,
+	price : 250,
+	prereq : -1,
+	numOwned : 0
 });
 
 
@@ -43,38 +68,7 @@ var upgrades = [];
 upgrades.push({
 	type : "upgrades",
 	name : "Nerves of Steel",
-	
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -91,13 +85,16 @@ onmessage = function (event) {
 
 	} else if (event.data.type == "companions") {
 		// open the companions tab.
-
-
-
+		postMessage({
+			type : "companions",
+			data : companions
+		});
 	} else if (event.data.type == "weapons") {
 		// open the weapons tab
-
-
+		postMessage({
+			type : "weapons",
+			data : weapons
+		});
 
 	} else if (event.data.type == "upgrades") {
 		// open the upgrades tab

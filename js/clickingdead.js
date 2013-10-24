@@ -89,6 +89,43 @@ $(window).load(function() {
 	};
 	ClickingDead.registerWorker(randomEventWorker);	// register the random worker
 
+	var upgradeManagerWorker = new Worker("/js/upgrademanager.js");
+	upgradeManagerWorker.onmessage = function (event) {
+		var elems = event.data.data;
+		if (event.data.type == "weapons") {			// use the weapons data format.
+			$("#itemsList").empty();				// clear itemslist.
+			for (var i = 0; i < elems.length; i++) {
+				var htmlBuild = '<li class="upgradeItem"><div class="generalInfoWrapper">';
+				htmlBuild = htmlBuild + '<h2>'+elems[i].name+'</h2>';
+				htmlBuild = htmlBuild + '<p><span class="description">'+elems[i].desc+'</span></p>';
+				htmlBuild = htmlBuild + '<p><span class="attribute">Noise: '+elems[i].noise+'%</span>';
+				htmlBuild = htmlBuild + '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
+				htmlBuild = htmlBuild + '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
+				htmlBuild = htmlBuild + '</p></div>';
+				htmlBuild = htmlBuild + '<div class="purchaseInfoWrapper"><span class="buttons"><div class="purchaseButton sell">Sell</div><div class="purchaseButton buy">Buy</div></span><span class="priceWrapper"><p class="price">';
+				htmlBuild = htmlBuild +	elems[i].price + '</p></span>';
+				htmlBuild = htmlBuild + '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
+				// we have now added a weapon list element.
+				$("#itemsList").append(htmlBuild);
+			}
+		} else if (event.data.type == "companions") {
+			$("#itemsList").empty();				// clear itemslist.
+			for (var i = 0; i < elems.length; i++) {
+				var htmlBuild = '<li class="upgradeItem"><div class="generalInfoWrapper">';
+				htmlBuild = htmlBuild + '<h2>'+elems[i].name+'</h2>';
+				htmlBuild = htmlBuild + '<p><span class="description">'+elems[i].desc+'</span></p>';
+				htmlBuild = htmlBuild + '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
+				htmlBuild = htmlBuild + '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
+				htmlBuild = htmlBuild + '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
+				htmlBuild = htmlBuild + '</p></div>';
+				htmlBuild = htmlBuild + '<div class="purchaseInfoWrapper"><span class="buttons"><div class="purchaseButton sell">Sell</div><div class="purchaseButton buy">Buy</div></span><span class="priceWrapper"><p class="price">';
+				htmlBuild = htmlBuild +	elems[i].price + '</p></span>';
+				htmlBuild = htmlBuild + '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
+				// we have now added a weapon list element.
+				$("#itemsList").append(htmlBuild);
+			}
+		}
+	}
 
 	ClickingDead.updateWorkers();					// propogate changes.
 
@@ -99,6 +136,25 @@ $(window).load(function() {
 
 	///////// SETTING UP THE SCAVENGE +1 button. ///////
 	$(".scavengeBox p.count").html(ClickingDead.data.supplies);
+
+	
+	///////// SET UP SIDE BUTTONS //////////////////////
+	
+	/////////// Weapons ////////////
+	
+	$("body").on("click", "#weapons", function() {
+		upgradeManagerWorker.postMessage({				// load the weapons tab.
+			type : "weapons"
+		});
+	});
+
+	$("body").on("click", "#companions", function() {
+		upgradeManagerWorker.postMessage({
+			type : "companions"
+		});
+	});
+
+
 
 
 });
