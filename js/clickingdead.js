@@ -42,11 +42,11 @@ ClickingDead.updateWorkers = function () {
 	}
 };
 
-/*
- * Window Load and initialization steps.
+
+/**
+ * function to initialize all of our variables and stuff.
  */
-$(window).load(function() {
-	
+var initialize = function () {
 	var zombieWorker = new Worker("/js/zombiescalc.js");
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
@@ -95,7 +95,7 @@ $(window).load(function() {
 		if (event.data.type == "weapons") {			// use the weapons data format.
 			$("#itemsList").empty();				// clear itemslist.
 			for (var i = 0; i < elems.length; i++) {
-				var htmlBuild = '<li class="upgradeItem"><div class="generalInfoWrapper">';
+				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
 				htmlBuild = htmlBuild + '<h2>'+elems[i].name+'</h2>';
 				htmlBuild = htmlBuild + '<p><span class="description">'+elems[i].desc+'</span></p>';
 				htmlBuild = htmlBuild + '<p><span class="attribute">Noise: '+elems[i].noise+'%</span>';
@@ -111,7 +111,7 @@ $(window).load(function() {
 		} else if (event.data.type == "companions") {
 			$("#itemsList").empty();				// clear itemslist.
 			for (var i = 0; i < elems.length; i++) {
-				var htmlBuild = '<li class="upgradeItem"><div class="generalInfoWrapper">';
+				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
 				htmlBuild = htmlBuild + '<h2>'+elems[i].name+'</h2>';
 				htmlBuild = htmlBuild + '<p><span class="description">'+elems[i].desc+'</span></p>';
 				htmlBuild = htmlBuild + '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
@@ -131,8 +131,6 @@ $(window).load(function() {
 
 	///////// SETTING UP THE ZOMBIE +1 buttons. ////////
 	$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
-
-
 
 	///////// SETTING UP THE SCAVENGE +1 button. ///////
 	$(".scavengeBox p.count").html(ClickingDead.data.supplies);
@@ -154,9 +152,23 @@ $(window).load(function() {
 		});
 	});
 
+	$("body").on("click", "#itemsList .buy", function(event) {
+		alert("buying!");
+		var boughtId = $(event.target).closest(".upgradeItem").data("id");
+		alert(boughtId);
+	});
+}
 
 
 
+/*
+ * Window Load and initialization steps.
+ */
+$(window).load(function() {
+	$('body').on('click', ".blackout", function() { 
+		$('.blackout').remove();
+		initialize();
+	});
 });
 
 

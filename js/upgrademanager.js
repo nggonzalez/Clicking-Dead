@@ -19,7 +19,7 @@ companions.push({
 	type : "companion",			// the type of item for disambiguation
 	name : "Rick",				// name of the companion
 	desc : "Wild-eyed mountain man Rick.",
-	id : 0,
+	id : "C0",
 	scavenge : 4,				// scavenge rate of the companion
 	damage : 4,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
@@ -37,7 +37,7 @@ weapons.push({
 	type : "weapons",
 	name : "Rick's Magnum",
 	desc : "Rick's crazy-looking magnum.  Go pop some zombies.",
-	id : 0,
+	id : "W0",
 	noise : 5,					// as a percent
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
@@ -51,7 +51,7 @@ weapons.push({
 	type : "weapons",
 	name : "Joey's Magnum",
 	desc : "just a little bit more flavor text to write",
-	id : 1,
+	id : "W1",
 	noise : 5,					// as a percent
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
