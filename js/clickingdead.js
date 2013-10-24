@@ -12,7 +12,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	personalDamage : 1,
 	personalScavenge : 1,
 	zombiesKilled : 0,
-	supplies : 0,
+	supplies : 100,
 	fortification : 1000,
 	companions : [],
 	weapons : [], 
@@ -52,7 +52,7 @@ var initialize = function () {
 		// update the progress bar.
 		$(".zombieMeter").attr('value', message.remainingZombiesPercent);
 		ClickingDead.data.zombiesKilled += message.zombiesKilled;
-		$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
+		$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
 	};
 	$("body").on("click", "#killZombieButton", function() {
 		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
@@ -68,7 +68,7 @@ var initialize = function () {
 		var message = event.data;
 		$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 		ClickingDead.data.supplies += message.amountScavenged;
-		$(".scavengeBox p.count").html(ClickingDead.data.supplies);
+		$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 	};
 
 
@@ -142,7 +142,7 @@ var initialize = function () {
 			upgradeManagerWorker.postMessage({			// ask for reload.
 				type : event.data.domain
 			});
-			$(".scavengeBox p.count").html(ClickingDead.data.supplies);
+			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 			ClickingDead.updateWorkers();
 		}
 	}
@@ -154,7 +154,7 @@ var initialize = function () {
 
 	///////// SETTING UP THE SCAVENGE +1 button. ///////
 	$(".scavengeBox p.count").html(ClickingDead.data.supplies);
-	
+
 	///////// SET UP SIDE BUTTONS //////////////////////
 	
 	/////////// Weapons ////////////

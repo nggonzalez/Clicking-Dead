@@ -11,6 +11,7 @@ var currMaxSupplies = 100000;		// current maximum supply count.
 var currSupplies = 100000;		// the amount of supplies remaining
 								// in the environment.
 								
+var baseConsumption = 1;
 /*
  * main execution loop of the zombie generation, will be made more complex
  * as development on the game continues
@@ -26,9 +27,19 @@ setInterval(function() {
 	var companionScavenge = 0;
 
 	for (var i = 0; i < playerData.companions.length; i++) {
-		companionScavenge += playerData.companions[i].scavenge;	
+		companionScavenge += (playerData.companions[i].scavenge)/(1000/iterSpeed);	
 	}
 	currSupplies -= companionScavenge;
+
+	/// now deal with consumption problems.
+
+	companionScavenge -= baseConsumption/(1000/iterSpeed);
+	for (var i = 0; i < playerData.companions.length; i++) { 
+		companionScavenge += playerData.companions[i].supply/(1000/iterSpeed);
+	}
+	for (var i = 0; i < playerData.weapons.length; i++) {
+		companionScavenge += playerData.weapons[i].supply/(1000/iterSpeed);
+	}
 
 	var supplyVal = currSupplies / currMaxSupplies;
 	postMessage({

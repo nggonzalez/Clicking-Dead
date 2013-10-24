@@ -19,17 +19,21 @@ var zombieGenerationRate = 5;	// this will increase over time
  */
 setInterval(function() {
 
+
+	// spawn zombies
 	if (Math.random() < zombieMultProb) { 
 		zombies += zombieGenerationRate;
 	}
 
+	// kill zombies
 	var companionKills = 0;
 
 	for (var i = 0; i < playerData.companions.length; i++) {
-		companionKills += playerData.companions[i].damage;
+		companionKills += playerData.companions[i].damage/(1000/iterSpeed);
 	}
 	zombies -= companionKills
 
+	// pass UI update message
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage({
 		zombiesKilled : companionKills,
