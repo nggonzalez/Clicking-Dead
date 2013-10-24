@@ -36,6 +36,7 @@ setInterval(function() {
 	// pass UI update message
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage({
+		type : "report",
 		zombiesKilled : companionKills,
 		remainingZombiesPercent : zombieVal	
 	});
@@ -55,6 +56,7 @@ onmessage = function (event) {
 		var tmpZombies = (zombies - playerData.personalDamage);
 		zombies = Math.max(tmpZombies, 0);
 		postMessage({
+			type : "report",
 			zombiesKilled : playerData.personalDamage,
 			remainingZombiesPercent : zombies / (critZombies * Math.log(playerData.fortification))
 		});
