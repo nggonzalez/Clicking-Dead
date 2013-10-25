@@ -33,7 +33,7 @@ setInterval(function() {
 		zombieGenerationRate *= 1.25;			// proceed to the next checkpoint
 		postMessage({
 			type : "notification",
-			message : "MOAR zombeez are coming"
+			message : "A mob of walkers is entering your location!"
 		});
 	}
 
