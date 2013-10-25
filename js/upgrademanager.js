@@ -18,7 +18,7 @@ var companions = [];
 companions.push({
 	type : "companion",			// the type of item for disambiguation
 	name : "Sheriff Rick",				// name of the companion
-	desc : "A natural born leader and killer of zombies.",
+	desc : "A natural born leader and killer of walkers.",
 	id : "C0",
 	scavenge : 95000,				// scavenge rate of the companion
 	damage : 100000,					// damage rate of the companion
@@ -32,7 +32,7 @@ companions.push({
 companions.push({
 	type : "companion",			// the type of item for disambiguation
 	name : "Daryl",				// name of the companion
-	desc : "An all around badass. Great at scavenging and killing zombies.",
+	desc : "An all around badass. Great at scavenging and killing walkers.",
 	id : "C1",
 	scavenge : 215000,				// scavenge rate of the companion
 	damage : 50000,					// damage rate of the companion
@@ -74,7 +74,7 @@ companions.push({
 companions.push({
 	type : "companion",			// the type of item for disambiguation
 	name : "Michonne",				// name of the companion
-	desc : "Attitude in human form! She scavenges and kills zombies with ease.",
+	desc : "Attitude in human form! She scavenges and kills walkers with ease.",
 	id : "C4",
 	scavenge : 3000,				// scavenge rate of the companion
 	damage : 5000,					// damage rate of the companion
@@ -204,7 +204,7 @@ var weapons = [];
 weapons.push({
 	type : "weapons",
 	name : "Grenade Launcher",
-	desc : "Create a shower of zombie limbs from a distance.",
+	desc : "Create a shower of walker limbs from a distance.",
 	id : "W0",
 	noise : 30,					// as a percent
 	damage : 1000,					// increases a single companion's stats.
@@ -218,7 +218,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Sniper Rifle",
-	desc : "Kill zombies at a distance with this high-powered rifle.",
+	desc : "Kill walkers at a distance with this high-powered rifle.",
 	id : "W1",
 	noise : 20,					// as a percent
 	damage : 25,					// increases a single companion's stats.
@@ -260,7 +260,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Michonne's Katana",
-	desc : "Slice through zombies like nothing.",
+	desc : "Slice through walkers like nothing.",
 	id : "W4",
 	noise : 0,					// as a percent
 	damage : 30,					// increases a single companion's stats.
@@ -317,7 +317,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Classic Bow and Arrow",
-	desc : "Hunt zombies with a wooden bow and arrows.",
+	desc : "Hunt walkers with a wooden bow and arrows.",
 	id : "W8",
 	noise : 0,					// as a percent
 	damage : 2,					// increases a single companion's stats.
@@ -346,7 +346,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Wrench",
-	desc : "Bash zombies with a red wrench.",
+	desc : "Bash walkers with a red wrench.",
 	id : "W10",
 	noise : 2,					// as a percent
 	damage : 5,					// increases a single companion's stats.
@@ -360,7 +360,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Bloody, Rusty Machete",
-	desc : "Cut your way through a mob of zombies.",
+	desc : "Cut your way through a mob of walkers.",
 	id : "W11",
 	noise : 0,					// as a percent
 	damage : 5,					// increases a single companion's stats.
@@ -374,7 +374,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Grenades",
-	desc : "Blow up a zombie with these basic grenades.",
+	desc : "Blow up walkers with these basic grenades.",
 	id : "W12",
 	noise : 30,					// as a percent
 	damage : 100,					// increases a single companion's stats.
@@ -388,7 +388,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Molotov Cocktails",
-	desc : "Set zombies ablaze with these fiery concotions.",
+	desc : "Set walkers ablaze with these fiery concotions.",
 	id : "W13",
 	noise : 5,					// as a percent
 	damage : 10,					// increases a single companion's stats.
@@ -417,7 +417,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Police Baton",
-	desc : "Metal police baton, perfect for bludgeoning zombies",
+	desc : "Metal police baton, perfect for bludgeoning walkers",
 	id : "W15",
 	noise : 1,					// as a percent
 	damage : 6,					// increases a single companion's stats.
@@ -445,7 +445,7 @@ weapons.push({
 weapons.push({
 	type : "weapons",
 	name : "Wooden, Homemade Spear",
-	desc : "Keep zombies at a distance with this sharp, wooden stick.",
+	desc : "Keep walkers at a distance with this sharp, wooden stick.",
 	id : "W17",
 	noise : 0,					// as a percent
 	damage : 5,					// increases a single companion's stats.
