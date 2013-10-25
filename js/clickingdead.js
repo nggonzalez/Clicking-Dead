@@ -15,8 +15,8 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companionScavenge : 1,
 	companionConsumption : 1,
 	zombiesKilled : 0,
-	supplies : 100,
-	fortification : 10,
+	supplies : 0,
+	fortification : 100,
 	companions : [],
 	weapons : [], 
 	upgrades : [],
@@ -28,18 +28,33 @@ ClickingDead.data = {			// define initial conditions for game state.
 
 //// SHIM for function handles /////////
 
-var nervesOfSteelUpgrade = function(data) {
+var fortificationUpgrade = function(data) {
 	data.fortification += 10;
 	return data;
 };
 
-var hatUpgrade = function(data) {
+var personalDamageUpgrade = function(data) {
 	data.personalDamage += 10;
 	return data;
 };
 
-var basicScavengerUpgrade = function(data) {
+var personalScavengeUpgrade = function(data) {
 	data.personalScavenge += 10;
+	return data;
+};
+
+var companionScavengeUpgrade = function(data) {
+	data.companionScavenge += 10;
+	return data;
+};
+
+var companionDamageUpgrade = function(data) {
+	data.companionDamage += 10;
+	return data;
+};
+
+var companionConsumptionUpgrade = function(data) {
+	data.companionConsumption += 10;
 	return data;
 };
 
