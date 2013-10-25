@@ -303,6 +303,11 @@ var initialize = function () {
 		$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
 		$(this).addClass("hidden");
+
+		setTimeout(function() {
+			$(currentLocation).addClass("hidden").removeClass("leaveLocation");
+			$(nextLocation).addClass("currentLocation").removeClass("moveToLocation");
+		}, 6000);
 	});
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
