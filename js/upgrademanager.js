@@ -157,7 +157,7 @@ companions.push({
 // Andrea
 companions.push({
 	type : "companion",			// the type of item for disambiguation
-	name : "Andrew",				// name of the companion
+	name : "Andrea",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
 	id : "C10",
 	scavenge : 25,				// scavenge rate of the companion
@@ -171,7 +171,7 @@ companions.push({
 // Anonymous Military
 companions.push({
 	type : "companion",			// the type of item for disambiguation
-	name : "Soldier",				// name of the companion
+	name : "A Soldier",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
 	id : "C11",
 	scavenge : 10,				// scavenge rate of the companion
@@ -185,7 +185,7 @@ companions.push({
 // Anonymous Civilian
 companions.push({
 	type : "companion",			// the type of item for disambiguation
-	name : "Civilian",				// name of the companion
+	name : "A Civilian",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
 	id : "C12",
 	scavenge : 5,				// scavenge rate of the companion
