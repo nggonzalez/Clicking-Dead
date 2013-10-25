@@ -463,9 +463,9 @@ weapons.push({
 	desc : "What it sounds like, a steak knife.",
 	id : "W18",
 	noise : 0,					// as a percent
-	damage : 1,					// increases a single companion's stats.
-	supply : 0,
-	price : 650,
+	damage : 3,					// increases a single companion's stats.
+	supply : -1,
+	price : 160,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -479,8 +479,8 @@ weapons.push({
 	id : "W19",
 	noise : 0,					// as a percent
 	damage : 1,					// increases a single companion's stats.
-	supply : -1,
-	price : 300,
+	supply : -0,
+	price : 25,
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -496,9 +496,9 @@ upgrades.push({
 	type : "upgrades",
 	id : "U0",
 	name : "Rick's Sheriff Hat",
-	desc : "You know who's the boss.  Kill zombies in style.",
+	desc : "You know who's the boss.  Kill walkers in style.",
 	price : 10000000000,
-	upgrade : "hatUpgrade",
+	upgrade : "personalDamageUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -509,7 +509,7 @@ upgrades.push({
 	name : "Daryl's Motorcyle",
 	desc : "Scavenge more effectively as you can move around more quickly",
 	price : 369500000,
-	upgrade : "basicScavengerUpgrade",
+	upgrade : "personalScavengeUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -518,9 +518,9 @@ upgrades.push({
 	type : "upgrades",
 	id : "U2",
 	name : "Rick's Sheriff Badge",
-	desc : "Bring the law to the zombies - increase your damage by 10%. Also makes your companions slightly more effective.",
+	desc : "Bring the law to the walkers - increase your damage by 10%. Also makes your companions slightly more effective.",
 	price : 89500000,
-	upgrade : "sheriffBadgeUpgrade",
+	upgrade : "personalDamageUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -530,9 +530,9 @@ upgrades.push({
 	type : "upgrades",
 	id : "U3",
 	name : "Nerves of Steel",
-	desc : "You have nerves of steel and are less likely to be overrun by the zombies",
+	desc : "You have nerves of steel and are less likely to be overrun by the walkers",
 	price : 68000000,
-	upgrade : "nervesOfSteelUpgrade",
+	upgrade : "fortificationUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -544,7 +544,7 @@ upgrades.push({
 	name : "Foraging Book",
 	desc : "A book that teaches you how to forage more effectively",
 	price : 3400000,
-	upgrade : "basicScavengerUpgrade",
+	upgrade : "personalScavengeUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -554,9 +554,9 @@ upgrades.push({
 	type : "upgrades",
 	id : "U5",
 	name : "Water Bottles",
-	desc : "Stay hydrated while scavenging. Increase scavenging by 2%.",
+	desc : "Stay hydrated while scavenging. Increase companion scavenging by 5%.",
 	price : 530000,
-	upgrade : "basicScavengerUpgrade",
+	upgrade : "companionScavengeUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
@@ -565,9 +565,9 @@ upgrades.push({
 	type : "upgrades",
 	id : "U6",
 	name : "Radios",
-	desc : "Increase communication between companions. Reduces chance of death by a small percentage.",
+	desc : "Increase communication between companions. Increases scavenge by 2%.",
 	price : 475000,
-	upgrade : "companionDeathRiskUpgrade",
+	upgrade : "companionScavengeUpgrade",
 	prereqs : [-1, -1],
 	numOwned : 0
 });
