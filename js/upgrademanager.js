@@ -15,7 +15,7 @@ var playerData = {};			// store the player data here.
 var companions = [];
 
 // RICK. our first generation prototype.
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Sheriff Rick",				// name of the companion
 	desc : "A natural born leader and killer of walkers.",
@@ -23,13 +23,13 @@ companions.push({
 	scavenge : 95000,				// scavenge rate of the companion
 	damage : 100000,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 12],
 	price : 50000000000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Daryl
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Daryl",				// name of the companion
 	desc : "An all around badass. Great at scavenging and killing walkers.",
@@ -37,13 +37,13 @@ companions.push({
 	scavenge : 215000,				// scavenge rate of the companion
 	damage : 50000,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 11],
 	price : 220000000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Shane
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Deputy Shane",				// name of the companion
 	desc : "A friend of Rick's. He is strong and a capable leader.",
@@ -51,13 +51,13 @@ companions.push({
 	scavenge : 13000,				// scavenge rate of the companion
 	damage : 25000,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 9],
 	price : 650000000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Merle
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Merle",				// name of the companion
 	desc : "Daryl's older brother. A redneck who is rough around the edges.",
@@ -65,13 +65,13 @@ companions.push({
 	scavenge : 2500,				// scavenge rate of the companion
 	damage : 32000,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 8],
 	price : 6660000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Michonne
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Michonne",				// name of the companion
 	desc : "Attitude in human form! She scavenges and kills walkers with ease.",
@@ -79,13 +79,13 @@ companions.push({
 	scavenge : 3000,				// scavenge rate of the companion
 	damage : 5000,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 7],
 	price : 5600000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Glenn
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Glenn",				// name of the companion
 	desc : "Young, Asian guy who's quick on his feet. Perfect for scavenging.",
@@ -93,13 +93,13 @@ companions.push({
 	scavenge : 15000,				// scavenge rate of the companion
 	damage : 200,					// damage rate of the companion
 	supply : -1,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 6],
 	price : 2400000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Carl
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Carl",				// name of the companion
 	desc : "Rick's youngest son. He is a good shot, but still has a lot to learn",
@@ -107,13 +107,13 @@ companions.push({
 	scavenge : 1000,				// scavenge rate of the companion
 	damage : 500,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 5],
 	price : 680000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Hershel
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Hershel",				// name of the companion
 	desc : "A friendly, wise veterinarian. He is slow on his feet, however.",
@@ -121,13 +121,13 @@ companions.push({
 	scavenge : 100,				// scavenge rate of the companion
 	damage : 10,					// damage rate of the companion
 	supply : 10,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 4],
 	price : 72000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Carol
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Carol",				// name of the companion
 	desc : "A tough woman capable of defending herself. She is a good teacher.",
@@ -135,13 +135,13 @@ companions.push({
 	scavenge : 10,				// scavenge rate of the companion
 	damage : 500,					// damage rate of the companion
 	supply : -1,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 3],
 	price : 41000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Maggie
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Maggie",				// name of the companion
 	desc : "Hershel's daughter.",
@@ -149,13 +149,13 @@ companions.push({
 	scavenge : 50,				// scavenge rate of the companion
 	damage : 350,					// damage rate of the companion
 	supply : -1,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 2],
 	price : 28000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Andrea
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Andrew",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
@@ -163,13 +163,13 @@ companions.push({
 	scavenge : 25,				// scavenge rate of the companion
 	damage : 100,					// damage rate of the companion
 	supply : -10,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 1],
 	price : 10000,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Anonymous Military
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Soldier",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
@@ -177,13 +177,13 @@ companions.push({
 	scavenge : 10,				// scavenge rate of the companion
 	damage : 20,					// damage rate of the companion
 	supply : -2,				// amount he "eats"
-	prereqs : [-1, -1],
+	prereqs : [-1, 0],
 	price : 500,					// supply cost of the companion.
 	numOwned : 0
 });
 
 // Anonymous Civilian
-companions.push({
+companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Civilian",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
@@ -201,7 +201,7 @@ companions.push({
 var weapons = [];
 
 // Grenade Launcher
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Grenade Launcher",
 	desc : "Create a shower of walker limbs from a distance.",
@@ -210,12 +210,12 @@ weapons.push({
 	damage : 1000,					// increases a single companion's stats.
 	supply : -80,
 	price : 234500000000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 18],
 	numOwned : 0
 });
 
 // Sniper Rifle
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Sniper Rifle",
 	desc : "Kill walkers at a distance with this high-powered rifle.",
@@ -224,12 +224,12 @@ weapons.push({
 	damage : 25,					// increases a single companion's stats.
 	supply : 5,
 	price : 7864000500,
-	prereqs : [-1, -1],
+	prereqs : [-1, 17],
 	numOwned : 0
 });
 
 // Rick's Magnum
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Rick's Magnum",
 	desc : "Rick's six shot .44 magnum. Very powerful, but slow to reload.",
@@ -238,12 +238,12 @@ weapons.push({
 	damage : 80,					// increases a single companion's stats.
 	supply : -10,
 	price : 22000000000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 16],
 	numOwned : 0
 });
 
 // Cross Bow
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Daryl's Crossbow",
 	desc : "The ultimate crossbow. Accurate and deadly.",
@@ -252,12 +252,12 @@ weapons.push({
 	damage : 60,					// increases a single companion's stats.
 	supply : -4,
 	price : 50000000000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 15],
 	numOwned : 0
 });
 
 // Katana
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Michonne's Katana",
 	desc : "Slice through walkers like nothing.",
@@ -266,12 +266,12 @@ weapons.push({
 	damage : 30,					// increases a single companion's stats.
 	supply : -1,
 	price : 320000000000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 14],
 	numOwned : 0
 });
 
 // Compound Bow and arrow
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Compound Bow and Arrow",
 	desc : "Carbon fiber bow and arrow. More accurate and easier to use.",
@@ -280,12 +280,12 @@ weapons.push({
 	damage : 8,					// increases a single companion's stats.
 	supply : -2,
 	price : 250000000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 13],
 	numOwned : 0
 });
 
 // M4
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "M4 Assualt Rifle",
 	desc : "An accurate, automatic, assualt rifle. Light and quick.",
@@ -294,12 +294,12 @@ weapons.push({
 	damage : 15,					// increases a single companion's stats.
 	supply : -4,
 	price : 5600000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 12],
 	numOwned : 0
 });
 
 // Ak47
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "AK47",
 	desc : "A durable, reliable automatic, assualt rifle.",
@@ -308,13 +308,13 @@ weapons.push({
 	damage : 15,					// increases a single companion's stats.
 	supply : -5,
 	price : 2500340,
-	prereqs : [-1, -1],
+	prereqs : [-1, 11],
 	numOwned : 0
 });
 
 
 // Bow and arrow
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Classic Bow and Arrow",
 	desc : "Hunt walkers with a wooden bow and arrows.",
@@ -323,13 +323,13 @@ weapons.push({
 	damage : 2,					// increases a single companion's stats.
 	supply : -1,
 	price : 1000000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 10],
 	numOwned : 0
 });
 
 
 // Glock
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Glock",
 	desc : "Automatic pistol.",
@@ -338,12 +338,12 @@ weapons.push({
 	damage : 20,					// increases a single companion's stats.
 	supply : -4,
 	price : 895000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 9],
 	numOwned : 0
 });
 
 // Wrench
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Wrench",
 	desc : "Bash walkers with a red wrench.",
@@ -352,12 +352,12 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 785000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 8],
 	numOwned : 0
 });
 
 // Machete
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Bloody, Rusty Machete",
 	desc : "Cut your way through a mob of walkers.",
@@ -366,12 +366,12 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
 	price : 320000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 7],
 	numOwned : 0
 });
 
 // Grenades
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Grenades",
 	desc : "Blow up walkers with these basic grenades.",
@@ -380,12 +380,12 @@ weapons.push({
 	damage : 100,					// increases a single companion's stats.
 	supply : -25,
 	price : 220050,
-	prereqs : [-1, -1],
+	prereqs : [-1, 6],
 	numOwned : 0
 });
 
 // Molotov Cocktails
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Molotov Cocktails",
 	desc : "Set walkers ablaze with these fiery concotions.",
@@ -394,13 +394,13 @@ weapons.push({
 	damage : 10,					// increases a single companion's stats.
 	supply : -5,
 	price : 75000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 5],
 	numOwned : 0
 });
 
 
 // 9mm pistol
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "9mm Pistol",
 	desc : "9mm pistol that is light and easy to use.",
@@ -409,12 +409,12 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 52000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 4],
 	numOwned : 0
 });
 
 // Police Baton
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Police Baton",
 	desc : "Metal police baton, perfect for bludgeoning walkers",
@@ -423,12 +423,12 @@ weapons.push({
 	damage : 6,					// increases a single companion's stats.
 	supply : -1,
 	price : 26000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 3],
 	numOwned : 0
 });
 
 // Crowbar
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Crowbar",
 	desc : "Metal crowbar.",
@@ -437,12 +437,12 @@ weapons.push({
 	damage : 25,					// increases a single companion's stats.
 	supply : -5,
 	price : 7000,
-	prereqs : [-1, -1],
+	prereqs : [-1, 2],
 	numOwned : 0
 });
 
 // Spear
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Wooden, Homemade Spear",
 	desc : "Keep walkers at a distance with this sharp, wooden stick.",
@@ -451,13 +451,13 @@ weapons.push({
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 2500,
-	prereqs : [-1, -1],
+	prereqs : [-1, 1],
 	numOwned : 0
 });
 
 
 // Basic Kitchen Knife
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Basic Kitchen Knife",
 	desc : "What it sounds like, a steak knife.",
@@ -466,13 +466,13 @@ weapons.push({
 	damage : 3,					// increases a single companion's stats.
 	supply : -1,
 	price : 160,
-	prereqs : [-1, -1],
+	prereqs : [-1, 0],
 	numOwned : 0
 });
 
 
 // Pocket Knife
-weapons.push({
+weapons.unshift({
 	type : "weapons",
 	name : "Pocket Knife",
 	desc : "Get up close and personal.",
@@ -492,87 +492,87 @@ var upgrades = [];
 var nervesOfSteelUpgrade = 1;
 
 // Sheriff Hat
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U0",
 	name : "Rick's Sheriff Hat",
 	desc : "You know who's the boss.  Kill walkers in style.",
 	price : 10000000000,
 	upgrade : "personalDamageUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 6],
 	numOwned : 0
 });
 
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U1",
 	name : "Daryl's Motorcyle",
 	desc : "Scavenge more effectively as you can move around more quickly",
 	price : 369500000,
 	upgrade : "personalScavengeUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 5],
 	numOwned : 0
 });
 
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U2",
 	name : "Rick's Sheriff Badge",
 	desc : "Bring the law to the walkers - increase your damage by 10%. Also makes your companions slightly more effective.",
 	price : 89500000,
 	upgrade : "personalDamageUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 4],
 	numOwned : 0
 });
 
 // Nerves of Steel
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U3",
 	name : "Nerves of Steel",
 	desc : "You have nerves of steel and are less likely to be overrun by the walkers",
 	price : 68000000,
 	upgrade : "fortificationUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 3],
 	numOwned : 0
 });
 
 // Foraging Book
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U4",
 	name : "Foraging Book",
 	desc : "A book that teaches you how to forage more effectively",
 	price : 3400000,
 	upgrade : "personalScavengeUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 2],
 	numOwned : 0
 });
 
 
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U5",
 	name : "Water Bottles",
 	desc : "Stay hydrated while scavenging. Increase companion scavenging by 5%.",
 	price : 530000,
 	upgrade : "companionScavengeUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 1],
 	numOwned : 0
 });
 
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U6",
 	name : "Radios",
 	desc : "Increase communication between companions. Increases scavenge by 2%.",
 	price : 475000,
 	upgrade : "companionScavengeUpgrade",
-	prereqs : [-1, -1],
+	prereqs : [-1, 0],
 	numOwned : 0
 });
 
-upgrades.push({
+upgrades.unshift({
 	type : "upgrades",
 	id : "U7",
 	name : "Defense Classes",
@@ -640,22 +640,71 @@ onmessage = function (event) {
 		}
 	} else if (event.data.type == "companions") {
 		// open the companions tab.
+		
+		tmpCompanions = [];
+		for (var i = 0; i < companions.length; i++) {
+			if (companions[i].prereqs[0] == -1) {			// location matches.
+				var fulfilled = true;
+				for (var j = 1; j < companions[i].prereqs.length; j++) {
+					var tmpVal = companions[i].prereqs[j];
+					if (tmpVal >= 0 && companions[tmpVal].numOwned <= 0) {
+						fulfilled = false;
+					}
+				}
+				if(fulfilled) {
+					tmpCompanions.unshift(companions[i]);
+				}
+			}
+		}
+
 		postMessage({
 			type : "companions",
-			data : companions
+			data : tmpCompanions
 		});
 	} else if (event.data.type == "weapons") {
 		// open the weapons tab
+		tmpWeapons = [];
+		for (var i = 0; i < weapons.length; i++) {
+			if (weapons[i].prereqs[0] == -1) {			// location matches.
+				var fulfilled = true;
+				for (var j = 1; j < weapons[i].prereqs.length; j++) {
+					var tmpVal = weapons[i].prereqs[j];
+					if (tmpVal >= 0 && weapons[tmpVal].numOwned <= 0) {
+						fulfilled = false;
+					}
+				}
+				if(fulfilled) {
+					tmpWeapons.unshift(weapons[i]);
+				}
+			}
+		}
+
 		postMessage({
 			type : "weapons",
-			data : weapons
+			data : tmpWeapons
 		});
 
 	} else if (event.data.type == "upgrades") {
 		// open the upgrades tab
+		tmpUpgrades = [];
+		for (var i = 0; i < upgrades.length; i++) {
+			if (upgrades[i].prereqs[0] == -1) {			// location matches.
+				var fulfilled = true;
+				for (var j = 1; j < upgrades[i].prereqs.length; j++) {
+					var tmpVal = upgrades[i].prereqs[j];
+					if (tmpVal >= 0 && upgrades[tmpVal].numOwned <= 0) {
+						fulfilled = false;
+					}
+				}
+				if(fulfilled) {
+					tmpUpgrades.unshift(upgrades[i]);
+				}
+			}
+		}
+
 		postMessage({
 			type : "upgrades",
-			data : upgrades
+			data : tmpUpgrades
 		});
 	} else if (event.data.type == "achievements") { 
 		// open the achievements tab.
