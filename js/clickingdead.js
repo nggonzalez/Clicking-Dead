@@ -11,9 +11,9 @@ ClickingDead.data = {};			// define the core data object for your
 ClickingDead.data = {			// define initial conditions for game state.
 	personalDamage : 1,
 	personalScavenge : 1,
-	companionDamage : 1,
-	companionScavenge : 1,
-	companionConsumption : 1,
+	companionDamage : 0,
+	companionScavenge : 0,
+	companionConsumption : 0,
 	zombiesKilled : 0,
 	supplies : 0,
 	fortification : 100,
@@ -303,6 +303,11 @@ var initialize = function () {
 		$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
 		$(this).addClass("hidden");
+
+		setTimeout(function() {
+			$(currentLocation).addClass("hidden").removeClass("leaveLocation");
+			$(nextLocation).addClass("currentLocation").removeClass("moveToLocation");
+		}, 6000);
 	});
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {

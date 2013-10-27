@@ -133,6 +133,16 @@ div.instructions h2
     background-image: url('../images/highway.jpg');
 }
 
+.backgroundImage.forest
+{
+    background-image: url('../images/Fog_forrest.jpg');
+}
+
+.backgroundImage.farm
+{
+    background-image: url('../images/BarnPenn.jpg');
+}
+
 .backgroundImage.currentLocation
 {
     opacity: 1;
