@@ -172,7 +172,7 @@ companions.unshift({
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "A Soldier",				// name of the companion
-	desc : "Always acting out. She thinks she is better than she is.",
+	desc : "A young, strong soldier.",
 	id : "C11",
 	scavenge : 10,				// scavenge rate of the companion
 	damage : 20,					// damage rate of the companion
@@ -186,7 +186,7 @@ companions.unshift({
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "A Civilian",				// name of the companion
-	desc : "Always acting out. She thinks she is better than she is.",
+	desc : "An ordinary person who has managed to survive.",
 	id : "C12",
 	scavenge : 5,				// scavenge rate of the companion
 	damage : 10,					// damage rate of the companion
