@@ -14,7 +14,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companionDamage : 0,
 	companionScavenge : 0,
 	companionConsumption : 0,
-	currLocation : [],
+	currLocation : 0,
 	zombiesKilled : 0,
 	supplies : 0,
 	fortification : 100,
@@ -244,7 +244,7 @@ var initialize = function () {
 
 		setInterval(function() {
 			upgradeManagerWorker.postMessage({			// ask for reload.
-				type : "updateLocation",
+				type : "unlockLocation",
 				zombiesKilled: ClickingDead.data.zombiesKilled,
 				currentLocation: ClickingDead.data.currLocation
 			});
@@ -257,6 +257,8 @@ var initialize = function () {
 			var nextLocationClass = $(this).data("nextLocation");
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
+
+			ClickingDead.data.currLocation++;
 
 			$(this).addClass("hidden");
 		});

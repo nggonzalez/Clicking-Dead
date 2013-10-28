@@ -809,16 +809,17 @@ onmessage = function (event) {
 		// there should be no logic caught here.
 	} else if (event.data.type == "unlockLocation") {
 		var currentLocation = -1;
+		var currentLocationId = "L" + event.data.currentLocation;
 		var nextLocation = {};
 		
 		for (var i = 0; i < locations.length; i++) {
-			if(event.data.currentLocation == locations[i].id) {
+			if(currentLocationId == locations[i].id) {
 				currentLocation = i;
 				break;
 			}
 		}
 
-		if (locations[i].kills > event.data.zombiesKilled) {
+		if (locations[currentLocation].kills > event.data.zombiesKilled) {
 			return;									// not enough kills
 		}
 
