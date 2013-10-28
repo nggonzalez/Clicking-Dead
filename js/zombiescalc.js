@@ -9,6 +9,13 @@ var iterSpeed = 10;			// iteration interval speed.
 var zombies = 1;			// current number of zombies
 var critZombies = 25;			// critical number of zombies for loss
 
+var currMaxSupplies = 100000;		// current maximum supply count.
+
+var currSupplies = 100000;		// the amount of supplies remaining
+								// in the environment.
+								
+var supplies = 0;				// synchronously updated supply counter.
+
 var zombieMultProb = .02;		// probability of zombies multiplying.
 
 var zombieGenerationRate = 1;	// this will increase over time
@@ -26,6 +33,24 @@ var cyclesElapsed = 0;
 setInterval(function() {
 	cyclesElapsed++;
 	
+	// add the logic for the companions' scavenge stuff.
+	
+	var companionScavenge = 0;
+
+	for (var i = 0; i < playerData.companions.length; i++) {
+		companionScavenge += (playerData.companions[i].scavenge)/(1000/iterSpeed);
+	}
+	currSupplies -= companionScavenge;
+
+	if (currSupplies > 0) {							// supplies remaining check.
+		var supplyVal = currSupplies / currMaxSupplies;
+		postMessage({
+			type : "scavengeReport",
+			amountScavenged : companionScavenge, 
+			remainingSuppliesPercent : supplyVal	// the new supply bar value.
+		});
+	}
+
 	// increase zombie spawn rate
 	if (currCheckpoint < zombieCheckpoints.length &&
 		cyclesElapsed * (iterSpeed/1000) > zombieCheckpoints[currCheckpoint]) {
@@ -44,7 +69,6 @@ setInterval(function() {
 
 	// kill zombies
 	var companionKills = 0;
-
 	for (var i = 0; i < playerData.companions.length; i++) {
 		companionKills += playerData.companions[i].damage/(1000/iterSpeed);
 	}
@@ -53,10 +77,14 @@ setInterval(function() {
 	// pass UI update message
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage({
-		type : "report",
+		type : "zombieReport",
 		zombiesKilled : companionKills,
 		remainingZombiesPercent : zombieVal	
 	});
+
+	
+
+
 }, iterSpeed);
 
 
@@ -66,6 +94,7 @@ setInterval(function() {
 onmessage = function (event) {
 	if(event.data.type == "update") {
 		playerData = event.data.data;
+		supplies = playerData.supplies;
 	} else if (event.data.type == 'kill') {
 		if (zombies <= 0) {
 			return;
@@ -73,9 +102,21 @@ onmessage = function (event) {
 		var tmpZombies = (zombies - playerData.personalDamage);
 		zombies = Math.max(tmpZombies, 0);
 		postMessage({
-			type : "report",
+			type : "zombieReport",
 			zombiesKilled : playerData.personalDamage,
 			remainingZombiesPercent : zombies / (critZombies * Math.log(playerData.fortification))
+		});
+	} else if (event.data.type == 'scavenge') {
+		if (currSupplies <= 0) {		// cannot gather resources if they are not there.
+			return;
+		}
+
+		var tmpSupplies = (currSupplies - playerData.personalScavenge);
+		currSupplies = Math.max(tmpSupplies, 0);
+		postMessage({
+			type : "scavengeReport",
+			amountScavenged : playerData.personalScavenge,
+			remainingSuppliesPercent : currSupplies / currMaxSupplies
 		});
 	}
 };

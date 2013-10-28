@@ -14,6 +14,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companionDamage : 0,
 	companionScavenge : 0,
 	companionConsumption : 0,
+	currLocation : [],
 	zombiesKilled : 0,
 	supplies : 0,
 	fortification : 100,
@@ -22,9 +23,11 @@ ClickingDead.data = {			// define initial conditions for game state.
 	upgrades : [],
 	acheivements : []
 };
+
+
+
 // maintaining the core data in a central location will allow for simpler save
 // functions later, as well as simple synchronization across multiple web workers.
-
 
 //// SHIM for function handles /////////
 
@@ -112,10 +115,15 @@ var initialize = function () {
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
 		// update the progress bar.
-		if (message.type == "report") {
+		if (message.type == "zombieReport") {
 			$(".zombieMeter").attr('value', message.remainingZombiesPercent);
 			ClickingDead.data.zombiesKilled += message.zombiesKilled;
 			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
+		} else if (message.type == "scavengeReport") {
+			$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
+			ClickingDead.data.supplies += message.amountScavenged;
+			ClickingDead.data.supplies = Math.max(0, ClickingDead.data.supplies);
+			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 		} else if (message.type == "notification") {
 			$("#news").prepend('<li class="newsItem breakTheStory dangerPost"><span class="newsContent">' + message.message + '</span></li>');
 			if($("#news li").length > 4) {
@@ -132,24 +140,12 @@ var initialize = function () {
 	});	
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
-
-	var scavengeWorker = new Worker("/js/scavengecalc.js");
-	scavengeWorker.onmessage = function (event) {
-		var message = event.data;
-		$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
-		ClickingDead.data.supplies += message.amountScavenged;
-		ClickingDead.data.supplies = Math.max(0, ClickingDead.data.supplies);
-		$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
-	};
-
-
 	$("body").on("click", "#scavengeButton", function() {
 		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+'+ClickingDead.data.personalScavenge+'</span>');
-		scavengeWorker.postMessage({
+		zombieWorker.postMessage({
 			type: "scavenge"
 		});
 	});	
-	ClickingDead.registerWorker(scavengeWorker);	// register the scavenge worker
 
 	var randomEventWorker = new Worker("/js/randomevent.js");
 	randomEventWorker.onmessage = function (event) {
