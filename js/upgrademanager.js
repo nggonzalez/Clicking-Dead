@@ -20,6 +20,7 @@ locations.unshift({
 	className : "atlanta",				
 	desc : "First location",
 	id : "L0",
+	prereqs : [-1, 0],
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -30,6 +31,7 @@ locations.unshift({
 	className : "highway",				
 	desc : "Second location",
 	id : "L1",
+	prereqs = 0,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -799,6 +801,37 @@ onmessage = function (event) {
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;
 		// there should be no logic caught here.
+	}
+	else if (event.data.type == "unlockLocation") {
+		var currentLocation = -1;
+		var nextLocation = {};
+		
+		for (var i = 0; i < locations.length; i++) {
+			if(event.data.currentLocation == locations[i].id) {
+				currentLocation = i;
+				break;
+			}
+		}
+
+		if (locations[i].kills >= event.data.zombiesKilled) {
+			return;									// not enough kills
+		}
+
+		for (var i = 0; i < locations.length; i++) {
+			if (locations[i].prereq == currentLocation) {
+				nextLocation = locations[i];
+				break;
+			}
+		}
+
+		if(newtLocation) {
+			postMessage({
+				type : "unlockLocation",
+				locationObject : nextLocation
+			});
+		}
+
+		return;
 	}
 };
 
