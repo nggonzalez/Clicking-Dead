@@ -239,7 +239,17 @@ var initialize = function () {
 			});
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 			ClickingDead.updateWorkers();
+		} else if (event.data.type == "unlockLocation") {
+			// This will show the button.
 		}
+
+		setInterval(function() {
+			upgradeManagerWorker.postMessage({			// ask for reload.
+				type : "updateLocation",
+				zombiesKilled: ClickingDead.data.zombiesKilled,
+				currentLocation: ClickingDead.data.currLocation
+			});
+		}, 10000);
 
 		$("body").on("click", "#moveOn", function() {
 			var currentLocation = $(".backgroundImage.currentLocation");
