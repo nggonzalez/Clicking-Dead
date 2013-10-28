@@ -11,6 +11,93 @@ var playerData = {};			// store the player data here.
 // webworkers, simply due to the nature of this particular webworker.
 
 
+//////// DEFINE ALL LOCATIONS ////////////////////////////////////
+var locations = [];
+
+locations.unshift({
+	type : "location",			
+	name : "Atlanta",
+	className : "atlanta",				
+	desc : "First location",
+	id : "L0",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+locations.unshift({
+	type : "location",			
+	name : "Highway",
+	className : "highway",				
+	desc : "Second location",
+	id : "L1",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+locations.unshift({
+	type : "location",			
+	name : "CDC",
+	className : "research",				
+	desc : "Third location",
+	id : "L2",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+locations.unshift({
+	type : "location",			
+	name : "Forest",
+	className : "woods",				
+	desc : "Fourth location",
+	id : "L3",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+
+locations.unshift({
+	type : "location",			
+	name : "Warehouse",
+	className : "warehouse",				
+	desc : "Fifth location",
+	id : "L4",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+
+locations.unshift({
+	type : "location",			
+	name : "Farm",	
+	className : "farm",			
+	desc : "Sixth location",
+	id : "L5",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+locations.unshift({
+	type : "location",			
+	name : "Village",
+	className : "village",				
+	desc : "Seventh location",
+	id : "L6",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+
+locations.unshift({
+	type : "location",			
+	name : "Prison",
+	className : "prison",				
+	desc : "Eighth location",
+	id : "L7",
+	supply : 25000,				
+	kills : 1000000,					
+});
+
+
 //////// DEFINE ALL COMPANIONS //////////////////////////////////
 var companions = [];
 
