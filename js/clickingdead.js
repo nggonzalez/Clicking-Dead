@@ -236,7 +236,10 @@ var initialize = function () {
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 			ClickingDead.updateWorkers();
 		} else if (event.data.type == "unlockLocation") {
-			// This will show the button.
+			if ($("#moveOn").hasClass("hidden")) {
+				$("#moveOn").removeClass("hidden");
+				$("#moveOn").data("nextLocation", event.data.locationObject.className);
+			}
 		}
 
 		setInterval(function() {
@@ -251,7 +254,8 @@ var initialize = function () {
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
-			var nextLocation = $(".backgroundImage.highway");
+			var nextLocationClass = $(this).data("nextLocation");
+			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
 
 			$(this).addClass("hidden");

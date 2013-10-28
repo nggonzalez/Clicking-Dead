@@ -22,7 +22,7 @@ locations.unshift({
 	id : "L0",
 	prereq : -1,
 	supply : 25000,				
-	kills : 1000000,					
+	kills : 2,					
 });
 
 locations.unshift({
@@ -818,7 +818,7 @@ onmessage = function (event) {
 			}
 		}
 
-		if (locations[i].kills >= event.data.zombiesKilled) {
+		if (locations[i].kills > event.data.zombiesKilled) {
 			return;									// not enough kills
 		}
 
@@ -829,7 +829,7 @@ onmessage = function (event) {
 			}
 		}
 
-		if(newtLocation) {
+		if(nextLocation) {
 			postMessage({
 				type : "unlockLocation",
 				locationObject : nextLocation
