@@ -20,7 +20,7 @@ locations.unshift({
 	className : "atlanta",				
 	desc : "First location",
 	id : "L0",
-	prereqs : [-1, 0],
+	prereq : -1,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -31,7 +31,7 @@ locations.unshift({
 	className : "highway",				
 	desc : "Second location",
 	id : "L1",
-	prereqs = 0,
+	prereq : 0,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -42,6 +42,7 @@ locations.unshift({
 	className : "research",				
 	desc : "Third location",
 	id : "L2",
+	prereq : 1,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -52,6 +53,7 @@ locations.unshift({
 	className : "woods",				
 	desc : "Fourth location",
 	id : "L3",
+	prereq : 2,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -63,6 +65,7 @@ locations.unshift({
 	className : "warehouse",				
 	desc : "Fifth location",
 	id : "L4",
+	prereq : 3,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -74,6 +77,7 @@ locations.unshift({
 	className : "farm",			
 	desc : "Sixth location",
 	id : "L5",
+	prereq : 4,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -84,6 +88,7 @@ locations.unshift({
 	className : "village",				
 	desc : "Seventh location",
 	id : "L6",
+	prereq : 5,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -95,6 +100,7 @@ locations.unshift({
 	className : "prison",				
 	desc : "Eighth location",
 	id : "L7",
+	prereq : 6,
 	supply : 25000,				
 	kills : 1000000,					
 });
@@ -801,8 +807,7 @@ onmessage = function (event) {
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;
 		// there should be no logic caught here.
-	}
-	else if (event.data.type == "unlockLocation") {
+	} else if (event.data.type == "unlockLocation") {
 		var currentLocation = -1;
 		var nextLocation = {};
 		
