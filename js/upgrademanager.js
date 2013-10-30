@@ -154,8 +154,8 @@ companions.unshift({
 	name : "Serle",				// name of the companion
 	desc : "Daryl's older brother. A redneck who is rough around the edges.",
 	id : "C3",
-	scavenge : 2500,				// scavenge rate of the companion
-	wpl : 6,					// weapon proficiency level of the companion
+	scavenge : 6500,				// scavenge rate of the companion
+	wpl : 7,					// weapon proficiency level of the companion
 	prereqs : [-1, 8],
 	price : 6660000,					// supply cost of the companion.
 	numOwned : 0
@@ -181,7 +181,7 @@ companions.unshift({
 	desc : "Young, Asian guy who's quick on his feet. Perfect for scavenging.",
 	id : "C5",
 	scavenge : 15000,				// scavenge rate of the companion
-	wpl : 4,					// weapon proficiency level of the companion
+	wpl : 5,					// weapon proficiency level of the companion
 	prereqs : [-1, 6],
 	price : 2400000,					// supply cost of the companion.
 	numOwned : 0
@@ -259,7 +259,7 @@ companions.unshift({
 	desc : "A young, strong soldier.",
 	id : "C11",
 	scavenge : 10,				// scavenge rate of the companion
-	wpl : 3,					// weapon proficiency level of the companion
+	wpl : 5,					// weapon proficiency level of the companion
 	prereqs : [-1, 0],
 	price : 500,					// supply cost of the companion.
 	numOwned : 0
@@ -302,7 +302,7 @@ weapons.unshift({
 	name : "Sniper Rifle",
 	desc : "Kill walkers at a distance with this high-powered rifle.",
 	id : "W1",
-	noise : 20,					// as a percent
+	wpl : 5,					// weapon proficiency level requried by companion
 	damage : 25,					// increases a single companion's stats.
 	supply : 5,
 	price : 7864000500,
@@ -316,7 +316,7 @@ weapons.unshift({
 	name : "Rick's Magnum",
 	desc : "Rick's six shot .44 magnum. Very powerful, but slow to reload.",
 	id : "W2",
-	noise : 10,					// as a percent
+	wpl : 12,					// weapon proficiency level requried by companion
 	damage : 80,					// increases a single companion's stats.
 	supply : -10,
 	price : 22000000000,
@@ -330,7 +330,7 @@ weapons.unshift({
 	name : "Daryl's Crossbow",
 	desc : "The ultimate crossbow. Accurate and deadly.",
 	id : "W3",
-	noise : 0,					// as a percent
+	wpl : 10,					// weapon proficiency level requried by companion
 	damage : 60,					// increases a single companion's stats.
 	supply : -4,
 	price : 50000000000,
@@ -344,7 +344,7 @@ weapons.unshift({
 	name : "Michonne's Katana",
 	desc : "Slice through walkers like nothing.",
 	id : "W4",
-	noise : 0,					// as a percent
+	wpl : 8,					// weapon proficiency level requried by companion
 	damage : 30,					// increases a single companion's stats.
 	supply : -1,
 	price : 320000000000,
@@ -358,9 +358,23 @@ weapons.unshift({
 	name : "Compound Bow and Arrow",
 	desc : "Carbon fiber bow and arrow. More accurate and easier to use.",
 	id : "W5",
-	noise : 0,					// as a percent
+	wpl : 8,					// weapon proficiency level requried by companion
 	damage : 8,					// increases a single companion's stats.
 	supply : -2,
+	price : 250000000,
+	prereqs : [-1, 13],
+	numOwned : 0
+});
+
+// Compound Bow and arrow
+weapons.unshift({
+	type : "weapons",
+	name : "Shotgun",
+	desc : "Pump action shotgun.",
+	id : "W6",
+	wpl : 8,					// weapon proficiency level requried by companion
+	damage : 100,					// increases a single companion's stats.
+	supply : -20,
 	price : 250000000,
 	prereqs : [-1, 13],
 	numOwned : 0
@@ -371,8 +385,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "M4 Assualt Rifle",
 	desc : "An accurate, automatic, assualt rifle. Light and quick.",
-	id : "W6",
-	noise : 6,					// as a percent
+	id : "W7",
+	wpl : 7,					// weapon proficiency level requried by companion
 	damage : 15,					// increases a single companion's stats.
 	supply : -4,
 	price : 5600000,
@@ -385,8 +399,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "AK47",
 	desc : "A durable, reliable automatic, assualt rifle.",
-	id : "W7",
-	noise : 8,					// as a percent
+	id : "W8",
+	wpl : 6,					// weapon proficiency level requried by companion
 	damage : 15,					// increases a single companion's stats.
 	supply : -5,
 	price : 2500340,
@@ -400,8 +414,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Classic Bow and Arrow",
 	desc : "Hunt walkers with a wooden bow and arrows.",
-	id : "W8",
-	noise : 0,					// as a percent
+	id : "W9",
+	wpl : 6,					// weapon proficiency level requried by companion
 	damage : 2,					// increases a single companion's stats.
 	supply : -1,
 	price : 1000000,
@@ -415,8 +429,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Glock",
 	desc : "Automatic pistol.",
-	id : "W9",
-	noise : 4,					// as a percent
+	id : "W10",
+	wpl : 5,					// weapon proficiency level requried by companion
 	damage : 20,					// increases a single companion's stats.
 	supply : -4,
 	price : 895000,
@@ -429,8 +443,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Wrench",
 	desc : "Bash walkers with a red wrench.",
-	id : "W10",
-	noise : 2,					// as a percent
+	id : "W11",
+	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 785000,
@@ -443,8 +457,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Bloody, Rusty Machete",
 	desc : "Cut your way through a mob of walkers.",
-	id : "W11",
-	noise : 0,					// as a percent
+	id : "W12",
+	wpl : 2,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
 	price : 320000,
@@ -457,8 +471,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Grenades",
 	desc : "Blow up walkers with these basic grenades.",
-	id : "W12",
-	noise : 30,					// as a percent
+	id : "W13",
+	wpl : 4,					// weapon proficiency level requried by companion
 	damage : 100,					// increases a single companion's stats.
 	supply : -25,
 	price : 220050,
@@ -471,8 +485,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Molotov Cocktails",
 	desc : "Set walkers ablaze with these fiery concotions.",
-	id : "W13",
-	noise : 5,					// as a percent
+	id : "W14",
+	wpl : 3,					// weapon proficiency level requried by companion
 	damage : 10,					// increases a single companion's stats.
 	supply : -5,
 	price : 75000,
@@ -486,8 +500,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "9mm Pistol",
 	desc : "9mm pistol that is light and easy to use.",
-	id : "W14",
-	noise : 4,					// as a percent
+	id : "W15",
+	wpl : 1,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 52000,
@@ -500,8 +514,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Police Baton",
 	desc : "Metal police baton, perfect for bludgeoning walkers",
-	id : "W15",
-	noise : 1,					// as a percent
+	id : "W16",
+	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 6,					// increases a single companion's stats.
 	supply : -1,
 	price : 26000,
@@ -514,8 +528,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Crowbar",
 	desc : "Metal crowbar.",
-	id : "W16",
-	noise : 20,					// as a percent
+	id : "W17",
+	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 25,					// increases a single companion's stats.
 	supply : -5,
 	price : 7000,
@@ -528,8 +542,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Wooden, Homemade Spear",
 	desc : "Keep walkers at a distance with this sharp, wooden stick.",
-	id : "W17",
-	noise : 0,					// as a percent
+	id : "W18",
+	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 2500,
@@ -543,8 +557,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Basic Kitchen Knife",
 	desc : "What it sounds like, a steak knife.",
-	id : "W18",
-	noise : 0,					// as a percent
+	id : "W19",
+	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 3,					// increases a single companion's stats.
 	supply : -1,
 	price : 160,
@@ -558,8 +572,8 @@ weapons.unshift({
 	type : "weapons",
 	name : "Pocket Knife",
 	desc : "Get up close and personal.",
-	id : "W19",
-	noise : 0,					// as a percent
+	id : "W20",
+	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 1,					// increases a single companion's stats.
 	supply : -0,
 	price : 25,
