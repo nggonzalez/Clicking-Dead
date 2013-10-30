@@ -143,6 +143,26 @@ div.instructions h2
     background-image: url('../images/BarnPenn.jpg');
 }
 
+.backgroundImage.research
+{
+    background-image: url('../images/laboratory.jpg');
+}
+
+.backgroundImage.village
+{
+    background-image: url('../images/village.jpg');
+}
+
+.backgroundImage.prison
+{
+    background-image: url('../images/prison.jpg');
+}
+
+.backgroundImage.warehouse
+{
+    background-image: url('../images/winchesterarms.jpg');
+}
+
 .backgroundImage.currentLocation
 {
     opacity: 1;
