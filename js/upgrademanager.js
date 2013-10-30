@@ -10,6 +10,14 @@ var playerData = {};			// store the player data here.
 // there are fewer things to store here as compared to the other
 // webworkers, simply due to the nature of this particular webworker.
 
+var UpgradeManager = {}
+
+UpgradeManager.data = {
+	locations : [],
+	weapons : [], 
+	upgrades : [],
+	companions : []
+};
 
 //////// DEFINE ALL LOCATIONS ////////////////////////////////////
 var locations = [];
@@ -679,6 +687,10 @@ upgrades.unshift({
 	numOwned : 0
 });
 
+UpgradeManager.data.companions = companions;
+UpgradeManager.data.upgrades = upgrades;
+UpgradeManager.data.locations = locations;
+UpgradeManager.data.weapons = weapons;
 
 /**
  * respond to message requests from the main controller here.
@@ -690,10 +702,10 @@ onmessage = function (event) {
 		var type = "";
 		var targetEntry;
 
-		for(var i = 0; i < weapons.length && type == ""; i++) {	// linear search
-			if(weapons[i].id == event.data.id) { 
+		for(var i = 0; i < UpgradeManager.data.weapons.length && type == ""; i++) {	// linear search
+			if(UpgradeManager.data.weapons[i].id == event.data.id) { 
 				if (event.data.currSupplies >= weapons[i].price) {
-					weapons[i].numOwned++;
+					UpgradeManager.data.weapons[i].numOwned++;
 					type = "weapons";
 					targetEntry = weapons[i];
 					break;
@@ -701,23 +713,23 @@ onmessage = function (event) {
 			}
 		}
 
-		for(var i = 0; i < companions.length && type == ""; i++) {	// linear search
-			if(companions[i].id == event.data.id) { 
-				if (event.data.currSupplies >= companions[i].price) {
-					companions[i].numOwned++;
+		for(var i = 0; i < UpgradeManager.data.companions.length && type == ""; i++) {	// linear search
+			if(UpgradeManager.data.companions[i].id == event.data.id) { 
+				if (event.data.currSupplies >= UpgradeManager.data.companions[i].price) {
+					UpgradeManager.data.companions[i].numOwned++;
 					type = "companions";
-					targetEntry = companions[i];
+					targetEntry = UpgradeManager.data.companions[i];
 					break;
 				}
 			}
 		}
 
-		for(var i = 0; i < upgrades.length && type == ""; i++) {	// linear search
-			if(upgrades[i].id == event.data.id) { 
-				if (event.data.currSupplies >= upgrades[i].price) {
-					upgrades[i].numOwned++;
+		for(var i = 0; i < UpgradeManager.data.upgrades.length && type == ""; i++) {	// linear search
+			if(UpgradeManager.data.upgrades[i].id == event.data.id) { 
+				if (event.data.currSupplies >= UpgradeManager.data.upgrades[i].price) {
+					UpgradeManager.data.upgrades[i].numOwned++;
 					type = "upgrades";
-					targetEntry = upgrades[i];
+					targetEntry = UpgradeManager.data.upgrades[i];
 					break;
 				}
 			}
@@ -731,6 +743,7 @@ onmessage = function (event) {
 				type : "purchase",
 				domain : type,
 				cost : targetEntry.price,
+				backupData : UpgradeManager,
 				value : targetEntry
 			});
 		}
@@ -738,17 +751,17 @@ onmessage = function (event) {
 		// open the companions tab.
 		
 		tmpCompanions = [];
-		for (var i = 0; i < companions.length; i++) {
-			if (companions[i].prereqs[0] == -1) {			// location matches.
+		for (var i = 0; i < UpgradeManager.data.companions.length; i++) {
+			if (UpgradeManager.data.companions[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
-				for (var j = 1; j < companions[i].prereqs.length; j++) {
-					var tmpVal = companions[i].prereqs[j];
-					if (tmpVal >= 0 && companions[tmpVal].numOwned <= 0) {
+				for (var j = 1; j < UpgradeManager.data.companions[i].prereqs.length; j++) {
+					var tmpVal = UpgradeManager.data.companions[i].prereqs[j];
+					if (tmpVal >= 0 && UpgradeManager.data.companions[tmpVal].numOwned <= 0) {
 						fulfilled = false;
 					}
 				}
 				if(fulfilled) {
-					tmpCompanions.unshift(companions[i]);
+					tmpCompanions.unshift(UpgradeManager.data.companions[i]);
 				}
 			}
 		}
@@ -760,17 +773,17 @@ onmessage = function (event) {
 	} else if (event.data.type == "weapons") {
 		// open the weapons tab
 		tmpWeapons = [];
-		for (var i = 0; i < weapons.length; i++) {
-			if (weapons[i].prereqs[0] == -1) {			// location matches.
+		for (var i = 0; i < UpgradeManager.data.weapons.length; i++) {
+			if (UpgradeManager.data.weapons[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
-				for (var j = 1; j < weapons[i].prereqs.length; j++) {
-					var tmpVal = weapons[i].prereqs[j];
-					if (tmpVal >= 0 && weapons[tmpVal].numOwned <= 0) {
+				for (var j = 1; j < UpgradeManager.data.weapons[i].prereqs.length; j++) {
+					var tmpVal = UpgradeManager.data.weapons[i].prereqs[j];
+					if (tmpVal >= 0 && UpgradeManager.data.weapons[tmpVal].numOwned <= 0) {
 						fulfilled = false;
 					}
 				}
 				if(fulfilled) {
-					tmpWeapons.unshift(weapons[i]);
+					tmpWeapons.unshift(UpgradeManager.data.weapons[i]);
 				}
 			}
 		}
@@ -783,17 +796,17 @@ onmessage = function (event) {
 	} else if (event.data.type == "upgrades") {
 		// open the upgrades tab
 		tmpUpgrades = [];
-		for (var i = 0; i < upgrades.length; i++) {
-			if (upgrades[i].prereqs[0] == -1) {			// location matches.
+		for (var i = 0; i < UpgradeManager.data.upgrades.length; i++) {
+			if (UpgradeManager.data.upgrades[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
-				for (var j = 1; j < upgrades[i].prereqs.length; j++) {
-					var tmpVal = upgrades[i].prereqs[j];
-					if (tmpVal >= 0 && upgrades[tmpVal].numOwned <= 0) {
+				for (var j = 1; j < UpgradeManager.data.upgrades[i].prereqs.length; j++) {
+					var tmpVal = UpgradeManager.data.upgrades[i].prereqs[j];
+					if (tmpVal >= 0 && UpgradeManager.data.upgrades[tmpVal].numOwned <= 0) {
 						fulfilled = false;
 					}
 				}
 				if(fulfilled) {
-					tmpUpgrades.unshift(upgrades[i]);
+					tmpUpgrades.unshift(UpgradeManager.data.upgrades[i]);
 				}
 			}
 		}
@@ -808,7 +821,10 @@ onmessage = function (event) {
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;
 		// there should be no logic caught here.
-	} else if (event.data.type == "unlockLocation") {
+	} else if (event.data.type == "restore") {
+		playerData = event.data.data;
+		UpgradeManager = playerData.upgradeManagerData;
+	}else if (event.data.type == "unlockLocation") {
 		var currentLocation = -1;
 		var currentLocationId = "L" + event.data.currentLocation;
 		var nextLocation = {};

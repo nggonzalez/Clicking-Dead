@@ -21,7 +21,9 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companions : [],
 	weapons : [], 
 	upgrades : [],
-	acheivements : []
+	acheivements : [],
+	zombieCalcData : {},
+	upgradeManagerData : {},
 };
 
 
@@ -84,6 +86,19 @@ ClickingDead.updateWorkers = function () {
 	}
 };
 
+ClickingDead.restoreWorkers = function () {
+
+	$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
+	$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
+	for(var i = 0; i < ClickingDead.workers.length; i++) {
+		ClickingDead.workers[i].postMessage({					// post a JSON message.
+			type: "restore",				// denotes an update message.
+			data: ClickingDead.data		// gives the worker complete new data.
+		});
+	}
+};
+
+
 /**
  * No doubletap zoom function.
  */
@@ -110,6 +125,20 @@ $.fn.nodoubletapzoom = function() {
  * function to initialize all of our variables and stuff.
  */
 var initialize = function () {
+
+	// set the local storage autosave interval.
+
+	setInterval(function () {
+		$("#news").prepend('<li class="newsItem breakTheStory bonusPost"><span class="newsContent">your game has been autosaved!</span></li>');
+		if($("#news li").length > 4) {
+			$("#news li:last").remove();
+		}
+		localStorage.setItem("data", JSON.stringify(ClickingDead.data));
+	}, 5000);
+
+	// this should allow for autosave
+
+
 	var zombieWorker = new Worker("/js/zombiescalc.js");
 
 	zombieWorker.onmessage = function (event) {
@@ -119,7 +148,9 @@ var initialize = function () {
 			$(".zombieMeter").attr('value', message.remainingZombiesPercent);
 			ClickingDead.data.zombiesKilled += message.zombiesKilled;
 			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
-			$(".zombiesBox .perSecondCount").html(Math.floor(message.perSecond));
+			if (message.perSecond != undefined
+				&& $(".zombiesBox .perSecondCount").html() != Math.floor(message.perSecond))
+				$(".zombiesBox .perSecondCount").html(Math.floor(message.perSecond));
 		} else if (message.type == "scavengeReport") {
 			$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 			ClickingDead.data.supplies += message.amountScavenged;
@@ -133,6 +164,8 @@ var initialize = function () {
 			if($("#news li").length > 4) {
 				$("#news li:last").remove();
 			}
+		} else if (message.type == "saveUpdate") {
+			ClickingDead.data.zombieCalcData = message.data;
 		}
 	};
 
@@ -237,6 +270,10 @@ var initialize = function () {
 				type : event.data.domain
 			});
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
+
+			// add updateManagerSnapshot.
+			ClickingDead.upgradeManagerData = event.data.backupData;
+
 			ClickingDead.updateWorkers();
 		} else if (event.data.type == "unlockLocation") {
 			if ($("#moveOn").hasClass("hidden")) {
@@ -251,7 +288,6 @@ var initialize = function () {
 				zombiesKilled: ClickingDead.data.zombiesKilled,
 				currentLocation: ClickingDead.data.currLocation
 			});
-			console.log(ClickingDead.data.currLocation);
 		}, 10000);
 
 		$("body").on("click", "#moveOn", function(e) {
@@ -326,11 +362,24 @@ var initialize = function () {
  * Window Load and initialization steps.
  */
 $(window).load(function() {
-	$('body').on('click', ".blackout", function() { 
+	// add logic here to load from local storage.
+
+	var loaded = localStorage["data"];			// try to load our data from localStorage;
+
+	if (loaded == undefined) {
+		$('body').on('click', ".blackout", function() { 
+			$('.blackout').remove();
+			initialize();
+			$("#companions").click();
+		});
+	} else {
 		$('.blackout').remove();
 		initialize();
 		$("#companions").click();
-	});
+		debugger;
+		ClickingDead.data = JSON.parse(loaded);
+		//ClickingDead.restoreWorkers();
+	}
 });
 
 
