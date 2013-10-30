@@ -672,7 +672,7 @@ upgrades.unshift({
 	type : "upgrades",
 	id : "U7",
 	name : "Defense Classes",
-	desc : "Increases companions' damage by a small percentage.",
+	desc : "Increases companions' WPL by 1.",
 	price : 25000,
 	upgrade : "companionDamageUpgrade",
 	prereqs : [-1, -1],

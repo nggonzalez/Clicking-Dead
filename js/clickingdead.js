@@ -167,12 +167,12 @@ var initialize = function () {
 				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
 				htmlBuild += '<h2>'+elems[i].name+'</h2>';
 				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
-				htmlBuild += '<p><span class="attribute">Noise: '+elems[i].noise+'%</span>';
-				htmlBuild += '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
+				htmlBuild += '<p><span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
 				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
+				htmlBuild += '<span class="attribute">WPL: '+elems[i].wpl+' required</span>';
 				htmlBuild += '</p></div>';
 				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button" class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-				htmlBuild += elems[i].price + '</p></span>';
+				htmlBuild += elems[i].price + ' supplies</p></span>';
 				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
@@ -184,11 +184,10 @@ var initialize = function () {
 				htmlBuild += '<h2>'+elems[i].name+'</h2>';
 				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
 				htmlBuild += '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
-				htmlBuild += '<span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
-				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
+				htmlBuild += '<span class="attribute">WPL: '+elems[i].wpl+'</span>';
 				htmlBuild += '</p></div>';
 				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-				htmlBuild += elems[i].price + '</p></span>';
+				htmlBuild += elems[i].price + ' supplies</p></span>';
 				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
@@ -203,7 +202,7 @@ var initialize = function () {
 				htmlBuild += '<div class="purchaseInfoWrapper">';
 				if (elems[i].numOwned <= 0) {
 					htmlBuild += '<button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-					htmlBuild += elems[i].price + '</p></span>';
+					htmlBuild += elems[i].price + ' supplies</p></span>';
 				} else {
 					htmlBuild += '<p class="purchased">&#x2714;</p>';
 				}
