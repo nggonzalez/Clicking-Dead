@@ -284,17 +284,32 @@ UpgradeManager.data.companions.unshift({
 
 
 //////// DEFINE ALL WEAPONS ////////////////////////////////////
+// Unmanned Turret
+UpgradeManager.data.weapons.unshift({
+	type : "weapons",
+	name : "Unmanned Turret",
+	desc : "Kill a mass of zombies.",
+	id : "W0",
+	noise : 30,					// as a percent
+	damage : 1000,					// increases a single companion's stats.
+	supply : -80,
+	price : 414500000000,
+	prereqs : [-1, 19, 14, 13, 12],
+	numOwned : 0
+});
+
+
 // Grenade Launcher
 UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Grenade Launcher",
 	desc : "Create a shower of walker limbs from a distance.",
-	id : "W0",
+	id : "W1",
 	noise : 30,					// as a percent
 	damage : 1000,					// increases a single companion's stats.
 	supply : -80,
 	price : 234500000000,
-	prereqs : [-1, 18],
+	prereqs : [-1, 7, 6],
 	numOwned : 0
 });
 
@@ -303,12 +318,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Sniper Rifle",
 	desc : "Kill walkers at a distance with this high-powered rifle.",
-	id : "W1",
+	id : "W2",
 	wpl : 5,					// weapon proficiency level requried by companion
 	damage : 25,					// increases a single companion's stats.
-	supply : 5,
+	supply : -5,
 	price : 7864000500,
-	prereqs : [-1, 17],
+	prereqs : [-1, 14, 13, 12],
 	numOwned : 0
 });
 
@@ -317,12 +332,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Rick's Magnum",
 	desc : "Rick's six shot .44 magnum. Very powerful, but slow to reload.",
-	id : "W2",
+	id : "W3",
 	wpl : 12,					// weapon proficiency level requried by companion
 	damage : 80,					// increases a single companion's stats.
 	supply : -10,
 	price : 22000000000,
-	prereqs : [-1, 16],
+	prereqs : [-1, 10, 5],
 	numOwned : 0
 });
 
@@ -331,12 +346,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Daryl's Crossbow",
 	desc : "The ultimate crossbow. Accurate and deadly.",
-	id : "W3",
+	id : "W4",
 	wpl : 10,					// weapon proficiency level requried by companion
 	damage : 60,					// increases a single companion's stats.
 	supply : -4,
 	price : 50000000000,
-	prereqs : [-1, 15],
+	prereqs : [-1, 15, 11],
 	numOwned : 0
 });
 
@@ -345,12 +360,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Michonne's Katana",
 	desc : "Slice through walkers like nothing.",
-	id : "W4",
+	id : "W5",
 	wpl : 8,					// weapon proficiency level requried by companion
 	damage : 30,					// increases a single companion's stats.
 	supply : -1,
 	price : 320000000000,
-	prereqs : [-1, 14],
+	prereqs : [-1, 8, 2, 1, 0],
 	numOwned : 0
 });
 
@@ -359,26 +374,26 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Compound Bow and Arrow",
 	desc : "Carbon fiber bow and arrow. More accurate and easier to use.",
-	id : "W5",
+	id : "W6",
 	wpl : 8,					// weapon proficiency level requried by companion
 	damage : 8,					// increases a single companion's stats.
 	supply : -2,
 	price : 250000000,
-	prereqs : [-1, 13],
+	prereqs : [-1, 11],
 	numOwned : 0
 });
 
-// Compound Bow and arrow
+// Shotgun
 UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Shotgun",
 	desc : "Pump action shotgun.",
-	id : "W6",
+	id : "W7",
 	wpl : 8,					// weapon proficiency level requried by companion
 	damage : 100,					// increases a single companion's stats.
 	supply : -20,
 	price : 250000000,
-	prereqs : [-1, 13],
+	prereqs : [-1, 13, 12],
 	numOwned : 0
 });
 
@@ -387,7 +402,7 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "M4 Assualt Rifle",
 	desc : "An accurate, automatic, assualt rifle. Light and quick.",
-	id : "W7",
+	id : "W8",
 	wpl : 7,					// weapon proficiency level requried by companion
 	damage : 15,					// increases a single companion's stats.
 	supply : -4,
@@ -401,12 +416,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "AK47",
 	desc : "A durable, reliable automatic, assualt rifle.",
-	id : "W8",
+	id : "W9",
 	wpl : 6,					// weapon proficiency level requried by companion
 	damage : 15,					// increases a single companion's stats.
 	supply : -5,
 	price : 2500340,
-	prereqs : [-1, 11],
+	prereqs : [-1, 10],
 	numOwned : 0
 });
 
@@ -416,12 +431,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Classic Bow and Arrow",
 	desc : "Hunt walkers with a wooden bow and arrows.",
-	id : "W9",
+	id : "W10",
 	wpl : 6,					// weapon proficiency level requried by companion
 	damage : 2,					// increases a single companion's stats.
 	supply : -1,
 	price : 1000000,
-	prereqs : [-1, 10],
+	prereqs : [-1, 5],
 	numOwned : 0
 });
 
@@ -431,12 +446,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Glock",
 	desc : "Automatic pistol.",
-	id : "W10",
+	id : "W11",
 	wpl : 5,					// weapon proficiency level requried by companion
 	damage : 20,					// increases a single companion's stats.
 	supply : -4,
 	price : 895000,
-	prereqs : [-1, 9],
+	prereqs : [-1, 5],
 	numOwned : 0
 });
 
@@ -445,12 +460,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Wrench",
 	desc : "Bash walkers with a red wrench.",
-	id : "W11",
+	id : "W12",
 	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 785000,
-	prereqs : [-1, 8],
+	prereqs : [-1, 4, 3],
 	numOwned : 0
 });
 
@@ -459,12 +474,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Bloody, Rusty Machete",
 	desc : "Cut your way through a mob of walkers.",
-	id : "W12",
+	id : "W13",
 	wpl : 2,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -1,
 	price : 320000,
-	prereqs : [-1, 7],
+	prereqs : [-1, 2, 1, 0],
 	numOwned : 0
 });
 
@@ -473,7 +488,7 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Grenades",
 	desc : "Blow up walkers with these basic grenades.",
-	id : "W13",
+	id : "W14",
 	wpl : 4,					// weapon proficiency level requried by companion
 	damage : 100,					// increases a single companion's stats.
 	supply : -25,
@@ -487,12 +502,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Molotov Cocktails",
 	desc : "Set walkers ablaze with these fiery concotions.",
-	id : "W14",
+	id : "W15",
 	wpl : 3,					// weapon proficiency level requried by companion
 	damage : 10,					// increases a single companion's stats.
 	supply : -5,
 	price : 75000,
-	prereqs : [-1, 5],
+	prereqs : [-1, 11],
 	numOwned : 0
 });
 
@@ -502,12 +517,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "9mm Pistol",
 	desc : "9mm pistol that is light and easy to use.",
-	id : "W15",
+	id : "W16",
 	wpl : 1,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 52000,
-	prereqs : [-1, 4],
+	prereqs : [-1, 3],
 	numOwned : 0
 });
 
@@ -516,12 +531,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Police Baton",
 	desc : "Metal police baton, perfect for bludgeoning walkers",
-	id : "W16",
+	id : "W17",
 	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 6,					// increases a single companion's stats.
 	supply : -1,
 	price : 26000,
-	prereqs : [-1, 3],
+	prereqs : [-1, 4],
 	numOwned : 0
 });
 
@@ -530,7 +545,7 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Crowbar",
 	desc : "Metal crowbar.",
-	id : "W17",
+	id : "W18",
 	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 25,					// increases a single companion's stats.
 	supply : -5,
@@ -544,12 +559,12 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Wooden, Homemade Spear",
 	desc : "Keep walkers at a distance with this sharp, wooden stick.",
-	id : "W18",
+	id : "W19",
 	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 5,					// increases a single companion's stats.
 	supply : -2,
 	price : 2500,
-	prereqs : [-1, 1],
+	prereqs : [-1, 1, 0],
 	numOwned : 0
 });
 
@@ -559,7 +574,7 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Basic Kitchen Knife",
 	desc : "What it sounds like, a steak knife.",
-	id : "W19",
+	id : "W20",
 	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 3,					// increases a single companion's stats.
 	supply : -1,
@@ -574,7 +589,7 @@ UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Pocket Knife",
 	desc : "Get up close and personal.",
-	id : "W20",
+	id : "W21",
 	wpl : 0,					// weapon proficiency level requried by companion
 	damage : 1,					// increases a single companion's stats.
 	supply : -0,
