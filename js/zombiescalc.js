@@ -127,7 +127,8 @@ onmessage = function (event) {
 		});
 	} else if (event.data.type == 'restore') {
 		playerData = event.data.data;
-		ZombieCalc = playerData.zombieCalcData;
+		ZombieCalc.data.supplies = playerData.supplies;
+		//ZombieCalc.data = playerData.zombieCalcData;
 	} else if (event.data.type == 'scavenge') {
 		if (ZombieCalc.data.currSupplies <= 0) {		// cannot gather resources if they are not there.
 			return;

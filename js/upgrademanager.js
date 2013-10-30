@@ -823,7 +823,7 @@ onmessage = function (event) {
 		// there should be no logic caught here.
 	} else if (event.data.type == "restore") {
 		playerData = event.data.data;
-		UpgradeManager = playerData.upgradeManagerData;
+		//UpgradeManager = playerData.upgradeManagerData;
 	}else if (event.data.type == "unlockLocation") {
 		var currentLocation = -1;
 		var currentLocationId = "L" + event.data.currentLocation;
