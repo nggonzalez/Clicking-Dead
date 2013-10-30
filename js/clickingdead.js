@@ -14,7 +14,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companionDamage : 0,
 	companionScavenge : 0,
 	companionConsumption : 0,
-	currLocation : {id:"L0"},
+	currLocation : {id:"L0", className:"atlanta"},
 	globNextLoc : {},
 	zombiesKilled : 0,
 	supplies : 0,
@@ -285,7 +285,6 @@ var initialize = function () {
 				$("#moveOn").removeClass("hidden");
 				$("#moveOn").attr("data-nextLocation", event.data.locationObject.className);
 			}
-			debugger;
 			ClickingDead.data.globNextLoc = event.data.locationObject;
 		}
 
@@ -390,7 +389,7 @@ $(window).load(function() {
 		var currentLocation = $(".backgroundImage.currentLocation");
 		$(currentLocation).removeClass("currentLocation").addClass("hiddenLocation");
 
-		var nextLocationClass = $(this).attr("data-nextLocation");
+		var nextLocationClass = ClickingDead.data.currLocation.className;
 		var nextLocation = $(".backgroundImage." + nextLocationClass);
 		$(nextLocation).removeClass("hidden").addClass("currentLocation");
 		//

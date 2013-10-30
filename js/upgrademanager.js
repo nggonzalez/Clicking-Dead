@@ -20,7 +20,7 @@ UpgradeManager.data = {
 };
 
 //////// DEFINE ALL LOCATIONS ////////////////////////////////////
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Atlanta",
 	className : "atlanta",				
@@ -31,7 +31,7 @@ UpgradeManager.data.locations.unshift({
 	kills : 2,					
 });
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Highway",
 	className : "highway",				
@@ -42,7 +42,7 @@ UpgradeManager.data.locations.unshift({
 	kills : 10,					
 });
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "CDC",
 	className : "research",				
@@ -53,7 +53,7 @@ UpgradeManager.data.locations.unshift({
 	kills : 1000000,					
 });
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Forest",
 	className : "woods",				
@@ -65,7 +65,7 @@ UpgradeManager.data.locations.unshift({
 });
 
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Warehouse",
 	className : "warehouse",				
@@ -77,7 +77,7 @@ UpgradeManager.data.locations.unshift({
 });
 
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Farm",	
 	className : "farm",			
@@ -88,7 +88,7 @@ UpgradeManager.data.locations.unshift({
 	kills : 1000000,					
 });
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Village",
 	className : "village",				
@@ -100,7 +100,7 @@ UpgradeManager.data.locations.unshift({
 });
 
 
-UpgradeManager.data.locations.unshift({
+UpgradeManager.data.locations.push({
 	type : "location",			
 	name : "Prison",
 	className : "prison",				
@@ -826,12 +826,11 @@ onmessage = function (event) {
 		}
 
 		for (var i = 0; i < UpgradeManager.data.locations.length; i++) {
-			if (UpgradeManager.data.locations[i].prereq == event.data.currentLocation) {
+			if (UpgradeManager.data.locations[i].prereq == currentLocation) {
 				nextLocation = UpgradeManager.data.locations[i];
 				break;
 			}
 		}
-
 		if(nextLocation != {}) {
 			postMessage({
 				type : "unlockLocation",
