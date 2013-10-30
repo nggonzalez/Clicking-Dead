@@ -4,7 +4,7 @@
 
 var playerData = {};			// object to keep player data in.
 
-var iterSpeed = 10;			// iteration interval speed.
+var iterSpeed = 50;			// iteration interval speed.
 
 var zombies = 1;			// current number of zombies
 var critZombies = 25;			// critical number of zombies for loss
@@ -40,16 +40,8 @@ setInterval(function() {
 	for (var i = 0; i < playerData.companions.length; i++) {
 		companionScavenge += (playerData.companions[i].scavenge)/(1000/iterSpeed);
 	}
-	currSupplies -= companionScavenge;
-
-	if (currSupplies > 0) {							// supplies remaining check.
-		var supplyVal = currSupplies / currMaxSupplies;
-		postMessage({
-			type : "scavengeReport",
-			amountScavenged : companionScavenge, 
-			remainingSuppliesPercent : supplyVal	// the new supply bar value.
-		});
-	}
+	currSupplies -= companionScavenge;			// remove from environment.
+	supplies += companionScavenge;
 
 	// increase zombie spawn rate
 	if (currCheckpoint < zombieCheckpoints.length &&
@@ -68,21 +60,49 @@ setInterval(function() {
 	}
 
 	// kill zombies
-	var companionKills = 0;
+	
+
+	var companionWpl = 0;
 	for (var i = 0; i < playerData.companions.length; i++) {
-		companionKills += playerData.companions[i].damage/(1000/iterSpeed);
+		companionWpl += playerData.companions[i].wpl;
 	}
+	// we now have a wpl for all of our combined people.
+	
+	var damageDone = 0;
+	var suppliesUsed = 0;
+	for (var i = 0; i < playerData.weapons.length; i++) {
+		if (companionWpl - playerData.weapons[i].wpl >= 0 
+			&& supplies + playerData.weapons[i].supply >= 0) {	// note .supply is neg.
+			damageDone += playerData.weapons[i].damage;
+			suppliesUsed += playerData.weapons[i].supply;
+			companionWpl -= playerData.weapons[i].wpl;
+		} else {
+			break;
+		}
+	}
+	var companionKills = damageDone/(1000/iterSpeed);
 	zombies -= companionKills;
 
+	supplies += suppliesUsed/(1000/iterSpeed);
+	companionScavenge += suppliesUsed/(1000/iterSpeed);
 	// pass UI update message
 	var zombieVal = zombies / ( critZombies * Math.log(playerData.fortification));
 	postMessage({
 		type : "zombieReport",
 		zombiesKilled : companionKills,
+		perSecond : companionKills*(1000/iterSpeed),
 		remainingZombiesPercent : zombieVal	
 	});
 
-	
+	if (currSupplies > 0) {							// supplies remaining check.
+		var supplyVal = currSupplies / currMaxSupplies;
+		postMessage({
+			type : "scavengeReport",
+			amountScavenged : companionScavenge, 
+			perSecond : companionScavenge*(1000/iterSpeed),
+			remainingSuppliesPercent : supplyVal	// the new supply bar value.
+		});
+	}
 
 
 }, iterSpeed);
@@ -113,6 +133,8 @@ onmessage = function (event) {
 
 		var tmpSupplies = (currSupplies - playerData.personalScavenge);
 		currSupplies = Math.max(tmpSupplies, 0);
+		supplies += playerData.personalScavenge;
+
 		postMessage({
 			type : "scavengeReport",
 			amountScavenged : playerData.personalScavenge,

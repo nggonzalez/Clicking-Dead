@@ -10,7 +10,7 @@ ClickingDead.data = {};			// define the core data object for your
 
 ClickingDead.data = {			// define initial conditions for game state.
 	personalDamage : 1,
-	personalScavenge : 1,
+	personalScavenge : 15,
 	companionDamage : 0,
 	companionScavenge : 0,
 	companionConsumption : 0,
@@ -119,11 +119,15 @@ var initialize = function () {
 			$(".zombieMeter").attr('value', message.remainingZombiesPercent);
 			ClickingDead.data.zombiesKilled += message.zombiesKilled;
 			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
+			$(".zombiesBox .perSecondCount").html(Math.floor(message.perSecond));
 		} else if (message.type == "scavengeReport") {
 			$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 			ClickingDead.data.supplies += message.amountScavenged;
 			ClickingDead.data.supplies = Math.max(0, ClickingDead.data.supplies);
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
+			if (message.perSecond != undefined
+				&& $(".scavengeBox .perSecondCount").html() != Math.floor(message.perSecond))
+				$(".scavengeBox .perSecondCount").html(Math.floor(message.perSecond));
 		} else if (message.type == "notification") {
 			$("#news").prepend('<li class="newsItem breakTheStory dangerPost"><span class="newsContent">' + message.message + '</span></li>');
 			if($("#news li").length > 4) {
