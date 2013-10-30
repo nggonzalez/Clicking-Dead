@@ -536,7 +536,7 @@ UpgradeManager.data.weapons.unshift({
 	damage : 6,					// increases a single companion's stats.
 	supply : -1,
 	price : 26000,
-	prereqs : [-1, 4],
+	prereqs : [-1, 3],
 	numOwned : 0
 });
 
