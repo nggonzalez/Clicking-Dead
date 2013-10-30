@@ -112,12 +112,11 @@ var companions = [];
 // RICK. our first generation prototype.
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Sheriff Rick",				// name of the companion
+	name : "Sheriff Mick",				// name of the companion
 	desc : "A natural born leader and killer of walkers.",
 	id : "C0",
 	scavenge : 95000,				// scavenge rate of the companion
-	damage : 100000,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 12,					// weapon proficiency level of the companion
 	prereqs : [-1, 12],
 	price : 50000000000,					// supply cost of the companion.
 	numOwned : 0
@@ -126,12 +125,11 @@ companions.unshift({
 // Daryl
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Daryl",				// name of the companion
+	name : "Earyl",				// name of the companion
 	desc : "An all around badass. Great at scavenging and killing walkers.",
 	id : "C1",
 	scavenge : 215000,				// scavenge rate of the companion
-	damage : 50000,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 10,					// weapon proficiency level of the companion
 	prereqs : [-1, 11],
 	price : 220000000,					// supply cost of the companion.
 	numOwned : 0
@@ -140,12 +138,11 @@ companions.unshift({
 // Shane
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Deputy Shane",				// name of the companion
+	name : "Deputy Thane",				// name of the companion
 	desc : "A friend of Rick's. He is strong and a capable leader.",
 	id : "C2",
 	scavenge : 13000,				// scavenge rate of the companion
-	damage : 25000,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 8,					// weapon proficiency level of the companion
 	prereqs : [-1, 9],
 	price : 650000000,					// supply cost of the companion.
 	numOwned : 0
@@ -154,12 +151,11 @@ companions.unshift({
 // Merle
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Merle",				// name of the companion
+	name : "Serle",				// name of the companion
 	desc : "Daryl's older brother. A redneck who is rough around the edges.",
 	id : "C3",
 	scavenge : 2500,				// scavenge rate of the companion
-	damage : 32000,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 6,					// weapon proficiency level of the companion
 	prereqs : [-1, 8],
 	price : 6660000,					// supply cost of the companion.
 	numOwned : 0
@@ -168,12 +164,11 @@ companions.unshift({
 // Michonne
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Michonne",				// name of the companion
+	name : "Kichonne",				// name of the companion
 	desc : "Attitude in human form! She scavenges and kills walkers with ease.",
 	id : "C4",
 	scavenge : 3000,				// scavenge rate of the companion
-	damage : 5000,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 8,					// weapon proficiency level of the companion
 	prereqs : [-1, 7],
 	price : 5600000,					// supply cost of the companion.
 	numOwned : 0
@@ -182,12 +177,11 @@ companions.unshift({
 // Glenn
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Glenn",				// name of the companion
+	name : "Kenn",				// name of the companion
 	desc : "Young, Asian guy who's quick on his feet. Perfect for scavenging.",
 	id : "C5",
 	scavenge : 15000,				// scavenge rate of the companion
-	damage : 200,					// damage rate of the companion
-	supply : -1,				// amount he "eats"
+	wpl : 4,					// weapon proficiency level of the companion
 	prereqs : [-1, 6],
 	price : 2400000,					// supply cost of the companion.
 	numOwned : 0
@@ -196,12 +190,11 @@ companions.unshift({
 // Carl
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Carl",				// name of the companion
-	desc : "Rick's youngest son. He is a good shot, but still has a lot to learn",
+	name : "Carlos",				// name of the companion
+	desc : "Mick's youngest son. He is a good shot, but still has a lot to learn",
 	id : "C6",
 	scavenge : 1000,				// scavenge rate of the companion
-	damage : 500,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 4,					// weapon proficiency level of the companion
 	prereqs : [-1, 5],
 	price : 680000,					// supply cost of the companion.
 	numOwned : 0
@@ -210,12 +203,11 @@ companions.unshift({
 // Hershel
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Hershel",				// name of the companion
+	name : "Gershel",				// name of the companion
 	desc : "A friendly, wise veterinarian. He is slow on his feet, however.",
 	id : "C7",
 	scavenge : 100,				// scavenge rate of the companion
-	damage : 10,					// damage rate of the companion
-	supply : 10,				// amount he "eats"
+	wpl : 2,					// weapon proficiency level of the companion
 	prereqs : [-1, 4],
 	price : 72000,					// supply cost of the companion.
 	numOwned : 0
@@ -224,12 +216,11 @@ companions.unshift({
 // Carol
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Carol",				// name of the companion
+	name : "Carolina",				// name of the companion
 	desc : "A tough woman capable of defending herself. She is a good teacher.",
 	id : "C8",
 	scavenge : 10,				// scavenge rate of the companion
-	damage : 500,					// damage rate of the companion
-	supply : -1,				// amount he "eats"
+	wpl : 3,					// weapon proficiency level of the companion
 	prereqs : [-1, 3],
 	price : 41000,					// supply cost of the companion.
 	numOwned : 0
@@ -238,12 +229,11 @@ companions.unshift({
 // Maggie
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Maggie",				// name of the companion
-	desc : "Hershel's daughter.",
+	name : "Margaret",				// name of the companion
+	desc : "Gershel's daughter.",
 	id : "C9",
 	scavenge : 50,				// scavenge rate of the companion
-	damage : 350,					// damage rate of the companion
-	supply : -1,				// amount he "eats"
+	wpl : 2,					// weapon proficiency level of the companion
 	prereqs : [-1, 2],
 	price : 28000,					// supply cost of the companion.
 	numOwned : 0
@@ -252,12 +242,11 @@ companions.unshift({
 // Andrea
 companions.unshift({
 	type : "companion",			// the type of item for disambiguation
-	name : "Andrea",				// name of the companion
+	name : "Audrey",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
 	id : "C10",
 	scavenge : 25,				// scavenge rate of the companion
-	damage : 100,					// damage rate of the companion
-	supply : -10,				// amount he "eats"
+	wpl : 1,					// weapon proficiency level of the companion
 	prereqs : [-1, 1],
 	price : 10000,					// supply cost of the companion.
 	numOwned : 0
@@ -270,8 +259,7 @@ companions.unshift({
 	desc : "A young, strong soldier.",
 	id : "C11",
 	scavenge : 10,				// scavenge rate of the companion
-	damage : 20,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 3,					// weapon proficiency level of the companion
 	prereqs : [-1, 0],
 	price : 500,					// supply cost of the companion.
 	numOwned : 0
@@ -284,8 +272,7 @@ companions.unshift({
 	desc : "An ordinary person who has managed to survive.",
 	id : "C12",
 	scavenge : 5,				// scavenge rate of the companion
-	damage : 10,					// damage rate of the companion
-	supply : -2,				// amount he "eats"
+	wpl : 0,					// weapon proficiency level of the companion
 	prereqs : [-1, -1],
 	price : 150,					// supply cost of the companion.
 	numOwned : 0
