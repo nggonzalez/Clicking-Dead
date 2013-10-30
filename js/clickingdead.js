@@ -14,7 +14,8 @@ ClickingDead.data = {			// define initial conditions for game state.
 	companionDamage : 0,
 	companionScavenge : 0,
 	companionConsumption : 0,
-	currLocation : 0,
+	currLocation : {id:"L0"},
+	globNextLoc : {},
 	zombiesKilled : 0,
 	supplies : 0,
 	fortification : 100,
@@ -25,7 +26,6 @@ ClickingDead.data = {			// define initial conditions for game state.
 	zombieCalcData : {},
 	upgradeManagerData : {},
 };
-
 
 
 // maintaining the core data in a central location will allow for simpler save
@@ -90,6 +90,8 @@ ClickingDead.restoreWorkers = function () {
 
 	$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
 	$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
+	//debugger;
+
 	for(var i = 0; i < ClickingDead.workers.length; i++) {
 		ClickingDead.workers[i].postMessage({					// post a JSON message.
 			type: "restore",				// denotes an update message.
@@ -246,6 +248,8 @@ var initialize = function () {
 				htmlBuild += '</div></li>';
 				$("#itemsList").append(htmlBuild);
 			}
+		} else if (event.data.type == "debugNotification") {
+			Console.log(event.data.message);
 		} else if (event.data.type == "purchase") {
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
 			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
@@ -272,7 +276,8 @@ var initialize = function () {
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
 
 			// add updateManagerSnapshot.
-			ClickingDead.upgradeManagerData = event.data.backupData;
+			ClickingDead.data.upgradeManagerData = event.data.backupData;
+			//debugger;
 
 			ClickingDead.updateWorkers();
 		} else if (event.data.type == "unlockLocation") {
@@ -280,6 +285,8 @@ var initialize = function () {
 				$("#moveOn").removeClass("hidden");
 				$("#moveOn").attr("data-nextLocation", event.data.locationObject.className);
 			}
+			debugger;
+			ClickingDead.data.globNextLoc = event.data.locationObject;
 		}
 
 		setInterval(function() {
@@ -298,8 +305,9 @@ var initialize = function () {
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
 
-			console.log("Clicked arrow " + ClickingDead.data.currLocation);
-			(ClickingDead.data.currLocation)++;
+			console.log("Clicked arrow " + ClickingDead.data.currLocation.id);
+
+			ClickingDead.data.currLocation = ClickingDead.data.globNextLoc;		// this is not great practice.
 
 			$(this).addClass("hidden");
 
@@ -310,7 +318,7 @@ var initialize = function () {
 			e.stopImmediatePropagation()
 		});
 	}
-
+	ClickingDead.registerWorker(upgradeManagerWorker);
 	ClickingDead.updateWorkers();					// propogate changes.
 
 	///////// SETTING UP THE ZOMBIE +1 buttons. ////////
@@ -375,10 +383,18 @@ $(window).load(function() {
 	} else {
 		$('.blackout').remove();
 		initialize();
-		$("#companions").click();
-		debugger;
+		//debugger;
 		ClickingDead.data = JSON.parse(loaded);
-		//ClickingDead.restoreWorkers();
+		ClickingDead.restoreWorkers();
+		// gotta set the location image
+		var currentLocation = $(".backgroundImage.currentLocation");
+		$(currentLocation).removeClass("currentLocation").addClass("hiddenLocation");
+
+		var nextLocationClass = $(this).attr("data-nextLocation");
+		var nextLocation = $(".backgroundImage." + nextLocationClass);
+		$(nextLocation).removeClass("hidden").addClass("currentLocation");
+		//
+		$("#companions").click();
 	}
 });
 

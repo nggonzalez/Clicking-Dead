@@ -98,7 +98,7 @@ setInterval(function() {
 		});
 	}
 
-	if (ZombieCalc.data.cyclesElapsed % 1000 == 0) {
+	if (ZombieCalc.data.cyclesElapsed % 10 == 0) {
 		postMessage({
 			type : "saveUpdate",
 			data : ZombieCalc

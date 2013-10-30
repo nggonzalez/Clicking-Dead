@@ -20,9 +20,7 @@ UpgradeManager.data = {
 };
 
 //////// DEFINE ALL LOCATIONS ////////////////////////////////////
-var locations = [];
-
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Atlanta",
 	className : "atlanta",				
@@ -33,7 +31,7 @@ locations.unshift({
 	kills : 2,					
 });
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Highway",
 	className : "highway",				
@@ -44,7 +42,7 @@ locations.unshift({
 	kills : 10,					
 });
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "CDC",
 	className : "research",				
@@ -55,7 +53,7 @@ locations.unshift({
 	kills : 1000000,					
 });
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Forest",
 	className : "woods",				
@@ -67,7 +65,7 @@ locations.unshift({
 });
 
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Warehouse",
 	className : "warehouse",				
@@ -79,7 +77,7 @@ locations.unshift({
 });
 
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Farm",	
 	className : "farm",			
@@ -90,7 +88,7 @@ locations.unshift({
 	kills : 1000000,					
 });
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Village",
 	className : "village",				
@@ -102,7 +100,7 @@ locations.unshift({
 });
 
 
-locations.unshift({
+UpgradeManager.data.locations.unshift({
 	type : "location",			
 	name : "Prison",
 	className : "prison",				
@@ -115,10 +113,8 @@ locations.unshift({
 
 
 //////// DEFINE ALL COMPANIONS //////////////////////////////////
-var companions = [];
-
 // RICK. our first generation prototype.
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Sheriff Mick",				// name of the companion
 	desc : "A natural born leader and killer of walkers.",
@@ -131,7 +127,7 @@ companions.unshift({
 });
 
 // Daryl
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Earyl",				// name of the companion
 	desc : "An all around badass. Great at scavenging and killing walkers.",
@@ -144,7 +140,7 @@ companions.unshift({
 });
 
 // Shane
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Deputy Thane",				// name of the companion
 	desc : "A friend of Rick's. He is strong and a capable leader.",
@@ -157,7 +153,7 @@ companions.unshift({
 });
 
 // Merle
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Serle",				// name of the companion
 	desc : "Daryl's older brother. A redneck who is rough around the edges.",
@@ -170,7 +166,7 @@ companions.unshift({
 });
 
 // Michonne
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Kichonne",				// name of the companion
 	desc : "Attitude in human form! She scavenges and kills walkers with ease.",
@@ -183,7 +179,7 @@ companions.unshift({
 });
 
 // Glenn
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Kenn",				// name of the companion
 	desc : "Young, Asian guy who's quick on his feet. Perfect for scavenging.",
@@ -196,7 +192,7 @@ companions.unshift({
 });
 
 // Carl
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Carlos",				// name of the companion
 	desc : "Mick's youngest son. He is a good shot, but still has a lot to learn",
@@ -209,7 +205,7 @@ companions.unshift({
 });
 
 // Hershel
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Gershel",				// name of the companion
 	desc : "A friendly, wise veterinarian. He is slow on his feet, however.",
@@ -222,7 +218,7 @@ companions.unshift({
 });
 
 // Carol
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Carolina",				// name of the companion
 	desc : "A tough woman capable of defending herself. She is a good teacher.",
@@ -235,7 +231,7 @@ companions.unshift({
 });
 
 // Maggie
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Margaret",				// name of the companion
 	desc : "Gershel's daughter.",
@@ -248,7 +244,7 @@ companions.unshift({
 });
 
 // Andrea
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "Audrey",				// name of the companion
 	desc : "Always acting out. She thinks she is better than she is.",
@@ -261,7 +257,7 @@ companions.unshift({
 });
 
 // Anonymous Military
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "A Soldier",				// name of the companion
 	desc : "A young, strong soldier.",
@@ -274,7 +270,7 @@ companions.unshift({
 });
 
 // Anonymous Civilian
-companions.unshift({
+UpgradeManager.data.companions.unshift({
 	type : "companion",			// the type of item for disambiguation
 	name : "A Civilian",				// name of the companion
 	desc : "An ordinary person who has managed to survive.",
@@ -288,10 +284,8 @@ companions.unshift({
 
 
 //////// DEFINE ALL WEAPONS ////////////////////////////////////
-var weapons = [];
-
 // Grenade Launcher
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Grenade Launcher",
 	desc : "Create a shower of walker limbs from a distance.",
@@ -305,7 +299,7 @@ weapons.unshift({
 });
 
 // Sniper Rifle
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Sniper Rifle",
 	desc : "Kill walkers at a distance with this high-powered rifle.",
@@ -319,7 +313,7 @@ weapons.unshift({
 });
 
 // Rick's Magnum
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Rick's Magnum",
 	desc : "Rick's six shot .44 magnum. Very powerful, but slow to reload.",
@@ -333,7 +327,7 @@ weapons.unshift({
 });
 
 // Cross Bow
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Daryl's Crossbow",
 	desc : "The ultimate crossbow. Accurate and deadly.",
@@ -347,7 +341,7 @@ weapons.unshift({
 });
 
 // Katana
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Michonne's Katana",
 	desc : "Slice through walkers like nothing.",
@@ -361,7 +355,7 @@ weapons.unshift({
 });
 
 // Compound Bow and arrow
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Compound Bow and Arrow",
 	desc : "Carbon fiber bow and arrow. More accurate and easier to use.",
@@ -375,7 +369,7 @@ weapons.unshift({
 });
 
 // Compound Bow and arrow
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Shotgun",
 	desc : "Pump action shotgun.",
@@ -389,7 +383,7 @@ weapons.unshift({
 });
 
 // M4
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "M4 Assualt Rifle",
 	desc : "An accurate, automatic, assualt rifle. Light and quick.",
@@ -403,7 +397,7 @@ weapons.unshift({
 });
 
 // Ak47
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "AK47",
 	desc : "A durable, reliable automatic, assualt rifle.",
@@ -418,7 +412,7 @@ weapons.unshift({
 
 
 // Bow and arrow
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Classic Bow and Arrow",
 	desc : "Hunt walkers with a wooden bow and arrows.",
@@ -433,7 +427,7 @@ weapons.unshift({
 
 
 // Glock
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Glock",
 	desc : "Automatic pistol.",
@@ -447,7 +441,7 @@ weapons.unshift({
 });
 
 // Wrench
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Wrench",
 	desc : "Bash walkers with a red wrench.",
@@ -461,7 +455,7 @@ weapons.unshift({
 });
 
 // Machete
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Bloody, Rusty Machete",
 	desc : "Cut your way through a mob of walkers.",
@@ -475,7 +469,7 @@ weapons.unshift({
 });
 
 // Grenades
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Grenades",
 	desc : "Blow up walkers with these basic grenades.",
@@ -489,7 +483,7 @@ weapons.unshift({
 });
 
 // Molotov Cocktails
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Molotov Cocktails",
 	desc : "Set walkers ablaze with these fiery concotions.",
@@ -504,7 +498,7 @@ weapons.unshift({
 
 
 // 9mm pistol
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "9mm Pistol",
 	desc : "9mm pistol that is light and easy to use.",
@@ -518,7 +512,7 @@ weapons.unshift({
 });
 
 // Police Baton
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Police Baton",
 	desc : "Metal police baton, perfect for bludgeoning walkers",
@@ -532,7 +526,7 @@ weapons.unshift({
 });
 
 // Crowbar
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Crowbar",
 	desc : "Metal crowbar.",
@@ -546,7 +540,7 @@ weapons.unshift({
 });
 
 // Spear
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Wooden, Homemade Spear",
 	desc : "Keep walkers at a distance with this sharp, wooden stick.",
@@ -561,7 +555,7 @@ weapons.unshift({
 
 
 // Basic Kitchen Knife
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Basic Kitchen Knife",
 	desc : "What it sounds like, a steak knife.",
@@ -576,7 +570,7 @@ weapons.unshift({
 
 
 // Pocket Knife
-weapons.unshift({
+UpgradeManager.data.weapons.unshift({
 	type : "weapons",
 	name : "Pocket Knife",
 	desc : "Get up close and personal.",
@@ -591,12 +585,8 @@ weapons.unshift({
 
 
 //////// DEFINE ALL UPGRADES ///////////////////////////////////
-var upgrades = [];
-
-var nervesOfSteelUpgrade = 1;
-
 // Sheriff Hat
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U0",
 	name : "Rick's Sheriff Hat",
@@ -607,7 +597,7 @@ upgrades.unshift({
 	numOwned : 0
 });
 
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U1",
 	name : "Daryl's Motorcyle",
@@ -618,11 +608,11 @@ upgrades.unshift({
 	numOwned : 0
 });
 
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U2",
 	name : "Rick's Sheriff Badge",
-	desc : "Bring the law to the walkers - increase your damage by 10%. Also makes your companions slightly more effective.",
+	desc : "Bring the law to the walkers - increase your damage by 10%. Also makes your UpgradeManager.data.companions slightly more effective.",
 	price : 89500000,
 	upgrade : "personalDamageUpgrade",
 	prereqs : [-1, 4],
@@ -630,7 +620,7 @@ upgrades.unshift({
 });
 
 // Nerves of Steel
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U3",
 	name : "Nerves of Steel",
@@ -642,7 +632,7 @@ upgrades.unshift({
 });
 
 // Foraging Book
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U4",
 	name : "Foraging Book",
@@ -654,7 +644,7 @@ upgrades.unshift({
 });
 
 
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U5",
 	name : "Water Bottles",
@@ -665,7 +655,7 @@ upgrades.unshift({
 	numOwned : 0
 });
 
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U6",
 	name : "Radios",
@@ -676,7 +666,7 @@ upgrades.unshift({
 	numOwned : 0
 });
 
-upgrades.unshift({
+UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U7",
 	name : "Defense Classes",
@@ -686,11 +676,6 @@ upgrades.unshift({
 	prereqs : [-1, -1],
 	numOwned : 0
 });
-
-UpgradeManager.data.companions = companions;
-UpgradeManager.data.upgrades = upgrades;
-UpgradeManager.data.locations = locations;
-UpgradeManager.data.weapons = weapons;
 
 /**
  * respond to message requests from the main controller here.
@@ -704,10 +689,10 @@ onmessage = function (event) {
 
 		for(var i = 0; i < UpgradeManager.data.weapons.length && type == ""; i++) {	// linear search
 			if(UpgradeManager.data.weapons[i].id == event.data.id) { 
-				if (event.data.currSupplies >= weapons[i].price) {
+				if (event.data.currSupplies >= UpgradeManager.data.weapons[i].price) {
 					UpgradeManager.data.weapons[i].numOwned++;
 					type = "weapons";
-					targetEntry = weapons[i];
+					targetEntry = UpgradeManager.data.weapons[i];
 					break;
 				}
 			}
@@ -743,7 +728,7 @@ onmessage = function (event) {
 				type : "purchase",
 				domain : type,
 				cost : targetEntry.price,
-				backupData : UpgradeManager,
+				backupData : UpgradeManager.data,
 				value : targetEntry
 			});
 		}
@@ -823,26 +808,26 @@ onmessage = function (event) {
 		// there should be no logic caught here.
 	} else if (event.data.type == "restore") {
 		playerData = event.data.data;
-		//UpgradeManager = playerData.upgradeManagerData;
-	}else if (event.data.type == "unlockLocation") {
+		UpgradeManager.data = playerData.upgradeManagerData;
+	} else if (event.data.type == "unlockLocation") {
 		var currentLocation = -1;
-		var currentLocationId = "L" + event.data.currentLocation;
+		var currentLocationId = event.data.currentLocation.id;
 		var nextLocation = {};
 		
-		for (var i = 0; i < locations.length; i++) {
-			if(currentLocationId == locations[i].id) {
+		for (var i = 0; i < UpgradeManager.data.locations.length; i++) {
+			if(currentLocationId == UpgradeManager.data.locations[i].id) {
 				currentLocation = i;
 				break;
 			}
 		}
 
-		if (locations[currentLocation].kills > event.data.zombiesKilled) {
+		if (UpgradeManager.data.locations[currentLocation].kills > event.data.zombiesKilled) {
 			return;									// not enough kills
 		}
 
-		for (var i = 0; i < locations.length; i++) {
-			if (locations[i].prereq == event.data.currentLocation) {
-				nextLocation = locations[i];
+		for (var i = 0; i < UpgradeManager.data.locations.length; i++) {
+			if (UpgradeManager.data.locations[i].prereq == event.data.currentLocation) {
+				nextLocation = UpgradeManager.data.locations[i];
 				break;
 			}
 		}
@@ -853,7 +838,6 @@ onmessage = function (event) {
 				locationObject : nextLocation
 			});
 		}
-
 		return;
 	}
 };
