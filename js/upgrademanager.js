@@ -33,7 +33,7 @@ locations.unshift({
 	id : "L1",
 	prereq : 0,
 	supply : 25000,				
-	kills : 1000000,					
+	kills : 10,					
 });
 
 locations.unshift({
@@ -824,13 +824,13 @@ onmessage = function (event) {
 		}
 
 		for (var i = 0; i < locations.length; i++) {
-			if (locations[i].prereq == currentLocation) {
+			if (locations[i].prereq == event.data.currentLocation) {
 				nextLocation = locations[i];
 				break;
 			}
 		}
 
-		if(nextLocation) {
+		if(nextLocation != {}) {
 			postMessage({
 				type : "unlockLocation",
 				locationObject : nextLocation

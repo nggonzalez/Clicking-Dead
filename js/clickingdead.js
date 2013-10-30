@@ -238,7 +238,7 @@ var initialize = function () {
 		} else if (event.data.type == "unlockLocation") {
 			if ($("#moveOn").hasClass("hidden")) {
 				$("#moveOn").removeClass("hidden");
-				$("#moveOn").data("nextLocation", event.data.locationObject.className);
+				$("#moveOn").attr("data-nextLocation", event.data.locationObject.className);
 			}
 		}
 
@@ -248,16 +248,19 @@ var initialize = function () {
 				zombiesKilled: ClickingDead.data.zombiesKilled,
 				currentLocation: ClickingDead.data.currLocation
 			});
+			console.log(ClickingDead.data.currLocation);
 		}, 10000);
 
-		$("body").on("click", "#moveOn", function() {
+		$("body").on("click", "#moveOn", function(e) {
+			e.stopPropagation();
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
-			var nextLocationClass = $(this).data("nextLocation");
+			var nextLocationClass = $(this).attr("data-nextLocation");
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
 
+			console.log("Clicked arrow " + ClickingDead.data.currLocation);
 			(ClickingDead.data.currLocation)++;
 
 			$(this).addClass("hidden");
