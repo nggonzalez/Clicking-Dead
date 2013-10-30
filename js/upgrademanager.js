@@ -706,6 +706,7 @@ onmessage = function (event) {
 			if(UpgradeManager.data.weapons[i].id == event.data.id) { 
 				if (event.data.currSupplies >= UpgradeManager.data.weapons[i].price) {
 					UpgradeManager.data.weapons[i].numOwned++;
+					UpgradeManager.data.weapons[i].price = Math.floor(UpgradeManager.data.weapons[i].price * 1.35);
 					type = "weapons";
 					targetEntry = UpgradeManager.data.weapons[i];
 					break;
@@ -717,6 +718,7 @@ onmessage = function (event) {
 			if(UpgradeManager.data.companions[i].id == event.data.id) { 
 				if (event.data.currSupplies >= UpgradeManager.data.companions[i].price) {
 					UpgradeManager.data.companions[i].numOwned++;
+					UpgradeManager.data.companions[i].price = Math.floor(UpgradeManager.data.companions[i].price * 1.35);
 					type = "companions";
 					targetEntry = UpgradeManager.data.companions[i];
 					break;
