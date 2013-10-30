@@ -252,7 +252,6 @@ var initialize = function () {
 		}, 10000);
 
 		$("body").on("click", "#moveOn", function(e) {
-			e.stopPropagation();
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
@@ -269,6 +268,7 @@ var initialize = function () {
 				$(currentLocation).addClass("hidden").removeClass("leaveLocation");
 				$(nextLocation).addClass("currentLocation").removeClass("moveToLocation");
 			}, 6000);
+			e.stopImmediatePropagation()
 		});
 	}
 
