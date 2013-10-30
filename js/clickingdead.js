@@ -258,9 +258,14 @@ var initialize = function () {
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
 
-			ClickingDead.data.currLocation++;
+			(ClickingDead.data.currLocation)++;
 
 			$(this).addClass("hidden");
+
+			setTimeout(function() {
+				$(currentLocation).addClass("hidden").removeClass("leaveLocation");
+				$(nextLocation).addClass("currentLocation").removeClass("moveToLocation");
+			}, 6000);
 		});
 	}
 
@@ -305,22 +310,6 @@ var initialize = function () {
 		});
 	});
 
-
-	$("body").on("click", "#moveOn", function() {
-		var nextLocation = $(".backgroundImage.highway");
-		$(nextLocation).addClass("moveToLocation");
-		$(nextLocation).removeClass("hidden");
-	
-		var currentLocation = $(".backgroundImage.currentLocation");
-		$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
-
-		$(this).addClass("hidden");
-
-		setTimeout(function() {
-			$(currentLocation).addClass("hidden").removeClass("leaveLocation");
-			$(nextLocation).addClass("currentLocation").removeClass("moveToLocation");
-		}, 6000);
-	});
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  		$("body").nodoubletapzoom();
