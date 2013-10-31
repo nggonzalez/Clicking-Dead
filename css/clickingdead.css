@@ -62,15 +62,15 @@ button:focus
 
 div.instructions
 {
-  width: 500px;
-  height: 500px;
+  width: 650px;
+  height: 520px;
 
   margin: 0px;
   padding: 10px;
 
   top: 50%;
   left: 50%;
-  margin-left: -260px;
+  margin-left: -325px;
   margin-top: -260px;
 
   position: absolute;
