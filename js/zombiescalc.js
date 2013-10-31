@@ -54,6 +54,12 @@ var refreshCalculations = function () {
 	var damageDone = 0;
 	var suppliesUsed = 0;
 	for (var i = 0; i < playerData.weapons.length; i++) {
+		if(i == 0) {
+			playerData.weapons = playerData.weapons.sort(function(obj1, obj2) {
+				// Descending: first damage greater than the previous
+				return obj2.damage - obj1.damage;
+			});
+		}
 		if (companionWpl - playerData.weapons[i].wpl >= 0 
 			&& ZombieCalc.data.supplies + playerData.weapons[i].supply >= 0) {	// note .supply is neg.
 
@@ -87,8 +93,8 @@ setInterval(function() {
 	ZombieCalc.data.cyclesElapsed++;
 
 	// increase zombie spawn rate
-	if (ZombieCalc.data.cyclesElapsed % 2000 == 0) {
-		ZombieCalc.data.zombieGenerationRate *= 2;			// proceed to the next checkpoint
+	if (ZombieCalc.data.cyclesElapsed % 1500 == 0) {
+		ZombieCalc.data.zombieGenerationRate *= 3;			// proceed to the next checkpoint
 		postMessage({
 			type : "notification",
 			message : "A mob of walkers is entering your location!"
