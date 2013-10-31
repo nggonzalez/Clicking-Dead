@@ -106,7 +106,18 @@ setInterval(function() {
 
 	// pass UI update message
 	var zombieVal = ZombieCalc.data.zombies / ZombieCalc.data.passiveZombieResistance;
+	
+	
+	var supplyOverrun = 0;
 
+	if (zombieVal >= 1) { 
+		// then we got overrun! Start losing data.
+		// supplyPerSecond = supplyPerSecond + " -.5%";
+		supplyOverrun = 0.005 * ZombieCalc.data.supplies;
+		ZombieCalc.data.supplies -= supplyOverrun;
+	}
+
+	var supplyPerSecond = (ZombieCalc.data.passiveScavengeRate - supplyOverrun)*(1000/ZombieCalc.data.iterSpeed);
 	var supplyVal = 0;
 
 	postMessage({
@@ -120,8 +131,8 @@ setInterval(function() {
 		var supplyVal = ZombieCalc.data.currSupplies / ZombieCalc.data.currMaxSupplies;
 		postMessage({
 			type : "scavengeReport",
-			amountScavenged : ZombieCalc.data.passiveScavengeRate, 
-			perSecond : ZombieCalc.data.passiveScavengeRate*(1000/ZombieCalc.data.iterSpeed),
+			amountScavenged : ZombieCalc.data.passiveScavengeRate - supplyOverrun, 
+			perSecond : supplyPerSecond,
 			remainingSuppliesPercent : supplyVal	// the new supply bar value.
 		});
 	}
