@@ -300,7 +300,7 @@ var initialize = function () {
 		} else if (event.data.type == "unlockLocation") {
 			if ($("#moveOn").hasClass("hidden")) {
 				$("#moveOn").removeClass("hidden");
-				$("#moveOn").attr("data-nextLocation", event.data.locationObject.className);
+				$("#moveOn").data("nextLocation", event.data.locationObject);
 			}
 			ClickingDead.data.globNextLoc = event.data.locationObject;
 		}
@@ -317,7 +317,7 @@ var initialize = function () {
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
-			var nextLocationClass = $(this).attr("data-nextLocation");
+			var nextLocationClass = $(this).data("nextLocation").className;
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
 
