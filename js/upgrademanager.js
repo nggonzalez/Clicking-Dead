@@ -739,6 +739,10 @@ onmessage = function (event) {
 		for (var i = 0; i < UpgradeManager.data.companions.length; i++) {
 			if (UpgradeManager.data.companions[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
+				if (UpgradeManager.data.companions[i].prereqs[0] != -1
+					&& playerData.currLocation.substring(1,2) != UpgradeManager.data.companions[i].prereqs[0] + "") {
+					fulfilled = false;
+				}
 				for (var j = 1; j < UpgradeManager.data.companions[i].prereqs.length; j++) {
 					var tmpVal = UpgradeManager.data.companions[i].prereqs[j];
 					if (tmpVal >= 0 && UpgradeManager.data.companions[tmpVal].numOwned <= 0) {
@@ -761,6 +765,10 @@ onmessage = function (event) {
 		for (var i = 0; i < UpgradeManager.data.weapons.length; i++) {
 			if (UpgradeManager.data.weapons[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
+				if (UpgradeManager.data.weapons[i].prereqs[0] != -1
+					&& playerData.currLocation.substring(1,2) != UpgradeManager.data.weapons[i].prereqs[0] + "") {
+					fulfilled = false;
+				}
 				for (var j = 1; j < UpgradeManager.data.weapons[i].prereqs.length; j++) {
 					var tmpVal = UpgradeManager.data.weapons[i].prereqs[j];
 					if (tmpVal >= 0 && UpgradeManager.data.weapons[tmpVal].numOwned <= 0) {
@@ -784,6 +792,10 @@ onmessage = function (event) {
 		for (var i = 0; i < UpgradeManager.data.upgrades.length; i++) {
 			if (UpgradeManager.data.upgrades[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
+				if (UpgradeManager.data.upgrades[i].prereqs[0] != -1
+					&& playerData.currLocation.substring(1,2) != UpgradeManager.data.upgrades[i].prereqs[0] + "") {
+					fulfilled = false;
+				}
 				for (var j = 1; j < UpgradeManager.data.upgrades[i].prereqs.length; j++) {
 					var tmpVal = UpgradeManager.data.upgrades[i].prereqs[j];
 					if (tmpVal >= 0 && UpgradeManager.data.upgrades[tmpVal].numOwned <= 0) {
