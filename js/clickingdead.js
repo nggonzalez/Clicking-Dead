@@ -9,7 +9,7 @@ ClickingDead.data = {};			// define the core data object for your
 								// current game save.
 ClickingDead.data = {			// define initial conditions for game state.
 	personalDamage : 1,
-	personalScavenge : 15,
+	personalScavenge : 1000,
 	companionDamage : 0,
 	companionScavenge : 0,
 	companionConsumption : 0,
@@ -142,7 +142,8 @@ var initialize = function () {
 
 	setInterval(function () {
 		localStorage.setItem("data", JSON.stringify(ClickingDead.data));
-	}, 5000);
+		$("#news").prepend('<li class="newsItem breakTheStory bonusPost"><span class="newsContent">Your game has been saved.</span></li>');
+	}, 20000);
 
 	// this should allow for autosave
 
@@ -178,7 +179,7 @@ var initialize = function () {
 	};
 
 	$("body").on("click", "#killZombieButton", function() {
-		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
+		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ commaSeparateNumber(ClickingDead.data.personalDamage) +'</span>');
 		ClickingDead.data.zombiesClicked++;
 		zombieWorker.postMessage({
 			type: "kill"
@@ -187,7 +188,7 @@ var initialize = function () {
 	ClickingDead.registerWorker(zombieWorker);		// register the web worker
 
 	$("body").on("click", "#scavengeButton", function() {
-		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+'+ClickingDead.data.personalScavenge+'</span>');
+		$("#scavenge").append('<span class="positiveReinforcement scavenge noSelect">+'+ commaSeparateNumber(ClickingDead.data.personalScavenge) +'</span>');
 		zombieWorker.postMessage({
 			type: "scavenge"
 		});
