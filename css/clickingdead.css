@@ -19,7 +19,8 @@ body
     height: 100%;
     
     max-width: 1324px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden; 
 }
 
 button:focus
@@ -437,7 +438,8 @@ nav.menu
     margin-left: 286px;
     padding: 0px;
     list-style: none;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden; 
 }
 
 .upgradeItem
