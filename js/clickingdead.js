@@ -7,7 +7,6 @@ ClickingDead.workers = [];
 
 ClickingDead.data = {};			// define the core data object for your
 								// current game save.
-
 ClickingDead.data = {			// define initial conditions for game state.
 	personalDamage : 1,
 	personalScavenge : 15,
@@ -17,7 +16,8 @@ ClickingDead.data = {			// define initial conditions for game state.
 	currLocation : {id:"L0", className:"atlanta"},
 	globNextLoc : {},
 	zombiesKilled : 0,
-	supplies : 0,
+	zombiesClicked : 0,
+	supplies : 100000000,
 	fortification : 100,
 	companions : [],
 	weapons : [], 
@@ -173,6 +173,7 @@ var initialize = function () {
 
 	$("body").on("click", "#killZombieButton", function() {
 		$("#zombies").append('<span class="positiveReinforcement zombies noSelect">+'+ClickingDead.data.personalDamage+'</span>');
+		ClickingDead.data.zombiesClicked++;
 		zombieWorker.postMessage({
 			type: "kill"
 		});
@@ -248,6 +249,20 @@ var initialize = function () {
 				htmlBuild += '</div></li>';
 				$("#itemsList").append(htmlBuild);
 			}
+		} else if (event.data.type == "achievements") {
+			$("#itemsList").empty();				// clear itemsList
+			for (var i = 0; i < elems.length; i++) {
+				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
+				htmlBuild += '<h2>'+elems[i].name+'</h2>';
+				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
+				htmlBuild += '</div>';
+				htmlBuild += '<div class="purchaseInfoWrapper">';
+				if (elems[i].numOwned > 0) {
+					htmlBuild += '<p class="purchased">&#x2714;</p>';
+				}
+				htmlBuild += '</div></li>';
+				$("#itemsList").append(htmlBuild);
+			}
 		} else if (event.data.type == "debugNotification") {
 			Console.log(event.data.message);
 		} else if (event.data.type == "purchase") {
@@ -269,8 +284,10 @@ var initialize = function () {
 				ClickingDead.data.upgrades.push(event.data.value);
 				ClickingDead.data = eval(event.data.value.upgrade + '(ClickingDead.data);');
 				ClickingDead.updateWorkers();
-			}
-			upgradeManagerWorker.postMessage({			// ask for reload.
+
+			} else if (event.data.domain == "achievements") {
+				ClickingDead.data.achievements.push(event.data.value);
+			} upgradeManagerWorker.postMessage({			// ask for reload.
 				type : event.data.domain
 			});
 			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
@@ -345,6 +362,14 @@ var initialize = function () {
 	$("body").on("click", "#upgrades", function() {
 		upgradeManagerWorker.postMessage({
 			type : "upgrades"
+		});
+	});
+
+	$("body").on("click", "#achievements", function() {
+		upgradeManagerWorker.postMessage({
+			type : "achievements",
+			numKilled : ClickingDead.data.zombiesKilled,
+			numClicked : ClickingDead.data.zombiesClicked
 		});
 	});
 
