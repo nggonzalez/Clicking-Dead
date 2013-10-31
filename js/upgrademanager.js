@@ -16,7 +16,8 @@ UpgradeManager.data = {
 	locations : [],
 	weapons : [], 
 	upgrades : [],
-	companions : []
+	companions : [],
+	achievements : []
 };
 
 //////// DEFINE ALL LOCATIONS ////////////////////////////////////
@@ -110,7 +111,6 @@ UpgradeManager.data.locations.push({
 	supply : 25000,				
 	kills : 1000000,					
 });
-
 
 //////// DEFINE ALL COMPANIONS //////////////////////////////////
 // RICK. our first generation prototype.
@@ -686,9 +686,42 @@ UpgradeManager.data.upgrades.unshift({
 	id : "U7",
 	name : "Defense Classes",
 	desc : "Increases companions' WPL by 1.",
-	price : 25000,
+	price : 200,
 	upgrade : "companionDamageUpgrade",
 	prereqs : [-1, -1],
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "kill",
+	name : "Kill",
+	id : "00",
+	desc : "Kill a total of over 100 walkers.",
+	killed : 100,
+	clicked: 0,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "click",
+	name : "Click",
+	desc : "Click to kill over 50 walkers",
+	id : "00",
+	killed : 0,
+	clicked: 50,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "upgrade",
+	name : "Upgrade",
+	desc : "Purchase the Defense Classes upgrade",
+	id : "U7",
+	killed : 100,
+	clicked: 0,
 	numOwned : 0
 });
 
@@ -817,9 +850,35 @@ onmessage = function (event) {
 			type : "upgrades",
 			data : tmpUpgrades
 		});
-	} else if (event.data.type == "achievements") { 
-		// open the achievements tab.
+	} else if (event.data.type == "achievements") {
+		// open the upgrades tab
+		tmpAchievements = [];
+		for (var i = 0; i < UpgradeManager.data.achievements.length; i++) {
+			if (UpgradeManager.data.achievements[i].category == "kill") {
+				if (event.data.numKilled >= UpgradeManager.data.achievements[i].killed) {
+					UpgradeManager.data.achievements[i].numOwned = 1;
+				}
+			} else if (UpgradeManager.data.achievements[i].category == "click") {
+				if (event.data.numClicked >= UpgradeManager.data.achievements[i].clicked) {
+					UpgradeManager.data.achievements[i].numOwned = 1;
+				}
+			} else if (UpgradeManager.data.achievements[i].category == "upgrade") {
+				for (var j = 0; j < UpgradeManager.data.upgrades.length; j++) {
+					var tempVal = UpgradeManager.data.upgrades[j];
+					if (tempVal.id = UpgradeManager.data.achievements[i].id) {
+						if (tempVal.numOwned > 0) {
+							UpgradeManager.data.achievements[i].numOwned = 1;
+						}
+					}
+				}
+			}
+			tmpAchievements.unshift(UpgradeManager.data.achievements[i]);
+		}
 
+		postMessage({
+			type : "achievements",
+			data : tmpAchievements
+		});
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;
 		// there should be no logic caught here.
