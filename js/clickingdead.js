@@ -275,7 +275,7 @@ var initialize = function () {
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
 			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
 			
-			$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + "you just purchased " + event.data.value.name + '</span></li>');
+			$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + "You just purchased " + event.data.value.name + '</span></li>');
 			if($("#news li").length > 4) {
 				$("#news li:last").remove();
 			}
@@ -349,10 +349,10 @@ var initialize = function () {
 	ClickingDead.updateWorkers();					// propogate changes.
 
 	///////// SETTING UP THE ZOMBIE +1 buttons. ////////
-	$(".zombiesBox p.count").html(ClickingDead.data.zombiesKilled);
+	$(".zombiesBox p.count").html(commaSeparateNumber(ClickingDead.data.zombiesKilled));
 
 	///////// SETTING UP THE SCAVENGE +1 button. ///////
-	$(".scavengeBox p.count").html(ClickingDead.data.supplies);
+	$(".scavengeBox p.count").html(commaSeparateNumber(ClickingDead.data.supplies));
 
 	///////// SET UP SIDE BUTTONS //////////////////////
 	
