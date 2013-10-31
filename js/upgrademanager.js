@@ -692,10 +692,12 @@ UpgradeManager.data.upgrades.unshift({
 	numOwned : 0
 });
 
+//////////// DEFINE ACHIEVEMENTS /////////////////////
+
 UpgradeManager.data.achievements.unshift({
 	type : "achievements",
 	category : "kill",
-	name : "Kill",
+	name : "100 Kills",
 	id : "00",
 	desc : "Kill a total of over 100 walkers.",
 	killed : 100,
