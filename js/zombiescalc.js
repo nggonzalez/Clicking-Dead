@@ -94,7 +94,7 @@ setInterval(function() {
 
 	// increase zombie spawn rate
 	if (ZombieCalc.data.cyclesElapsed % 1500 == 0) {
-		ZombieCalc.data.zombieGenerationRate *= 3;			// proceed to the next checkpoint
+		ZombieCalc.data.zombieGenerationRate *= 2;			// proceed to the next checkpoint
 		postMessage({
 			type : "notification",
 			message : "A mob of walkers is entering your location!"
