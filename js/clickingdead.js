@@ -207,7 +207,7 @@ var initialize = function () {
 				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
 				htmlBuild += '<span class="attribute">WPL: '+elems[i].wpl+' required</span>';
 				htmlBuild += '</p></div>';
-				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button" class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
+				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
 				htmlBuild += elems[i].price + ' supplies</p></span>';
 				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
@@ -222,7 +222,7 @@ var initialize = function () {
 				htmlBuild += '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
 				htmlBuild += '<span class="attribute">WPL: '+elems[i].wpl+'</span>';
 				htmlBuild += '</p></div>';
-				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton sell noSelect">Sell</button><button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
+				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
 				htmlBuild += elems[i].price + ' supplies</p></span>';
 				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
 				// we have now added a weapon list element.
@@ -296,7 +296,7 @@ var initialize = function () {
 		} else if (event.data.type == "unlockLocation") {
 			if ($("#moveOn").hasClass("hidden")) {
 				$("#moveOn").removeClass("hidden");
-				$("#moveOn").attr("data-nextLocation", event.data.locationObject.className);
+				$("#moveOn").data("nextLocation", event.data.locationObject);
 			}
 			ClickingDead.data.globNextLoc = event.data.locationObject;
 		}
@@ -313,7 +313,7 @@ var initialize = function () {
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
 
-			var nextLocationClass = $(this).attr("data-nextLocation");
+			var nextLocationClass = $(this).data("nextLocation").className;
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
 

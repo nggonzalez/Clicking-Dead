@@ -545,7 +545,7 @@ nav.menu
     letter-spacing: 0.06em;
     color: #fff; 
     padding: 3px 12px;
-    margin: 0px 5px;
+    margin: 0px 0px;
     
     float: right;
     cursor: default;
@@ -678,18 +678,18 @@ div.progressBars
     float: right;
     width: 100%;
     color: #fff;
-    font-size: 1em;
+    font-size: 1.05em;
 }
 
 
 div.progressWrapper
 {
     background-color: rgba(51, 51, 51, .8);
-    height: 14.5px;
+    height: 16px;
     width: 96%;
     
-    padding: 5px 5px;
-    border-radius: 10px;
+    padding: 4px 4px;
+    border-radius: 4px;
 }
 
 
@@ -712,27 +712,27 @@ progress.suppliesMeter::-webkit-progress-value
 
 progress {  
     border: 0;  
-    height: 14.5px;  
+    height: 16px;  
     width: 100%;
-    border-radius: 10px;
+    border-radius: 4px;
 }  
 progress::-webkit-progress-bar {  
     border: 0;  
-    height: 14.5px;  
+    height: 16px;  
     width: 100%;
-    border-radius: 10px;
+    border-radius: 4px;
 }  
 progress::-webkit-progress-value {  
     border: 0;  
-    height: 14.5px;  
+    height: 16px;  
     width: 100%;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 progress::-moz-progress-bar {  
     border: 0;  
-    height: 14.5px;  
+    height: 16px;  
     width: 100%;
-    border-radius: 10px;  
+    border-radius: 4px;  
 }  
 
 /*Arrow Box*/
@@ -825,6 +825,14 @@ progress::-moz-progress-bar {
   70%  { opacity: 1; }
   100% { opacity: 0; -o-transform: translate(-1.5em,-3em);}
 }
+
+@-ms-keyframes showCount {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; -ms-transform: translate(-1.5em,-3em);}
+}
+
 @keyframes showCount {
   0%   { opacity: 0; }
   20%  { opacity: 1; }
@@ -850,6 +858,12 @@ progress::-moz-progress-bar {
   0%   { opacity: 0; }
   20%  { opacity: 1; }
   100% { opacity: 0; -o-transform: translate(3em,-2.5em);}
+}
+
+@-ms-keyframes showCount2 {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  100% { opacity: 0; -ms-transform: translate(3em,-2.5em);}
 }
 @keyframes showCount2 {
   0%   { opacity: 0; }
@@ -878,6 +892,12 @@ progress::-moz-progress-bar {
   70%  { opacity: 1; }
   100% { opacity: 0; -o-transform: translate(-3em,-3.5em);}
 }
+@-ms-keyframes showCount3 {
+  0%   { opacity: 0; }
+20%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; -ms-transform: translate(-3em,-3.5em);}
+}
 @keyframes showCount3 {
   0%   { opacity: 0; }
   20%  { opacity: 1; }
@@ -905,6 +925,12 @@ progress::-moz-progress-bar {
   70%  { opacity: 1; }
   100% { opacity: 0; -o-transform: translate(2em,-3em);}
 }
+@-ms-keyframes showCount4 {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; -ms-transform: translate(2em,-3em);}
+}
 @keyframes showCount4 {
   0%   { opacity: 0; }
   20%  { opacity: 1; }
@@ -922,6 +948,10 @@ progress::-moz-progress-bar {
   100% { opacity: 1; top: 0px; left:0px; background-size: cover;}
 }
 @-o-keyframes moveIn {
+  0%   { left: 100%; opacity: 1; top: 0px; }
+  100% { opacity: 1; top: 0px; left:0px; background-size: cover;}
+}
+@-ms-keyframes moveIn {
   0%   { left: 100%; opacity: 1; top: 0px; }
   100% { opacity: 1; top: 0px; left:0px; background-size: cover;}
 }
@@ -944,6 +974,10 @@ progress::-moz-progress-bar {
   0%   { left: 0px; opacity: 1; top: 0px; }
   100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
 }
+@-ms-keyframes moveOut {
+  0%   { left: 0px; opacity: 1; top: 0px; }
+  100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
+}
 @keyframes moveOut {
   0%   { left: 0px; opacity: 1; top: 0px; }
   100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
@@ -962,6 +996,10 @@ progress::-moz-progress-bar {
   0%   { left: 0; top: -100px; opacity: 0;}
   100% { opacity: 1; top: 0px; left:0px;}
 }
+@-ms-keyframes addStoryToNewsFeed {
+  0%   { left: 0; top: -100px; opacity: 0;}
+  100% { opacity: 1; top: 0px; left:0px;}
+}
 @keyframes addStoryToNewsFeed {
   0%   { left: 0; top: -100px; opacity: 0;}
   100% { opacity: 1; top: 0px; left:0px;}
@@ -976,6 +1014,10 @@ progress::-moz-progress-bar {
   100% { opacity: 1; top: 0px; left:0px;}
 }
 @-o-keyframes deleteStoryFromNewsFeed {
+  0%   { left: 0; top: -100px; opacity: 0;}
+  100% { opacity: 1; top: 0px; left:0px;}
+}
+@-ms-keyframes deleteStoryFromNewsFeed {
   0%   { left: 0; top: -100px; opacity: 0;}
   100% { opacity: 1; top: 0px; left:0px;}
 }
@@ -999,6 +1041,11 @@ progress::-moz-progress-bar {
     0% {-o-transform: scale(0.8, 0.8); opacity: 1.0;}
     50% {-o-transform: scale(1, 1); opacity: 1.0;}
     100% {-o-transform: scale(.8, .8); opacity: 1.0;}
+}
+@-ms-keyframes pulsate {
+    0% {-ms-transform: scale(0.8, 0.8); opacity: 1.0;}
+    50% {-ms-transform: scale(1, 1); opacity: 1.0;}
+    100% {-ms-transform: scale(.8, .8); opacity: 1.0;}
 }
 @keyframes pulsate {
     0% {transform: scale(0.8, 0.8); opacity: 1.0;}
