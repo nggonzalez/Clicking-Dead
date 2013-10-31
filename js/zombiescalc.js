@@ -184,6 +184,12 @@ onmessage = function (event) {
 			amountScavenged : playerData.personalScavenge,
 			remainingSuppliesPercent : ZombieCalc.data.currSupplies / ZombieCalc.data.currMaxSupplies
 		});
+	} else if (event.data.type == 'newLocationSupplyChange') {
+		ZombieCalc.data.currMaxSupplies = event.data.supplies;
+		ZombieCalc.data.currSupplies = event.data.supplies;
+		ZombieCalc.data.supplies = 0;
+		refreshCalculations();
+
 	} else if (event.data.type == 'reloadCore') {
 		ZombieCalc.data = event.data.data;
 	}

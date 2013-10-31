@@ -100,6 +100,16 @@ ClickingDead.restoreWorkers = function () {
 	}
 };
 
+/**
+ * Comma separate numbers for easy reading function.
+ */
+ function commaSeparateNumber(val){
+    while (/(\d+)(\d{3})/.test(val.toString())){
+      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+    }
+    return val;
+  }
+
 
 /**
  * No doubletap zoom function.
@@ -145,18 +155,18 @@ var initialize = function () {
 		if (message.type == "zombieReport") {
 			$(".zombieMeter").attr('value', message.remainingZombiesPercent);
 			ClickingDead.data.zombiesKilled += message.zombiesKilled;
-			$(".zombiesBox p.count").html(Math.floor(ClickingDead.data.zombiesKilled));
+			$(".zombiesBox p.count").html(commaSeparateNumber(Math.floor(ClickingDead.data.zombiesKilled)));
 			if (message.perSecond != undefined
-				&& $(".zombiesBox .perSecondCount").html() != Math.floor(message.perSecond))
-				$(".zombiesBox .perSecondCount").html(Math.floor(message.perSecond));
+				&& $(".zombiesBox .perSecondCount").html() != commaSeparateNumber(Math.floor(message.perSecond)))
+				$(".zombiesBox .perSecondCount").html(commaSeparateNumber(Math.floor(message.perSecond)));
 		} else if (message.type == "scavengeReport") {
 			$(".suppliesMeter").attr('value', message.remainingSuppliesPercent);
 			ClickingDead.data.supplies += message.amountScavenged;
 			ClickingDead.data.supplies = Math.max(0, ClickingDead.data.supplies);
-			$(".scavengeBox p.count").html(Math.floor(ClickingDead.data.supplies));
+			$(".scavengeBox p.count").html(commaSeparateNumber(Math.floor(ClickingDead.data.supplies)));
 			if (message.perSecond != undefined
-				&& $(".scavengeBox .perSecondCount").html() != Math.floor(message.perSecond))
-				$(".scavengeBox .perSecondCount").html(Math.floor(message.perSecond));
+				&& $(".scavengeBox .perSecondCount").html() != commaSeparateNumber(Math.floor(message.perSecond)))
+				$(".scavengeBox .perSecondCount").html(commaSeparateNumber(Math.floor(message.perSecond)));
 		} else if (message.type == "notification") {
 			$("#news").prepend('<li class="newsItem breakTheStory dangerPost"><span class="newsContent">' + message.message + '</span></li>');
 			if($("#news li").length > 4) {
@@ -203,13 +213,13 @@ var initialize = function () {
 				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
 				htmlBuild += '<h2>'+elems[i].name+'</h2>';
 				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
-				htmlBuild += '<p><span class="attribute">Damage: '+elems[i].damage+'/sec</span>';
-				htmlBuild += '<span class="attribute">Supply: '+elems[i].supply+'/sec</span>';
-				htmlBuild += '<span class="attribute">WPL: '+elems[i].wpl+' required</span>';
+				htmlBuild += '<p><span class="attribute">Damage: '+ commaSeparateNumber(elems[i].damage) +'/sec</span>';
+				htmlBuild += '<span class="attribute">Supply: '+ commaSeparateNumber(elems[i].supply)+'/sec</span>';
+				htmlBuild += '<span class="attribute">WPL: '+ elems[i].wpl +' required</span>';
 				htmlBuild += '</p></div>';
 				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button" class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-				htmlBuild += elems[i].price + ' supplies</p></span>';
-				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
+				htmlBuild += commaSeparateNumber(elems[i].price) + ' supplies</p></span>';
+				htmlBuild += '<span class="countWrapper"><p class="count">'+ commaSeparateNumber(elems[i].numOwned)+'</p></span></div></li>';
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
 			}
@@ -219,12 +229,12 @@ var initialize = function () {
 				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
 				htmlBuild += '<h2>'+elems[i].name+'</h2>';
 				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
-				htmlBuild += '<p><span class="attribute">Scavenge: '+elems[i].scavenge+'/sec</span>';
-				htmlBuild += '<span class="attribute">WPL: '+elems[i].wpl+'</span>';
+				htmlBuild += '<p><span class="attribute">Scavenge: '+ commaSeparateNumber(elems[i].scavenge) +'/sec</span>';
+				htmlBuild += '<span class="attribute">WPL: '+ elems[i].wpl+'</span>';
 				htmlBuild += '</p></div>';
 				htmlBuild += '<div class="purchaseInfoWrapper"><span class="buttons"><button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-				htmlBuild += elems[i].price + ' supplies</p></span>';
-				htmlBuild += '<span class="countWrapper"><p class="count">'+elems[i].numOwned+'</p></span></div></li>';
+				htmlBuild += commaSeparateNumber(elems[i].price) + ' supplies</p></span>';
+				htmlBuild += '<span class="countWrapper"><p class="count">'+ commaSeparateNumber(elems[i].numOwned) +'</p></span></div></li>';
 				// we have now added a weapon list element.
 				$("#itemsList").append(htmlBuild);
 			}
@@ -238,7 +248,7 @@ var initialize = function () {
 				htmlBuild += '<div class="purchaseInfoWrapper">';
 				if (elems[i].numOwned <= 0) {
 					htmlBuild += '<button type="button"  class="purchaseButton buy noSelect">Buy</button></span><span class="priceWrapper"><p class="price">';
-					htmlBuild += elems[i].price + ' supplies</p></span>';
+					htmlBuild += commaSeparateNumber(elems[i].price) + ' supplies</p></span>';
 				} else {
 					htmlBuild += '<p class="purchased">&#x2714;</p>';
 				}
@@ -315,9 +325,8 @@ var initialize = function () {
 
 			var nextLocationClass = $(this).data("nextLocation").className;
 			var nextLocation = $(".backgroundImage." + nextLocationClass);
+			var nextLocationSupplies = $(this).data("nextLocation").supply;
 			$(nextLocation).removeClass("hidden").addClass("moveToLocation");
-
-			console.log("Clicked arrow " + ClickingDead.data.currLocation.id);
 
 			ClickingDead.data.currLocation = ClickingDead.data.globNextLoc;		// this is not great practice.
 
@@ -327,7 +336,13 @@ var initialize = function () {
 				$(currentLocation).addClass("hidden").removeClass("leaveLocation");
 				$(nextLocation).addClass("currentLocation").removeClass("moveToLocation");
 			}, 6000);
-			e.stopImmediatePropagation()
+			
+			zombieWorker.postMessage({
+				type : "newLocationSupplyChange",
+				supplies : nextLocationSupplies
+			});
+			ClickingDead.updateWorkers();
+			e.stopImmediatePropagation();
 		});
 	}
 	ClickingDead.registerWorker(upgradeManagerWorker);
