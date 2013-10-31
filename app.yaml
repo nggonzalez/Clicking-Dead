@@ -22,5 +22,11 @@ handlers:
 - url: /images
   static_dir: images
 
+- url: /static/(.*)\.manifest
+  static_files: static/\1.manifest
+  upload: static/(.*)\.manifest
+  mime_type: text/cache-manifest
+
+
 - url: .*
   script: main.application
