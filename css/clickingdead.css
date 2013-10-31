@@ -937,19 +937,16 @@ progress::-moz-progress-bar {
   100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
 }
 @-moz-keyframes moveOut {
-  0%   { opacity: 1; }
-  50%  { opacity: .4;}
-  100% { opacity: 0; top: -150%;}
+  0%   { left: 0px; opacity: 1; top: 0px; }
+  100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
 }
 @-o-keyframes moveOut {
-  0%   { opacity: 1; }
-  50%  { opacity: .4;}
-  100% { opacity: 0; top: -150%;}
+  0%   { left: 0px; opacity: 1; top: 0px; }
+  100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
 }
 @keyframes moveOut {
-  0%   { opacity: 1; }
-  50%  { opacity: .4;}
-  100% { opacity: 0; top: -150%;}
+  0%   { left: 0px; opacity: 1; top: 0px; }
+  100% { opacity: 1; top: 0px; left: -100%; background-size: cover;}
 }
 
 
