@@ -131,10 +131,6 @@ var initialize = function () {
 	// set the local storage autosave interval.
 
 	setInterval(function () {
-		$("#news").prepend('<li class="newsItem breakTheStory bonusPost"><span class="newsContent">your game has been autosaved!</span></li>');
-		if($("#news li").length > 4) {
-			$("#news li:last").remove();
-		}
 		localStorage.setItem("data", JSON.stringify(ClickingDead.data));
 	}, 5000);
 
