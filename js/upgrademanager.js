@@ -694,11 +694,25 @@ UpgradeManager.data.upgrades.unshift({
 
 //////////// DEFINE ACHIEVEMENTS /////////////////////
 
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "upgrade",
+	name : "Upgrade",
+	desc : "Purchase the Defense Classes upgrade",
+	id : "U7",
+	prereq : "--",
+	killed : 100,
+	clicked: 0,
+	numOwned : 0
+});
+
 UpgradeManager.data.achievements.unshift({
 	type : "achievements",
 	category : "kill",
-	name : "100 Kills",
-	id : "00",
+	name : "Amateur",
+	id : "K0",
+	prereq : "--",
 	desc : "Kill a total of over 100 walkers.",
 	killed : 100,
 	clicked: 0,
@@ -708,24 +722,124 @@ UpgradeManager.data.achievements.unshift({
 UpgradeManager.data.achievements.unshift({
 	type : "achievements",
 	category : "click",
-	name : "Click",
-	desc : "Click to kill over 50 walkers",
-	id : "00",
+	name : "Just Keep Clicking",
+	id : "C0",
+	prereq : "--",
+	desc : "Kill a total of over 100 walkers.",
 	killed : 0,
-	clicked: 50,
+	clicked: 100,
+	numOwned : 0
+});
+
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "kill",
+	name : "Deadly",
+	id : "K1",
+	prereq : "K0",
+	desc : "Kill a total of over 1,000 walkers.",
+	killed : 1000,
+	clicked: 0,
 	numOwned : 0
 });
 
 UpgradeManager.data.achievements.unshift({
 	type : "achievements",
-	category : "upgrade",
-	name : "Upgrade",
-	desc : "Purchase the Defense Classes upgrade",
-	id : "U7",
-	killed : 100,
+	category : "click",
+	name : "Clicking Pro",
+	id : "C1",
+	prereq : "C0",
+	desc : "Click to kill over 150 walkers.",
+	killed : 0,
+	clicked: 150,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "kill",
+	name : "Rampage",
+	id : "K2",
+	prereq : "K1",
+	desc : "Kill a total of over 10,000 walkers.",
+	killed : 10000,
 	clicked: 0,
 	numOwned : 0
 });
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "click",
+	name : "Clicking Expert",
+	id : "C2",
+	prereq : "C1",
+	desc : "Click to kill over 10,000 walkers.",
+	killed : 0,
+	clicked: 10000,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "kill",
+	name : "Unstoppable",
+	id : "K3",
+	prereq : "K2",
+	desc : "Kill a total of over 100,000 walkers.",
+	killed : 1000000,
+	clicked: 0,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "click",
+	name : "Clicking Master",
+	id : "C3",
+	prereq : "C2",
+	desc : "Click to kill over 100,000 walkers.",
+	killed : 0,
+	clicked: 100000,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "kill",
+	name : "Godlike",
+	id : "K4",
+	prereq : "K3",
+	desc : "Kill a total of over 1,000,000 walkers.",
+	killed : 1000000,
+	clicked: 0,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "click",
+	name : "Maniac",
+	id : "C4",
+	prereq : "C3",
+	desc : "Click to kill over 1,000,000 walkers.",
+	killed : 0,
+	clicked: 1000000,
+	numOwned : 0
+});
+
+UpgradeManager.data.achievements.unshift({
+	type : "achievements",
+	category : "kill",
+	name : "Invincible",
+	id : "K5",
+	prereq : "K4",
+	desc : "Kill a total of over 100,000,000 walkers.",
+	killed : 100000000,
+	clicked: 0,
+	numOwned : 0
+});
+
 
 /**
  * respond to message requests from the main controller here.
@@ -864,17 +978,38 @@ onmessage = function (event) {
 			type : "upgrades",
 			data : tmpUpgrades
 		});
-	} else if (event.data.type == "achievements") {
+	}  else if (event.data.type == "achievements") {
 		// open the upgrades tab
+		var threshClick = event.data.threshClick;
+		var threshKill = event.data.threshKill;
 		tmpAchievements = [];
+
 		for (var i = 0; i < UpgradeManager.data.achievements.length; i++) {
 			if (UpgradeManager.data.achievements[i].category == "kill") {
 				if (event.data.numKilled >= UpgradeManager.data.achievements[i].killed) {
 					UpgradeManager.data.achievements[i].numOwned = 1;
+					for (var j = 0; j < UpgradeManager.data.achievements.length; j++) {
+						var tempVal = UpgradeManager.data.achievements[j];
+						if (tempVal.prereq == UpgradeManager.data.achievements[i].id) {
+							threshKill = Math.max(threshKill, tempVal.killed);
+						}
+					}
+					if (threshKill == event.data.threshKill) {
+						threshKill = -1;
+					}
 				}
 			} else if (UpgradeManager.data.achievements[i].category == "click") {
 				if (event.data.numClicked >= UpgradeManager.data.achievements[i].clicked) {
 					UpgradeManager.data.achievements[i].numOwned = 1;
+					for (var j = 0; j < UpgradeManager.data.achievements.length; j++) {
+						var tempVal = UpgradeManager.data.achievements[j];
+						if (tempVal.prereq == UpgradeManager.data.achievements[i].id) {
+							threshClick = Math.max(threshClick, tempVal.clicked);
+						}
+					}
+					if (threshClick == event.data.threshClick) {
+						threshClick = -1;
+					}
 				}
 			} else if (UpgradeManager.data.achievements[i].category == "upgrade") {
 				for (var j = 0; j < UpgradeManager.data.upgrades.length; j++) {
@@ -891,7 +1026,9 @@ onmessage = function (event) {
 
 		postMessage({
 			type : "achievements",
-			data : tmpAchievements
+			data : tmpAchievements,
+			clicked : threshClick,
+			killed : threshKill
 		});
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;

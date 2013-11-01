@@ -17,8 +17,10 @@ ClickingDead.data = {			// define initial conditions for game state.
 	globNextLoc : {},
 	zombiesKilled : 0,
 	zombiesClicked : 0,
-	supplies : 100000000,
+	supplies : 0,
 	fortification : 100,
+	threshKilled : 100,
+	threshClicked : 100,
 	companions : [],
 	weapons : [], 
 	upgrades : [],
@@ -269,7 +271,9 @@ var initialize = function () {
 				}
 				htmlBuild += '</div></li>';
 				$("#itemsList").append(htmlBuild);
-			}
+			} 			
+			ClickingDead.data.threshClicked = event.data.clicked;
+			ClickingDead.data.threshKilled = event.data.killed;
 		} else if (event.data.type == "debugNotification") {
 			Console.log(event.data.message);
 		} else if (event.data.type == "purchase") {
@@ -286,12 +290,9 @@ var initialize = function () {
 			} else if (event.data.domain == "companions") {
 				ClickingDead.data.companions.push(event.data.value);
 			} else if (event.data.domain == "upgrades") {
-
-
 				ClickingDead.data.upgrades.push(event.data.value);
 				ClickingDead.data = eval(event.data.value.upgrade + '(ClickingDead.data);');
 				ClickingDead.updateWorkers();
-
 			} else if (event.data.domain == "achievements") {
 				ClickingDead.data.achievements.push(event.data.value);
 			} upgradeManagerWorker.postMessage({			// ask for reload.
@@ -320,6 +321,23 @@ var initialize = function () {
 			});
 		}, 10000);
 
+		setInterval(function () {
+			localStorage.setItem("data", JSON.stringify(ClickingDead.data));
+			if (event.data.type == "achievements" &&
+				((ClickingDead.data.threshKilled >= 0 &&
+				ClickingDead.data.threshKilled < ClickingDead.data.zombiesKilled) || 
+				(ClickingDead.data.threshClicked >= 0 &&
+				ClickingDead.data.threshClicked < ClickingDead.data.zombiesClicked))) {
+				upgradeManagerWorker.postMessage({
+					type : "achievements",
+					numKilled : ClickingDead.data.zombiesKilled,
+					numClicked : ClickingDead.data.zombiesClicked,
+					threshKill : ClickingDead.data.threshKilled,
+					threshClick : ClickingDead.data.threshClicked
+				});
+			}		
+		}, 100);	
+
 		$("body").on("click", "#moveOn", function(e) {
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
@@ -347,7 +365,8 @@ var initialize = function () {
 		});
 	}
 	ClickingDead.registerWorker(upgradeManagerWorker);
-	ClickingDead.updateWorkers();					// propogate changes.
+	ClickingDead.updateWorkers();	
+			// propogate changes.
 
 	///////// SETTING UP THE ZOMBIE +1 buttons. ////////
 	$(".zombiesBox p.count").html(commaSeparateNumber(ClickingDead.data.zombiesKilled));
@@ -381,7 +400,9 @@ var initialize = function () {
 		upgradeManagerWorker.postMessage({
 			type : "achievements",
 			numKilled : ClickingDead.data.zombiesKilled,
-			numClicked : ClickingDead.data.zombiesClicked
+			numClicked : ClickingDead.data.zombiesClicked,
+			threshKill : ClickingDead.data.threshKilled,
+			threshClick : ClickingDead.data.threshClicked
 		});
 	});
 
