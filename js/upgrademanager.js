@@ -627,7 +627,7 @@ UpgradeManager.data.upgrades.unshift({
 	type : "upgrades",
 	id : "U2",
 	name : "Rick's Sheriff Badge",
-	desc : "Bring the law to the walkers - increase your damage by 10%. Also makes your UpgradeManager.data.companions slightly more effective.",
+	desc : "Bring the law to the walkers - increase your damage by 10%. Also makes your companions more effective.",
 	price : 89500000,
 	upgrade : "personalDamageUpgrade",
 	prereqs : [-1, 4],
