@@ -956,10 +956,30 @@ onmessage = function (event) {
 		// open the upgrades tab
 		tmpUpgrades = [];
 		for (var i = 0; i < UpgradeManager.data.upgrades.length; i++) {
+			var fulfilled = true;
+			if (UpgradeManager.data.upgrades[i].prereqs[0] != -1 
+				&& playerData.currLocation.id.substring(1,2) != UpgradeManager.data.upgrades[i].prereqs[0]) {
+				fulfilled = false;
+			}
+			else
+			{
+				for (var j = 1; j < UpgradeManager.data.upgrades[i].prereqs.length; j++) {
+					var tmpVal = UpgradeManager.data.upgrades[i].prereqs[j];
+					if(tmpVal >= 0 && UpgradeManager.data.upgrades[tmpVal].numOwned < 1) {
+						fulfilled = false;
+					}
+				}
+			}
+
+			if (fulfilled) {
+				tmpUpgrades.unshift(UpgradeManager.data.upgrades[i]);
+			}
+		}
+		/*for (var i = 0; i < UpgradeManager.data.upgrades.length; i++) {
 			if (UpgradeManager.data.upgrades[i].prereqs[0] == -1) {			// location matches.
 				var fulfilled = true;
 				if (UpgradeManager.data.upgrades[i].prereqs[0] != -1
-					&& playerData.currLocation.substring(1,2) != UpgradeManager.data.upgrades[i].prereqs[0] + "") {
+					&& playerData.currLocation.id.substring(1,2) != UpgradeManager.data.upgrades[i].prereqs[0] + "") {
 					fulfilled = false;
 				}
 				for (var j = 1; j < UpgradeManager.data.upgrades[i].prereqs.length; j++) {
@@ -972,7 +992,7 @@ onmessage = function (event) {
 					tmpUpgrades.unshift(UpgradeManager.data.upgrades[i]);
 				}
 			}
-		}
+		}*/
 
 		postMessage({
 			type : "upgrades",
@@ -1023,7 +1043,7 @@ onmessage = function (event) {
 			} else if (current.category == "upgrade") {
 				for (var j = 0; j < UpgradeManager.data.upgrades.length; j++) {
 					var tempVal = UpgradeManager.data.upgrades[j];
-					if (tempVal.id = current.id) {
+					if (tempVal.id == current.id) {
 						if (tempVal.numOwned > 0) {
 							if (current.numOwned != 1)
 								changed.unshift(current.name);
