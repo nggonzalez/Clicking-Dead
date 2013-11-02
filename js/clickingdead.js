@@ -17,7 +17,7 @@ ClickingDead.data = {			// define initial conditions for game state.
 	globNextLoc : {},
 	zombiesKilled : 0,
 	zombiesClicked : 0,
-	supplies : 0,
+	supplies : 1000000000,
 	fortification : 100,
 	weapons : [], 
 	upgrades : [],
@@ -169,6 +169,13 @@ var initialize = function () {
 			}		
 	}, 500);
 
+	setInterval(function() {
+		upgradeManagerWorker.postMessage({			// ask for reload.
+			type : "unlockLocation",
+			zombiesKilled: ClickingDead.data.zombiesKilled,
+			currentLocation: ClickingDead.data.currLocation
+		});
+	}, 10000);
 
 	var zombieWorker = new Worker("/js/zombiescalc.js");
 
@@ -340,14 +347,6 @@ var initialize = function () {
 			}
 			ClickingDead.data.globNextLoc = event.data.locationObject;
 		}
-
-		setInterval(function() {
-			upgradeManagerWorker.postMessage({			// ask for reload.
-				type : "unlockLocation",
-				zombiesKilled: ClickingDead.data.zombiesKilled,
-				currentLocation: ClickingDead.data.currLocation
-			});
-		}, 10000);
 
 		$("body").on("click", "#moveOn", function(e) {
 			var currentLocation = $(".backgroundImage.currentLocation");

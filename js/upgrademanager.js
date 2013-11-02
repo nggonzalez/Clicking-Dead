@@ -787,7 +787,7 @@ UpgradeManager.data.achievements.unshift({
 	id : "K3",
 	prereq : "K2",
 	desc : "Kill a total of over 100,000 walkers.",
-	killed : 1000000,
+	killed : 100000,
 	clicked: 0,
 	numOwned : 0
 });
