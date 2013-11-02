@@ -269,6 +269,7 @@ var initialize = function () {
 				$("#itemsList").append(htmlBuild);
 			}
 		} else if (event.data.type == "upgrades") {
+			console.log(elems);
 			$("#itemsList").empty();				// clear itemsList
 			for (var i = 0; i < elems.length; i++) {
 				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
@@ -287,7 +288,7 @@ var initialize = function () {
 			}
 		} else if (event.data.type == "achievements") {
 			for (var i = 0; i < event.data.changed.length; i++) {
-				$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + "Achievement Unlocked: " + event.data.changed[i] + '</span></li>');
+				$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + "&#x2605; Achievement Unlocked: " + event.data.changed[i] + '</span></li>');
 				if($("#news li").length > 4) {
 					$("#news li:last").remove();
 				}

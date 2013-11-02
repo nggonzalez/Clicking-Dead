@@ -978,6 +978,8 @@ onmessage = function (event) {
 			type : "upgrades",
 			data : tmpUpgrades
 		});
+
+		throw(JSON.stringify(tmpUpgrades));
 	}  else if (event.data.type == "achievements") {
 		// open the upgrades tab
 		var threshClick = event.data.threshClick;
