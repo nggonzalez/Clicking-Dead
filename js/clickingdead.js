@@ -19,14 +19,16 @@ ClickingDead.data = {			// define initial conditions for game state.
 	zombiesClicked : 0,
 	supplies : 0,
 	fortification : 100,
-	threshKilled : 100,
-	threshClicked : 100,
-	companions : [],
 	weapons : [], 
 	upgrades : [],
 	acheivements : [],
 	zombieCalcData : {},
 	upgradeManagerData : {},
+	threshKilled : 100,
+	threshClicked : 100,
+	achievementList : false,
+	refresh : false,
+	companions : [],
 };
 
 
@@ -149,6 +151,24 @@ var initialize = function () {
 
 	// this should allow for autosave
 
+	setInterval(function () {
+		localStorage.setItem("data", JSON.stringify(ClickingDead.data));
+		if ((ClickingDead.data.threshKilled >= 0 && ClickingDead.data.threshKilled < ClickingDead.data.zombiesKilled) || 
+			(ClickingDead.data.threshClicked >= 0 && ClickingDead.data.threshClicked < ClickingDead.data.zombiesClicked) ||
+			ClickingDead.data.refresh) {
+				
+			ClickingDead.data.refresh = false;
+			upgradeManagerWorker.postMessage({
+				type : "achievements",
+				numKilled : ClickingDead.data.zombiesKilled,
+				numClicked : ClickingDead.data.zombiesClicked,
+				threshKill : ClickingDead.data.threshKilled,
+				threshClick : ClickingDead.data.threshClicked,
+				list : ClickingDead.data.achievementList
+				});
+			}		
+	}, 500);
+
 
 	var zombieWorker = new Worker("/js/zombiescalc.js");
 
@@ -259,24 +279,32 @@ var initialize = function () {
 				$("#itemsList").append(htmlBuild);
 			}
 		} else if (event.data.type == "achievements") {
-			$("#itemsList").empty();				// clear itemsList
-			for (var i = 0; i < elems.length; i++) {
-				var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
-				htmlBuild += '<h2>'+elems[i].name+'</h2>';
-				htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
-				htmlBuild += '</div>';
-				htmlBuild += '<div class="purchaseInfoWrapper">';
-				if (elems[i].numOwned > 0) {
-					htmlBuild += '<p class="purchased">&#x2714;</p>';
+			for (var i = 0; i < event.data.changed.length; i++) {
+				$("#news").prepend('<li class="newsItem breakTheStory flavorPost"><span class="newsContent">' + "Achievement Unlocked: " + event.data.changed[i] + '</span></li>');
+				if($("#news li").length > 4) {
+					$("#news li:last").remove();
 				}
-				htmlBuild += '</div></li>';
-				$("#itemsList").append(htmlBuild);
-			} 			
+			} if (event.data.reload) {
+				$("#itemsList").empty();			// clear itemsList
+				for (var i = 0; i < elems.length; i++) {
+					var htmlBuild = '<li class="upgradeItem" data-id="'+elems[i].id+'"><div class="generalInfoWrapper">';
+					htmlBuild += '<h2>'+elems[i].name+'</h2>';
+					htmlBuild += '<p><span class="description">'+elems[i].desc+'</span></p>';
+					htmlBuild += '</div>';
+					htmlBuild += '<div class="purchaseInfoWrapper">';
+					if (elems[i].numOwned > 0) {
+						htmlBuild += '<p class="purchased">&#x2714;</p>';
+					}
+					htmlBuild += '</div></li>';
+					$("#itemsList").append(htmlBuild);
+				}
+			} 
 			ClickingDead.data.threshClicked = event.data.clicked;
 			ClickingDead.data.threshKilled = event.data.killed;
 		} else if (event.data.type == "debugNotification") {
 			Console.log(event.data.message);
 		} else if (event.data.type == "purchase") {
+			ClickingDead.data.refresh = true;
 			ClickingDead.data.supplies = ClickingDead.data.supplies - event.data.cost;	// pay the price
 			ClickingDead.data.supplies = Math.max(ClickingDead.data.supplies, 0);
 			
@@ -321,23 +349,6 @@ var initialize = function () {
 			});
 		}, 10000);
 
-		setInterval(function () {
-			localStorage.setItem("data", JSON.stringify(ClickingDead.data));
-			if (event.data.type == "achievements" &&
-				((ClickingDead.data.threshKilled >= 0 &&
-				ClickingDead.data.threshKilled < ClickingDead.data.zombiesKilled) || 
-				(ClickingDead.data.threshClicked >= 0 &&
-				ClickingDead.data.threshClicked < ClickingDead.data.zombiesClicked))) {
-				upgradeManagerWorker.postMessage({
-					type : "achievements",
-					numKilled : ClickingDead.data.zombiesKilled,
-					numClicked : ClickingDead.data.zombiesClicked,
-					threshKill : ClickingDead.data.threshKilled,
-					threshClick : ClickingDead.data.threshClicked
-				});
-			}		
-		}, 100);	
-
 		$("body").on("click", "#moveOn", function(e) {
 			var currentLocation = $(".backgroundImage.currentLocation");
 			$(currentLocation).removeClass("currentLocation").addClass("leaveLocation");
@@ -379,30 +390,35 @@ var initialize = function () {
 	/////////// Weapons ////////////
 	
 	$("body").on("click", "#weapons", function() {
+		ClickingDead.data.achievementList = false;
 		upgradeManagerWorker.postMessage({				// load the weapons tab.
 			type : "weapons"
 		});
 	});
 
 	$("body").on("click", "#companions", function() {
+		ClickingDead.data.achievementList = false;
 		upgradeManagerWorker.postMessage({
 			type : "companions"
 		});
 	});
 
 	$("body").on("click", "#upgrades", function() {
+		ClickingDead.data.achievementList = false;
 		upgradeManagerWorker.postMessage({
 			type : "upgrades"
 		});
 	});
 
 	$("body").on("click", "#achievements", function() {
+		ClickingDead.data.achievementList = true;
 		upgradeManagerWorker.postMessage({
 			type : "achievements",
 			numKilled : ClickingDead.data.zombiesKilled,
 			numClicked : ClickingDead.data.zombiesClicked,
 			threshKill : ClickingDead.data.threshKilled,
-			threshClick : ClickingDead.data.threshClicked
+			threshClick : ClickingDead.data.threshClicked,
+			list : ClickingDead.data.achievementList
 		});
 	});
 

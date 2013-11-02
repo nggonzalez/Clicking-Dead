@@ -712,7 +712,7 @@ UpgradeManager.data.achievements.unshift({
 	category : "kill",
 	name : "Amateur",
 	id : "K0",
-	prereq : "--",
+	prereq : "00",
 	desc : "Kill a total of over 100 walkers.",
 	killed : 100,
 	clicked: 0,
@@ -724,7 +724,7 @@ UpgradeManager.data.achievements.unshift({
 	category : "click",
 	name : "Just Keep Clicking",
 	id : "C0",
-	prereq : "--",
+	prereq : "00",
 	desc : "Kill a total of over 100 walkers.",
 	killed : 0,
 	clicked: 100,
@@ -750,9 +750,9 @@ UpgradeManager.data.achievements.unshift({
 	name : "Clicking Pro",
 	id : "C1",
 	prereq : "C0",
-	desc : "Click to kill over 150 walkers.",
+	desc : "Click to kill over 1,000 walkers",
 	killed : 0,
-	clicked: 150,
+	clicked: 1000,
 	numOwned : 0
 });
 
@@ -982,53 +982,69 @@ onmessage = function (event) {
 		// open the upgrades tab
 		var threshClick = event.data.threshClick;
 		var threshKill = event.data.threshKill;
+		var reload = event.data.list;
+		var killFound = 0;
+		var clickFound = 0;
+		changed = [];
 		tmpAchievements = [];
 
 		for (var i = 0; i < UpgradeManager.data.achievements.length; i++) {
-			if (UpgradeManager.data.achievements[i].category == "kill") {
-				if (event.data.numKilled >= UpgradeManager.data.achievements[i].killed) {
-					UpgradeManager.data.achievements[i].numOwned = 1;
-					for (var j = 0; j < UpgradeManager.data.achievements.length; j++) {
-						var tempVal = UpgradeManager.data.achievements[j];
-						if (tempVal.prereq == UpgradeManager.data.achievements[i].id) {
-							threshKill = Math.max(threshKill, tempVal.killed);
+
+			current = UpgradeManager.data.achievements[i];
+
+			if (current.category == "kill") {
+				if (current.numOwned != 1) {
+					killFound++;
+					if (event.data.numKilled >= current.killed) {
+						changed.unshift(current.name);
+						current.numOwned = 1;
+						for (var j = 0; j < UpgradeManager.data.achievements.length; j++) {
+							var tempVal = UpgradeManager.data.achievements[j];
+							if (tempVal.prereq == current.id)
+								threshKill = threshKill, tempVal.killed;
 						}
 					}
-					if (threshKill == event.data.threshKill) {
-						threshKill = -1;
-					}
 				}
-			} else if (UpgradeManager.data.achievements[i].category == "click") {
-				if (event.data.numClicked >= UpgradeManager.data.achievements[i].clicked) {
-					UpgradeManager.data.achievements[i].numOwned = 1;
-					for (var j = 0; j < UpgradeManager.data.achievements.length; j++) {
-						var tempVal = UpgradeManager.data.achievements[j];
-						if (tempVal.prereq == UpgradeManager.data.achievements[i].id) {
-							threshClick = Math.max(threshClick, tempVal.clicked);
+			} else if (current.category == "click") {
+				if (current.numOwned != 1) {
+					clickFound++;
+					if (event.data.numClicked >= current.clicked) {
+						changed.unshift(current.name);
+						current.numOwned = 1;
+						for (var j = 0; j < UpgradeManager.data.achievements.length; j++) {
+							var tempVal = UpgradeManager.data.achievements[j];
+							if (tempVal.prereq == current.id)
+								threshClick = tempVal.clicked;
 						}
 					}
-					if (threshClick == event.data.threshClick) {
-						threshClick = -1;
-					}
 				}
-			} else if (UpgradeManager.data.achievements[i].category == "upgrade") {
+			} else if (current.category == "upgrade") {
 				for (var j = 0; j < UpgradeManager.data.upgrades.length; j++) {
 					var tempVal = UpgradeManager.data.upgrades[j];
-					if (tempVal.id = UpgradeManager.data.achievements[i].id) {
+					if (tempVal.id = current.id) {
 						if (tempVal.numOwned > 0) {
-							UpgradeManager.data.achievements[i].numOwned = 1;
+							if (current.numOwned != 1)
+								changed.unshift(current.name);
+							current.numOwned = 1;
 						}
 					}
 				}
 			}
-			tmpAchievements.unshift(UpgradeManager.data.achievements[i]);
+			tmpAchievements.unshift(current);
 		}
+
+		if (killFound == 0)
+			threshKill = -1;
+		if (clickFound == 0)
+			threshClick = -1;
 
 		postMessage({
 			type : "achievements",
 			data : tmpAchievements,
 			clicked : threshClick,
-			killed : threshKill
+			killed : threshKill,
+			reload : reload,
+			changed : changed
 		});
 	} else if (event.data.type == "update") {
 		playerData = event.data.data;
