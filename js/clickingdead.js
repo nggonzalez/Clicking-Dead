@@ -137,47 +137,59 @@ $.fn.nodoubletapzoom = function() {
 };
 })(jQuery);
 
+
 /**
  * function to initialize all of our variables and stuff.
  */
+
 var initialize = function () {
 
 	// set the local storage autosave interval.
 
-	setInterval(function () {
-		localStorage.setItem("data", JSON.stringify(ClickingDead.data));
-		$("#news").prepend('<li class="newsItem breakTheStory bonusPost"><span class="newsContent">Your game has been saved.</span></li>');
-	}, 20000);
-
-	// this should allow for autosave
-
-	setInterval(function () {
-		localStorage.setItem("data", JSON.stringify(ClickingDead.data));
-		if ((ClickingDead.data.threshKilled >= 0 && ClickingDead.data.threshKilled < ClickingDead.data.zombiesKilled) || 
-			(ClickingDead.data.threshClicked >= 0 && ClickingDead.data.threshClicked < ClickingDead.data.zombiesClicked) ||
-			ClickingDead.data.refresh) {
-				
-			ClickingDead.data.refresh = false;
-			upgradeManagerWorker.postMessage({
-				type : "achievements",
-				numKilled : ClickingDead.data.zombiesKilled,
-				numClicked : ClickingDead.data.zombiesClicked,
-				threshKill : ClickingDead.data.threshKilled,
-				threshClick : ClickingDead.data.threshClicked,
-				list : ClickingDead.data.achievementList
-				});
-			}		
-	}, 500);
-
-	setInterval(function() {
-		upgradeManagerWorker.postMessage({			// ask for reload.
-			type : "unlockLocation",
-			zombiesKilled: ClickingDead.data.zombiesKilled,
-			currentLocation: ClickingDead.data.currLocation
-		});
-	}, 10000);
-
 	var zombieWorker = new Worker("/js/zombiescalc.js");
+	var saveInterval, achievementsInterval, locationInterval;
+	var startIntervals = function () {
+		if (!saveInterval && !achievementsInterval && !locationInterval) {
+			saveInterval = setInterval(function () {
+				localStorage.setItem("data", JSON.stringify(ClickingDead.data));
+				$("#news").prepend('<li class="newsItem breakTheStory bonusPost"><span class="newsContent">Your game has been saved.</span></li>');
+			}, 20000);
+
+			// this should allow for autosave
+
+			achievementsInterval = setInterval(function () {
+				localStorage.setItem("data", JSON.stringify(ClickingDead.data));
+				if ((ClickingDead.data.threshKilled >= 0 && ClickingDead.data.threshKilled < ClickingDead.data.zombiesKilled) || 
+					(ClickingDead.data.threshClicked >= 0 && ClickingDead.data.threshClicked < ClickingDead.data.zombiesClicked) ||
+					ClickingDead.data.refresh) {
+						
+					ClickingDead.data.refresh = false;
+					upgradeManagerWorker.postMessage({
+						type : "achievements",
+						numKilled : ClickingDead.data.zombiesKilled,
+						numClicked : ClickingDead.data.zombiesClicked,
+						threshKill : ClickingDead.data.threshKilled,
+						threshClick : ClickingDead.data.threshClicked,
+						list : ClickingDead.data.achievementList
+						});
+					}		
+			}, 500);
+
+			locationInterval = setInterval(function() {
+				upgradeManagerWorker.postMessage({			// ask for reload.
+					type : "unlockLocation",
+					zombiesKilled: ClickingDead.data.zombiesKilled,
+					currentLocation: ClickingDead.data.currLocation
+				});
+			}, 10000);
+		}	
+	}
+
+var stopIntervals = function () {
+	clearInterval(saveInterval);
+	clearInterval(achievementsInterval);
+	clearInterval(locationInterval);
+}
 
 	zombieWorker.onmessage = function (event) {
 		var message = event.data;			// here we will read in the zombie value.
@@ -433,6 +445,8 @@ var initialize = function () {
 		});
 	});
 
+	startIntervals();
+
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  		$("body").nodoubletapzoom();
@@ -470,6 +484,9 @@ $(window).load(function() {
 		$("#companions").click();
 	}
 });
+
+$(window).focus(startIntervals);
+$(window).blur(stopIntervals);
 
 
 
