@@ -9,7 +9,7 @@ var ZombieCalc = {}
 
 ZombieCalc.data = {
 	iterSpeed : 50,			// iteration interval speed.
-	zombies : 750,			// current number of zombies
+	zombies : 70,			// current number of zombies
 	critZombies : 2500,			// critical number of zombies for loss
 	currMaxSupplies : 100000,		// current maximum supply count.
 	currSupplies : 100000,		// the amount of supplies remaining
