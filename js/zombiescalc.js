@@ -32,54 +32,51 @@ ZombieCalc.data = {
  * called every time the situation is refreshed or updated.
  */
 var refreshCalculations = function () {
-	var scaleFactor = (1000/ZombieCalc.data.iterSpeed);
-	
+	var scaleFactor = 1/(1000/ZombieCalc.data.iterSpeed);
+
 	var companionScavenge = 0;
-
 	for (var i = 0; i < playerData.companions.length; i++) {
-		companionScavenge += (playerData.companions[i].scavenge)/(1000/ZombieCalc.data.iterSpeed);
+		companionScavenge += playerData.companions[i].scavenge*scaleFactor;
 	}
-	ZombieCalc.data.currSupplies -= companionScavenge;			// remove from environment.
-
-
-
-	// ZombieCalc.data.supplies += companionScavenge;
-
+	// ZombieCalc.data.currSupplies -= companionScavenge;			// remove from environment.
+	//
 	var companionWpl = 0;
 	for (var i = 0; i < playerData.companions.length; i++) {
 		companionWpl += playerData.companions[i].wpl;
 	}
 	// we now have a wpl for all of our combined people.
 	
+	// we must now do a knapsack algorithm to determine the optimal equip pattern.
+	// the current algorithm is not optimal, but a good heuristic that will apply 
+	// the most powerful weapons first.
+
+	playerData.weapons = playerData.weapons.sort(function(obj1, obj2) {
+		// Descending: first damage greater than the previous
+		return obj2.damage - obj1.damage;
+	});
+
+	var maxEquips = 2 * playerData.companions.length;
+	var numEquips = 0;
 	var damageDone = 0;
 	var suppliesUsed = 0;
 	for (var i = 0; i < playerData.weapons.length; i++) {
-		if(i == 0) {
-			playerData.weapons = playerData.weapons.sort(function(obj1, obj2) {
-				// Descending: first damage greater than the previous
-				return obj2.damage - obj1.damage;
-			});
-		}
-		if (companionWpl - playerData.weapons[i].wpl >= 0 
-			&& ZombieCalc.data.supplies + playerData.weapons[i].supply >= 0) {	// note .supply is neg.
-
+		if ((companionWpl - playerData.weapons[i].wpl) >= 0 
+			&& (ZombieCalc.data.supplies + suppliesUsed + playerData.weapons[i].supply >= 0)
+			&& numEquips < maxEquips) {	// note .supply is neg.
 			damageDone += playerData.weapons[i].damage;
 			suppliesUsed += playerData.weapons[i].supply;
 			companionWpl -= playerData.weapons[i].wpl;
+			numEquips++;
 		} else {
-			break;
+			continue;
 		}
 	}
 
-	var companionKills = damageDone/scaleFactor;
+	// finally make assignments
+	var companionKills = damageDone*scaleFactor;
+	companionScavenge += suppliesUsed*scaleFactor;
 	
-	//ZombieCalc.data.zombies -= companionKills;
-
-	//ZombieCalc.data.supplies += suppliesUsed/scaleFactor;
-	
-	companionScavenge += suppliesUsed/scaleFactor;
-
-
+	// core of the eventual assignment data.
 	ZombieCalc.data.passiveKillRate = companionKills;
 	ZombieCalc.data.passiveScavengeRate = companionScavenge;
 	ZombieCalc.data.passiveZombieResistance = ZombieCalc.data.critZombies * Math.log(playerData.fortification);
